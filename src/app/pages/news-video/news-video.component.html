@@ -1,0 +1,94 @@
+
+
+<section class="bg0 p-t-10 p-b-10">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-12 p-b-20">
+                    <div class="how2 how2-cl4 flex-s-c m-r-10 m-r-0-sr991">
+                        <div class="col-md-8">
+                            <h3 class="f1-m-2 cl3 tab01-title">
+                                Video News
+                            </h3>
+                        </div>
+                        <div class="col-md-4">
+                            
+                                <!-- *ngIf="homeService.videoNews && homeService.videoNews.length > 12" -->
+                            <!-- <a class="tab01-link f1-s-1 cl9 hov-cl10 trans-03" [routerLink]="['/news-video']"
+                                style="float:right;cursor:pointer;">View All</a> -->
+                        </div>
+                    </div>
+                    <div class="row p-t-35">
+                        <div *ngFor="let videoNews of homeService.videoNews | slice:0:12 ; let i = index"
+                            class="col-sm-3 p-r-25 p-r-15-sr991" style="margin-bottom: 30px;">
+                            <div class="wrap-pic-w pos-relative">
+                                <!-- <iframe [src]="videoNews.Link"></iframe> -->
+                                <!-- <img src="assets/images/video-01.jpg" alt="IMG">
+                                            
+                                            <button class="s-full ab-t-l flex-c-c fs-32 cl0 hov-cl10 trans-03" data-toggle="modal"
+                                                data-target="#news{{videoNews.Id}}video">
+                                                <span class="fab fa-youtube"></span>
+                                            </button> -->
+                                            <img src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt="IMG">
+                                <!-- <img src="assets/images/video-01.jpg" alt="IMG"> -->
+                                <button (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
+                                    data-target="#modal-video-01"
+                                    class="s-full ab-t-l flex-c-c fs-32 cl0 hov-cl10 trans-03">
+                                    <span class="fab fa-youtube"></span>
+                                </button>
+    
+    
+                            </div>
+    
+    
+    
+                            <div class="p-tb-16 p-rl-25 bg3">
+                                <h5 class="p-b-5">
+                                    <a href="#" (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
+                                    data-target="#modal-video-01" class="f1-m-3 cl0 hov-cl10 trans-03">
+                                        {{videoNews.Title}}
+                                    </a>
+                                </h5>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-3 p-r-25 p-r-15-sr991" *ngFor="let videoNews of homeService.videoNews">
+                                <div class="m-b-45">
+                                        <video width="100%" controls>
+                                                <source src="{{imageUrl+videoNews.Link}}" type="video/mp4">
+                                                <source src="{{imageUrl+videoNews.Link}}" type="video/ogg">
+                                                Your browser does not support the video tag.
+                                              </video>
+                                  
+                                    <div class="p-t-16">
+                                        <h5 class="p-b-5">
+                                            <a [routerLink]="['/news-description']" [queryParams]="{newsId: videoNews.Id}" class="f1-m-3 cl2 hov-cl10 trans-03">
+                                              {{videoNews.Title}}
+                                            </a>
+                                        </h5>
+        
+                                        <span class="cl8">
+                                         
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> -->
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document" (click)="videopopup()" data-dismiss="modal">
+                <div class="close-mo-video-01 trans-0-4" (click)="videopopup()" data-dismiss="modal" aria-label="Close">&times;</div>
+    
+                <div class="wrap-video-mo-01">
+                    <div id="iframeVideo" class="video-mo-01" style="opacity:1;">
+                        <!-- <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1">
+                                    </iframe> -->
+                        <!-- <iframe  id="if1" width="100%" height="254" style="visibility:visible" src="{{homeService.videoNews[0].Link | safe}}" ></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>

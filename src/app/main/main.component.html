@@ -1,0 +1,831 @@
+<style>
+    .logo img {
+        height: 100px !important;
+    }
+
+    .marqee-horizontal a {
+        margin: 0 28px;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    .marqee-horizontal {
+        background: #1a5243;
+    }
+
+    .marqee-horizontal>div {
+        padding: 6px 0;
+    }
+</style>
+<!-- <div class="tcontainer">
+    <div class="ticker-wrap">
+      <div class="ticker-move">
+        <div class="ticker-item" *ngFor="let latestNews of homeService.latestNewsList">
+            <a href="{{latestNews.Link}}" target="_blank"><i class="fa fa-forward" aria-hidden="true"></i> {{latestNews.Title}}</a></div>
+      </div>
+    </div>
+  </div> -->
+
+
+<!-- <router-outlet></router-outlet> -->
+<div >
+
+  
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <div class="topbar">
+                <div class="content-topbar container h-100">
+                    <div class="left-topbar">
+                        <span class="left-topbar-item flex-wr-s-c">
+                            <span>
+                                India, TN
+                            </span>
+
+                            <!-- <img class="m-b-1 m-rl-8" src="assets/images/icons/icon-night.png" alt="IMG">
+
+                            <span>
+                                HI 58° LO 56°
+                            </span> -->
+                        </span>
+
+                        <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
+                            About
+                        </a>
+
+                        <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
+                            Contact
+                        </a>
+                    </div>
+                   
+                    <div class="right-topbar">
+                       
+
+                        <!-- <a routerLink="/">
+                            <span class="fab fa-twitter"></span>
+                        </a>
+
+                        <a routerLink="/">
+                            <span class="fab fa-pinterest-p"></span>
+                        </a>
+
+                        <a routerLink="/">
+                            <span class="fab fa-vimeo-v"></span>
+                        </a> -->
+
+                        <a href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank">
+                            <span class="fab fa-facebook-f"></span>
+                        </a>
+
+                        <a  href="https://www.instagram.com/onebharath_news/" target="_blank">
+                            <span class="fab fa-instagram"></span>
+                        </a>
+                        <a  href="https://www.youtube.com/channel/UCHKaqrWBHvBdS7dgpjpz5lg" target="_blank">
+                            <span class="fab fa-youtube"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            
+    <!--Navbar-->
+    <nav class="navbar navbar-light light-blue lighten-4 wrap-header-mobile" style="padding:0">
+
+            <!-- Navbar brand -->
+            <!-- <a class="navbar-brand" href="#">
+
+                    <div class="logo-mobile">
+                            <a routerLink="/"><img src="assets/newslogo.png" alt="IMG-LOGO"></a>
+                        </div>
+
+            </a> -->
+            <a class="navbar-brand logo-mobile" href="/"><img src="assets/newslogo.png" alt="IMG-LOGO"></a>
+            <!-- Collapse button -->
+            <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+              aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="dark-blue-text"><i
+                  class="fas fa-bars fa-1x"></i></span>
+                </button>
+          
+            <!-- Collapsible content -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+          
+                    <ul class="topbar-mobile">
+                            <li class="left-topbar">
+                                <span class="left-topbar-item flex-wr-s-c">
+                                    <span>
+                                        India, TN
+                                    </span>
+                                </span>
+                            </li>
+        
+                            <li class="left-topbar">
+                                 <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
+                            About
+                        </a>
+
+                        <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
+                            Contact
+                        </a>
+                            </li>
+        
+                            <li class="right-topbar">
+                                    <a href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank">
+                                        <span class="fab fa-facebook-f"></span>
+                                    </a>
+            
+                                    <a  href="https://www.instagram.com/onebharath_news/" target="_blank">
+                                        <span class="fab fa-instagram"></span>
+                                    </a>
+                                    <a  href="https://www.youtube.com/channel/UCHKaqrWBHvBdS7dgpjpz5lg" target="_blank">
+                                        <span class="fab fa-youtube"></span>
+                                    </a>
+                                <!-- <a>
+                                    <span class="fab fa-facebook-f"></span>
+                                </a>
+        
+                                <a routerLink="/">
+                                    <span class="fab fa-twitter"></span>
+                                </a>
+        
+                                <a routerLink="/">
+                                    <span class="fab fa-pinterest-p"></span>
+                                </a>
+        
+                                <a routerLink="/">
+                                    <span class="fab fa-vimeo-v"></span>
+                                </a>
+        
+                                <a routerLink="/">
+                                    <span class="fab fa-youtube"></span>
+                                </a> -->
+                            </li>
+                        </ul>
+        
+                        <ul class="main-menu-m">
+                            
+                            <li>
+                                <a routerLink="/">Home</a>
+                            </li>
+                           
+                            <li *ngFor="let category of categoryList;">
+                                    <a [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}">{{category.CategoryName}}</a>
+                                    <ul class="sub-menu-m" *ngIf="category.Toggle">
+                                        <li *ngFor="let subcategory of category.SubCategoryJson;">
+                                            <a [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}">{{subcategory.SubCategoryName}}</a>
+                                        </li>
+                                    </ul>
+                                    <span class="arrow-main-menu-m">
+                                        <i [ngClass]="category.Toggle ? 'fa fa-angle-down' : 'fa fa-angle-right'"  (click)="category.Toggle = !category.Toggle;"></i>
+                                    </span>                                   
+                            </li>
+
+        
+                            <!-- <li>
+                                <a routerLink="/">Business</a>
+                            </li>
+        
+                            <li>
+                                <a routerLink="/">Travel</a>
+                            </li>
+        
+                            <li>
+                                <a routerLink="/">Life Style</a>
+                            </li>
+        
+                            <li>
+                                <a routerLink="/">Video</a>
+                            </li> -->
+        
+                            <!-- <li>
+                                <a href="#">Features</a>
+                                <ul class="sub-menu-m">
+                                    <li><a routerLink="/">Category Page v1</a></li>
+                                    <li><a routerLink="/">Category Page v2</a></li>
+                                    <li><a routerLink="/">Blog Grid Sidebar</a></li>
+                                    <li><a routerLink="/">Blog List Sidebar v1</a></li>
+                                    <li><a routerLink="/">Blog List Sidebar v2</a></li>
+                                    <li><a routerLink="/">Blog Detail Sidebar</a></li>
+                                    <li><a routerLink="/">Blog Detail No Sidebar</a></li>
+                                    <li><a routerLink="/">About Us</a></li>
+                                    <li><a routerLink="/">Contact Us</a></li>
+                                </ul>
+        
+                                <span class="arrow-main-menu-m">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </span>
+                            </li> -->
+                        </ul>
+
+
+              <!-- Links -->
+              <!-- <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pricing</a>
+                </li>
+              </ul> -->
+              <!-- Links -->
+          
+            </div>
+            <!-- Collapsible content -->
+          
+          </nav>
+          <!--/.Navbar-->
+    
+
+          
+
+            <!-- Header Mobile -->
+            <!-- <div class="wrap-header-mobile">
+
+
+
+                
+                <div class="logo-mobile">
+                    <a routerLink="/"><img src="assets/newslogo.png" alt="IMG-LOGO"></a>
+                </div>
+
+                
+                <div class="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </div>
+
+                
+
+
+            </div> -->
+
+            <!-- Menu Mobile -->
+            <div class="menu-mobile">
+                <ul class="topbar-mobile">
+                    <li class="left-topbar">
+                        <span class="left-topbar-item flex-wr-s-c">
+                            <span>
+                                India, TN
+                            </span>
+
+                            <img class="m-b-1 m-rl-8" src="assets/images/icons/icon-night.png" alt="IMG">
+
+                            <span>
+                                HI 58° LO 56°
+                            </span>
+                        </span>
+                    </li>
+
+                    <li class="left-topbar">
+                        <a routerLink="/" class="left-topbar-item">
+                            About
+                        </a>
+
+                        <a routerLink="/" class="left-topbar-item">
+                            Contact
+                        </a>
+                    </li>
+
+                    <li class="right-topbar">
+                        <a>
+                            <span class="fab fa-facebook-f"></span>
+                        </a>
+
+                        <a routerLink="/">
+                            <span class="fab fa-twitter"></span>
+                        </a>
+
+                        <a routerLink="/">
+                            <span class="fab fa-pinterest-p"></span>
+                        </a>
+
+                        <a routerLink="/">
+                            <span class="fab fa-vimeo-v"></span>
+                        </a>
+
+                        <a routerLink="/">
+                            <span class="fab fa-youtube"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="main-menu-m">
+                    <li>
+                        <a routerLink="/">Home</a>
+                        <ul class="sub-menu-m">
+                            <li><a routerLink="/">Homepage v1</a></li>
+                            <li><a routerLink="/">Homepage v2</a></li>
+                            <li><a routerLink="/">Homepage v3</a></li>
+                        </ul>
+
+                        <span class="arrow-main-menu-m">
+                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        </span>
+                    </li>
+
+                    <li>
+                        <a routerLink="/">News</a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/">Entertainment </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/">Business</a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/">Travel</a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/">Life Style</a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/">Video</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Features</a>
+                        <ul class="sub-menu-m">
+                            <li><a routerLink="/">Category Page v1</a></li>
+                            <li><a routerLink="/">Category Page v2</a></li>
+                            <li><a routerLink="/">Blog Grid Sidebar</a></li>
+                            <li><a routerLink="/">Blog List Sidebar v1</a></li>
+                            <li><a routerLink="/">Blog List Sidebar v2</a></li>
+                            <li><a routerLink="/">Blog Detail Sidebar</a></li>
+                            <li><a routerLink="/">Blog Detail No Sidebar</a></li>
+                            <li><a routerLink="/">About Us</a></li>
+                            <li><a routerLink="/">Contact Us</a></li>
+                        </ul>
+
+                        <span class="arrow-main-menu-m">
+                            <i class="fa fa-angle-right"  ></i>
+                        </span>
+                        <!-- aria-hidden="true" -->
+                    </li>
+                </ul>
+            </div>
+
+            <!--  -->
+            <div class="wrap-logo container">
+                <!-- Logo desktop -->
+                <div class="logo">
+                    <a routerLink="/"><img src="assets/newsLogo2.png" alt="LOGO"></a>
+                </div>
+                <!-- onclick="fbs_click(this)" -->
+                <!-- Banner -->
+                <div class="banner-header">
+                    <a *ngFor="let add of homeService.advertisementList">
+
+                        <a *ngIf="add.Name == 'one'" href="{{add.Link}}" target="_blank" style="cursor: pointer;"><img
+                                src="{{imageUrlPath+ 'common/' + add.ImagePath}}" alt="IMG"
+                                style="height:100px;max-width: 100%;"></a>
+                    </a>
+                </div>
+            </div>
+
+            <!--  -->
+            <div class="wrap-main-nav">
+                <div class="main-nav">
+                    <!-- Menu desktop -->
+                    <nav class="menu-desktop">
+                        <a class="logo-stick" routerLink="/">
+                            <img src="assets/images/icons/logo-01.png" alt="LOGO">
+                        </a>
+                       
+                        <ul class="main-menu">
+                            <li class="main-menu-active">
+                                <a routerLink="/">Home</a>
+                                <!-- <ul class="sub-menu">
+                                   <li><a href="index.html">Homepage v1</a></li>
+                                   <li><a href="home-02.html">Homepage v2</a></li>
+                                   <li><a href="home-03.html">Homepage v3</a></li>
+                               </ul> -->
+                            </li>
+
+                            <li class="mega-menu-item" *ngFor="let category of categoryList">
+                                <a [routerLink]="['/news-category']"
+                                    [queryParams]="{categoryId: category.CategoryId}">{{category.CategoryName}}</a>
+                                <!-- [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]" -->
+                                <div class="sub-mega-menu">
+                                    <div class="nav flex-column nav-pills" role="tablist">
+                                        <a class="nav-link active" data-toggle="pill" href="#{{category.CategoryId}}"
+                                            role="tab">All</a>
+                                        <!--  [routerLink]="['/news-subcategory']"
+                                            [queryParams]="{subcategoryId: subcategory.SubCategoryId}"  -->
+                                        <a *ngFor="let subcategory of category.SubCategoryJson" class="nav-link"
+                                            data-toggle="pill" (click)="gotoSubcategory(subcategory)"
+                                           
+                                            href="#{{subcategory.SubCategoryId}}"
+                                            role="tab">{{subcategory.SubCategoryName}}</a>
+
+                                    </div>
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="{{category.CategoryId}}" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-3"
+                                                    *ngFor="let subcategory of category.SubCategoryJson | slice:0:4">
+                                                    <!-- Item post -->
+                                                    <div *ngIf="subcategory.News">
+                                                        <a class="wrap-pic-w hov1 trans-03"
+                                                            (click)="goProducts(subcategory.News[0].newsId)"
+                                                            [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
+                                                            <img src="{{imageUrl + subcategory.News[0].Newsthump}}"
+                                                                alt="IMG" style="max-height: 120px;max-width:100%;">
+                                                        </a>
+
+                                                        <div class="p-t-10">
+                                                            <h5 class="p-b-5">
+                                                                <a (click)="goProducts(subcategory.News[0].newsId)"
+                                                                    class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                                    [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
+                                                                    <!-- <p [innerHTML]="subcategory.News[0].NewsHeadLine"></p> -->
+                                                                    {{subcategory.News[0].NewsHeadLine}}
+                                                                </a>
+                                                            </h5>
+
+                                                            <!-- <span class="cl8">
+
+
+                                                               <span class="f1-s-3">
+                                                                   {{subcategory.News[0].Date}}
+                                                               </span>
+                                                           </span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row" *ngIf="category.SubCategoryJson">
+                                                <div class="col-12" *ngIf="category.SubCategoryJson.lenght > 4">
+                                                    <a class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                        [routerLink]="['/news-category']"
+                                                        [queryParams]="{categoryId: category.CategoryId}"
+                                                        style="float:right;cursor:pointer;margin-top: 10px;">View
+                                                        All</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngFor="let subcategory of category.SubCategoryJson" class="tab-pane"
+                                            id="{{subcategory.SubCategoryId}}" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-3" *ngFor="let news of subcategory.News | slice:0:4">
+                                                    <!-- Item post -->
+                                                    <div>
+                                                        <a (click)="goProducts(news.newsId)"
+                                                            class="wrap-pic-w hov1 trans-03"
+                                                            [routerLink]="['/news-details?newsId='+news.newsId]">
+                                                            <!-- <img src="assets/New/images/post-50.jpg" alt="IMG"> -->
+                                                            <img src="{{imageUrl + news.Newsthump}}" alt="IMG"
+                                                                style="max-height: 120px;max-width:100%;">
+                                                        </a>
+
+                                                        <div class="p-t-10">
+                                                            <h5 class="p-b-5">
+                                                                <a (click)="goProducts(news.newsId)"
+                                                                    class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                                    [routerLink]="['/news-details?newsId='+news.newsId]">
+                                                                    <!-- <p *ngIf="news" [innerHTML]="news.NewsHeadLine"></p> -->
+                                                                    {{news.NewsHeadLine}}
+                                                                </a>
+                                                            </h5>
+
+                                                            <!-- <span class="cl8">
+                                                               <span class="f1-s-3">
+                                                                 {{news.Date}}
+                                                               </span>
+                                                           </span> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" *ngIf="subcategory.News">
+                                                <div class="col-12" *ngIf="subcategory.News.length > 4">
+                                                    <a class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                        [routerLink]="['/news-subcategory']"
+                                                        [queryParams]="{subcategoryId: subcategory.SubCategoryId}"
+                                                        style="float:right;cursor:pointer;margin-top: 10px;">View
+                                                        All</a>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row" *ngIf="subcategory.News">
+                                                <div class="col-12" *ngIf="subcategory.News.length > 4"><a class="f1-s-5 cl3 hov-cl10 trans-03">View All</a></div>
+                                           </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+
+                            <!-- <li>
+                               <a href="#">Features</a>
+                               <ul class="sub-menu">
+                                   <li><a href="category-01.html">Category Page v1</a></li>
+                                   <li><a href="category-02.html">Category Page v2</a></li>
+                                   <li><a href="blog-grid.html">Blog Grid Sidebar</a></li>
+                                   <li><a href="blog-list-01.html">Blog List Sidebar v1</a></li>
+                                   <li><a href="blog-list-02.html">Blog List Sidebar v2</a></li>
+                                   <li><a href="blog-detail-01.html">Blog Detail Sidebar</a></li>
+                                   <li><a href="blog-detail-02.html">Blog Detail No Sidebar</a></li>
+                                   <li><a href="about.html">About Us</a></li>
+                                   <li><a href="contact.html">Contact Us</a></li>
+                               </ul>
+                           </li> -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- <div class="tcontainer">
+        <div class="ticker-wrap">
+            <div class="ticker-move">
+                <div class="ticker-item" *ngFor="let latestNews of homeService.latestNewsList">
+                    <a href="{{latestNews.Link}}" target="_blank"><i class="fa fa-forward" aria-hidden="true"></i>
+                        {{latestNews.Title}}</a></div>
+
+            </div>
+
+        </div>
+    </div> -->
+
+    <marquee class="marqee-horizontal" behavior="scroll" direction="left" onmouseover="this.stop();"
+        onmouseout="this.start();">
+        <div>
+            <span *ngFor="let scrollNews of homeService.scrollNews">
+                <a [routerLink]="['/news-description']" [queryParams]="{newsId: scrollNews.NewsId}" target="_blank">
+                    <i class="fa fa-forward" aria-hidden="true"></i> {{scrollNews.HeadLine}}
+                </a>
+            </span>
+        </div>
+    </marquee>
+
+    <!-- Headline -->
+    <div class="container">
+        <div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+            <div class="f2-s-1 p-r-30 size-w-0 m-tb-6 flex-wr-s-c">
+
+
+
+                <!-- <marquee class="scroll-text">
+                       <div >
+                            <div class="ticker-item"><i class="fa fa-forward" aria-hidden="true"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+
+                       </div>
+                    </marquee> -->
+
+
+
+                <!-- <span class="text-uppercase cl2 p-r-8">
+                   Trending Now:
+               </span>
+
+               <span class="dis-inline-block cl6 slide100-txt pos-relative size-w-0" data-in="fadeInDown" data-out="fadeOutDown">
+                   <span class="dis-inline-block slide100-txt-item animated visible-false">
+                       Interest rate angst trips up US equity bull market
+                   </span>
+
+                   <span class="dis-inline-block slide100-txt-item animated visible-false">
+                       Designer fashion show kicks off Variety Week
+                   </span>
+
+                   <span class="dis-inline-block slide100-txt-item animated visible-false">
+                       Microsoft quisque at ipsum vel orci eleifend ultrices
+                   </span>
+               </span> -->
+            </div>
+
+            <!-- <div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">
+               <input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" name="search" placeholder="Search">
+               <button class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">
+                   <i class="zmdi zmdi-search"></i>
+               </button>
+           </div> -->
+        </div>
+    </div>
+
+
+    <router-outlet></router-outlet>
+
+    <!-- <app-home></app-home> -->
+    <!-- Footer -->
+    <footer>
+        <div class="bg2 p-t-40 p-b-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 p-b-20">
+                        <div class="size-h-3 flex-s-c">
+                            <a routerLink="/">
+                                <img class="max-s-full" src="assets/newsLogo2.png" alt="LOGO" style="height: 100px;">
+                            </a>
+                        </div>
+
+                        <div>
+                            <p class="f1-s-1 cl11 p-b-16">
+                                One Bharath News brings you a daily connect with India's leading news,
+                                columns, coverage and many more. One Bharath News also provides the readers
+                                and viewers a digital experience with refreshed and accurate "Infotaiment" across the
+                                Nation.
+                            </p>
+
+                            <p class="f1-s-1 cl11 p-b-16">
+                                <!-- Any questions? Call us on (+1) 96 716 6879 -->
+
+
+                                <b>ONE BHARATH NEWS</b><br/>
+
+                                2nd floor, B block,Romar House<br/>
+                                Jaganathan Road, Nungambakkam,<br/>
+                                Chennai-34.<br/>
+                                Email - onebharathnewsagency@gmail.com
+
+                            </p>
+
+                            <div class="p-t-15">
+                                <a href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-facebook-f"></span>
+                                </a>
+
+                                <!-- <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-twitter"></span>
+                                </a>
+
+                                <a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-pinterest-p"></span>
+                                </a> -->
+
+                                <a href="https://www.instagram.com/onebharath_news/" target="_blank" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-instagram"></span>
+                                </a>
+
+                                <a href="https://www.youtube.com/channel/UCHKaqrWBHvBdS7dgpjpz5lg" target="_blank" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-youtube"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4 p-b-20">
+                        <div class="size-h-3 flex-s-c">
+                            <h5 class="f1-m-7 cl0">
+                                Popular Posts
+                            </h5>
+                        </div>
+
+                        <ul>
+                            <li class="flex-wr-sb-s p-b-20">
+                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
+                                    <img src="assets/images/popular-post-01.jpg" alt="IMG">
+                                </a>
+
+                                <div class="size-w-5">
+                                    <h6 class="p-b-5">
+                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
+                                            Donec metus orci, malesuada et lectus vitae
+                                        </a>
+                                    </h6>
+
+                                    <span class="f1-s-3 cl6">
+                                        Feb 17
+                                    </span>
+                                </div>
+                            </li>
+
+                            <li class="flex-wr-sb-s p-b-20">
+                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
+                                    <img src="assets/images/popular-post-02.jpg" alt="IMG">
+                                </a>
+
+                                <div class="size-w-5">
+                                    <h6 class="p-b-5">
+                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
+                                            Lorem ipsum dolor sit amet, consectetur
+                                        </a>
+                                    </h6>
+
+                                    <span class="f1-s-3 cl6">
+                                        Feb 16
+                                    </span>
+                                </div>
+                            </li>
+
+                            <li class="flex-wr-sb-s p-b-20">
+                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
+                                    <img src="assets/images/popular-post-03.jpg" alt="IMG">
+                                </a>
+
+                                <div class="size-w-5">
+                                    <h6 class="p-b-5">
+                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
+                                            Suspendisse dictum enim quis imperdiet auctor
+                                        </a>
+                                    </h6>
+
+                                    <span class="f1-s-3 cl6">
+                                        Feb 15
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4 p-b-20">
+                        <div class="size-h-3 flex-s-c">
+                            <h5 class="f1-m-7 cl0">
+                                Category
+                            </h5>
+                        </div>
+
+                        <ul class="m-t--12">
+                            <li class="how-bor1 p-rl-5 p-tb-10" *ngFor="let category of categoryList">
+                                <a [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"
+                                    class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    {{category.CategoryName}}
+                                </a>
+                            </li>
+
+                            <!-- <li class="how-bor1 p-rl-5 p-tb-10">
+                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    Technology (29)
+                                </a>
+                            </li>
+
+                            <li class="how-bor1 p-rl-5 p-tb-10">
+                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    Street Style (15)
+                                </a>
+                            </li>
+
+                            <li class="how-bor1 p-rl-5 p-tb-10">
+                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    Life Style (28)
+                                </a>
+                            </li>
+
+                            <li class="how-bor1 p-rl-5 p-tb-10">
+                                <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                    DIY & Crafts (16)
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg11">
+            <div class="container size-h-4 flex-c-c p-tb-15">
+                <span class="f1-s-1 cl0 txt-center">
+                    Copyright © 2019
+
+                    <a href="#" class="f1-s-1 cl10 hov-link1">kaizen.</a>
+
+                    All rights reserved.
+                </span>
+            </div>
+        </div>
+    </footer>
+    <!-- (click)="gotoTop()" -->
+    <!-- Back to top -->
+    
+
+    <!-- <script>
+            function fbs_click(TheImg) {
+            u=TheImg.src;
+            // t=document.title;
+           t=TheImg.getAttribute('alt');
+           window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;
+       }
+       </script> -->
+
+    <!-- Modal Video 01-->
+    <!-- <div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+       <div class="modal-dialog" role="document" data-dismiss="modal">
+           <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+
+           <div class="wrap-video-mo-01">
+               <div class="video-mo-01">
+                   <iframe src="https://www.youtube.com/embed/wJnBTPUQS5A?rel=0" allowfullscreen></iframe>
+               </div>
+           </div>
+       </div>
+   </div> -->
+
+
+</div>
+
+
