@@ -89,6 +89,11 @@ export class HomeService {
       .pipe(catchError(this.handleError));
   }
 
+  FileUploads(data): Observable<any> {
+    return this._httpClient.post<any>(API_URL + "News/sendMail", data)
+      .pipe(catchError(this.handleError));
+  }
+
   search(term) {
     var listOfNews = this._httpClient.get(API_URL+'News/GetSearchNews/' + term)
     .pipe(
