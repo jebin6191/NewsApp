@@ -11,7 +11,7 @@ export class NewsDescriptionComponent implements OnInit {
 
   newsId:any;
   newsDetails:any;
-
+  ShareUrl:string;
   constructor(private _Router:Router,private route: ActivatedRoute, private homeService:HomeService) { }
 
 
@@ -24,7 +24,7 @@ export class NewsDescriptionComponent implements OnInit {
 
       this.newsId = params.newsId;
       this.GetNews(this.newsId)
-      console.log(this.newsId);
+      this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId
     })
 
   }

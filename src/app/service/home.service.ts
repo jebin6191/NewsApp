@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
-import { catchError } from "rxjs/operators";
+import { catchError, debounceTime, map } from "rxjs/operators";
 import { environment } from '../environment/environment';
 
 const API_URL = environment.apiUrl;
@@ -79,6 +79,30 @@ export class HomeService {
   }
 
 
+  GetSearchedNews(data): Observable<any> {
+    return this._httpClient.get<any>(API_URL + "News/GetSearchNews/"+data)
+      .pipe(catchError(this.handleError));
+  }
+
+  GetNewsByDateRange(data): Observable<any> {
+    return this._httpClient.post<any>(API_URL + "News/GetNewsByDate", data)
+      .pipe(catchError(this.handleError));
+  }
+
+  search(term) {
+    var listOfNews = this._httpClient.get(API_URL+'News/GetSearchNews/' + term)
+    .pipe(
+        debounceTime(100),  // WAIT FOR 500 MILISECONDS ATER EACH KEY STROKE.
+        map(
+            (data: any) => {
+                return (
+                    data.length != 0 ? data as any[] : [{"NewsHeadLine": "No Record Found"} as any]
+                );
+            }
+    ));
+    return listOfNews;  
+  } 
+  
   handleError(error: HttpErrorResponse) {
     return throwError(error);
   }

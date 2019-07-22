@@ -4,9 +4,6 @@ import { HomeService } from 'src/app/service/home.service';
 import { environment } from 'src/app/environment/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,9 +12,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class HomeComponent implements OnInit {
   // public categoryList:any;
   imageUrl = environment.imageUrl
-  imageUrlPath = environment.imageUrlPath
+  imageUrlPath = environment.imageUrlPath;
   iframeVideo = 'https://www.youtube.com/embed/wJnBTPUQS5A?rel=0';
   iframeVideoIndex:any = "";
+
   constructor(public homeService:HomeService,private _Router:Router) { }
 
   ngOnInit() {
@@ -64,8 +62,6 @@ videopopup(){
 
 
 }
-
-
 
 
 @Pipe({ name: 'safe' })

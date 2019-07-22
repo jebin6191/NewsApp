@@ -5,8 +5,11 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { HomeService } from './service/home.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NewsVideoComponent } from './pages/news-video/news-video.component';
-import { NewsArticleDescriptionComponent } from './pages/news-article-description/news-article-description.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 
 @NgModule({
   declarations: [
@@ -14,12 +17,22 @@ import { NewsArticleDescriptionComponent } from './pages/news-article-descriptio
     MainComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,   
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,   
+    MatAutocompleteModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMomentDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxDaterangepickerMd.forRoot()
   ],
   providers: [
-    HomeService
+    HomeService,
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })

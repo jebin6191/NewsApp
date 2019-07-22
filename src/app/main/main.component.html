@@ -29,8 +29,6 @@
 
 <!-- <router-outlet></router-outlet> -->
 <div >
-
-  
     <!-- Header -->
     <header>
         <!-- Header desktop -->
@@ -58,9 +56,51 @@
                             Contact
                         </a>
                     </div>
-                   
+                    <!-- <form>
+                        <mat-form-field class="container">
+                  
+                            <input type="text" style="background-color: white"
+                                matInput 
+                                [formControl]="searchTerm" 
+                                [matAutocomplete]="auto">  
+                  
+                            
+                            <mat-autocomplete #auto="matAutocomplete">
+                                  <mat-option *ngFor="let news of NewsList" [value]="news.HeadLine">
+                                    {{news.HeadLine}}
+                                  </mat-option>
+                              </mat-autocomplete>
+                        </mat-form-field>
+                    </form> -->
+                    <form class = "tp-form">
+                            <mat-form-field class ="tp-full-width">
+                               <input type = "text" matInput 
+                                  [formControl] = "searchTerm" 
+                                  [matAutocomplete] = "auto">
+                               <mat-autocomplete #auto = "matAutocomplete">
+                                  <mat-option *ngFor = "let news of NewsList" [value] = "news.NewsHeadLine" (click)="NavigateDesc(news.NewsId)">
+                                     {{news.NewsHeadLine}}
+                                  </mat-option>
+                               </mat-autocomplete>
+                            </mat-form-field>
+                        </form>
+                    <!-- <form>
+                         <mat-form-field>
+                            <input matInput [matDatepicker]="picker" (dateChange)="addEvent($event)">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker startView="year" [startAt]="StartDate"></mat-datepicker>
+                         </mat-form-field>
+                       </form> -->
+                       <input type="text" matInput style="min-width: 150px; max-width: 300px;"
+                        ngxDaterangepickerMd
+                        [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                        startKey="start"
+                        endKey="end"
+                        [(ngModel)]="selected"
+                        name="daterange"
+                        (ngModelChange)="change($event)" />
+                    
                     <div class="right-topbar">
-                       
 
                         <!-- <a routerLink="/">
                             <span class="fab fa-twitter"></span>

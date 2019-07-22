@@ -45,6 +45,10 @@ const routes: Routes = [
       {
         path: 'article-description',
         loadChildren: './pages/news-article-description/news-article-description.module#NewsArticleDescriptionModule'
+      },
+      {
+        path: 'search-results',
+        loadChildren: './pages/news-search-results/news-search-results.module#NewsSearchResultsModule'
       }
     ]
   }

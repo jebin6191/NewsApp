@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../service/home.service';
 import { environment } from '../environment/environment';
+import { FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
   selector: 'app-main',
@@ -11,10 +13,13 @@ import { environment } from '../environment/environment';
 export class MainComponent implements OnInit {
   imageUrl = environment.imageUrl;
   imageUrlPath = environment.imageUrlPath;
-  constructor(public homeService:HomeService,private _Router:Router) { }
+  constructor(public homeService:HomeService,private _Router:Router, private router: Router) { }
   public categoryList:any;
   public advertisementList:any;
-
+  searchTerm : FormControl = new FormControl();
+  NewsList = <any>[]
+  events: string[] = [];
+ 
   ngOnInit() {
 
 // debugger
@@ -30,6 +35,18 @@ export class MainComponent implements OnInit {
 //     })
 
 //     console.log("getVideoNews forloop  ==>>  " + JSON.stringify(result1))
+  this.searchTerm.valueChanges.subscribe(
+    term => {
+      if (term != '') {
+        this.homeService.search(term).subscribe(
+          data => {
+            this.NewsList = data as any[];
+            console.log("this.NewsList"+JSON.stringify(this.NewsList))
+            //console.log(data[0].BookName);
+        })
+      }
+  })
+
 
     this.Allcategory();
     this.getAdvertisement();
@@ -40,6 +57,30 @@ export class MainComponent implements OnInit {
     this.getScrollNews();
   }
 
+
+  addEvent(event: MatDatepickerInputEvent<Date>) {
+    // console.log(event);
+    let dateStr = event.value.toLocaleString();
+    const d = new Date(dateStr);
+    const date1 = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
+
+
+    // let res = new Date(dateStr.getDate, dateStr.getDay, dateStr.getFullYear)
+  }
+  change(event:any){
+    if(event.start != null){
+      let start = new Date(event.start.toLocaleString());
+      let end = new Date(event.end.toLocaleString());
+      const StartDate = start.getFullYear()+'/'+ (start.getMonth()+1) +'/'+ start.getDate();
+      const EndDate = end.getFullYear()+'/'+ (end.getMonth()+1) +'/'+ end.getDate();
+      const data = {
+        StartDate : StartDate,
+        EndDate : EndDate
+      };
+      this.router.navigateByUrl('/search-results?StartDate='+StartDate+'&EndDate='+EndDate);  
+      // this.router.navigate(['/search-results',{queryParams:{StartDate: StartDate, EndDate: EndDate  }}])  
+    }
+  }
 
   Allcategory() {
     debugger;
@@ -157,6 +198,11 @@ debugger
           this.homeService.scrollNews = result;          
         }
       });
+  }
+  NavigateDesc(id){
+    console.log(id);
+    window.open("http://onebharathnews.in/news-description?newsId="+id, "_blank");
+    // window.location.href = 'http://onebharathnews.in/news-description?newsId='+id
   }
 
   gotoSubcategory(obj){

@@ -10,6 +10,7 @@
         cursor: pointer;
     }
 
+
     .marqee-vertical li {
         padding: 10px 0;
         font-size: 18px;
@@ -34,6 +35,7 @@
         background: #0000001f;
     }
 </style>
+
 
 
 
@@ -331,7 +333,8 @@
                                         </div>
                                        
                                     </div>
-                                    <div *ngIf="homeService.videoNews.length > 4" class="carousel-item row no-gutters">
+
+                                    <!-- <div *ngIf="homeService.videoNews.length > 4" class="carousel-item row no-gutters">
                                             <div *ngFor="let videoNews of homeService.videoNews | slice:4:8 ; let i = index"
                                             class="col-sm-3 p-r-25 p-r-15-sr991" style="float: left;padding: 5px;" >
                                                     <div>
@@ -353,8 +356,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
-                                    <div *ngIf="homeService.videoNews.length > 8" class="carousel-item row no-gutters">
+                                    </div> -->
+                                    <!-- <div *ngIf="homeService.videoNews.length > 8" class="carousel-item row no-gutters">
                                             <div *ngFor="let videoNews of homeService.videoNews | slice:8:12 ; let i = index"
                                             class="col-sm-3 p-r-25 p-r-15-sr991" style="float: left;padding: 5px;" >
                                                     <div>
@@ -376,7 +379,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

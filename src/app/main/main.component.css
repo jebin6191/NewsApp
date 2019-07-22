@@ -34,3 +34,11 @@
   .ticker-item a {
     cursor: pointer;
   }
+  .tp-form {
+    min-width: 150px;
+    max-width: 400px;
+    width: 100%;
+ }
+ .tp-full-width {
+    width: 100%;
+ }
