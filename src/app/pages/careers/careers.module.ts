@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CareersRoutingModule } from './careers-routing.module';
 import { CareersComponent } from './careers.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +10,9 @@ import { CareersComponent } from './careers.component';
   declarations: [CareersComponent],
   imports: [
     CommonModule,
-    CareersRoutingModule
+    CareersRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CareersModule { }

@@ -6,14 +6,12 @@
 			<div class="col-md-10 col-lg-8 p-b-30">
 				<div class="p-r-10 p-r-0-sr991">
 					<!-- Blog Detail -->
-					<div class="p-b-70">
+					<div *ngIf="newsDetails" class="p-b-70">
 						<a href="#" class="f1-s-10 cl2 hov-cl10 trans-03 text-uppercase">
 							{{newsDetails[0].nCategoryName}}
 						</a>
 
-						<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2" [innerHTML]="newsDetails[0].HeadLine">
-							
-						</h3>
+						<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2" [innerHTML]="newsDetails[0].HeadLine"></h3>
 
 						<div class="flex-wr-s-s p-b-40">
 							<span class="f1-s-3 cl8 m-r-15">
@@ -40,7 +38,7 @@
 							<img src="https://files.freeexamcoaching.com/CategoryFiles/{{newsDetails[0].ImageThumb}}" alt="IMG">
 						</div>
 
-						<div class="wrap-pic-max-w p-b-30" *ngIf="newsDetails" [innerHTML]="newsDetails[0].News">
+						<div class="wrap-pic-max-w p-b-30" [innerHTML]="newsDetails[0].News">
 
 						</div>
 
@@ -81,19 +79,23 @@
 							</span>
 
 							<div class="flex-wr-s-s size-w-0">
-								<div class="dis-block f1-s-13 cl0 bg-facebook borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+								<div class="socialshare">
 										<fb-like url={{ShareUrl}}></fb-like>
 								</div>
-								<div class="dis-block f1-s-13 cl0 bg-facebook borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+								<div class="socialshare">
 										<tweet url={{ShareUrl}} text="etes"></tweet>
 								</div>
-								<div class="dis-block f1-s-13 cl0 bg-facebook borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
-										<google-plus url={{ShareUrl}}></google-plus>
-								</div>
-								<div class="dis-block f1-s-13 cl0 bg-facebook borad-3 p-tb-4 p-rl-18 hov-btn1 m-r-3 m-b-3 trans-03">
+								<div class="socialshare" >
 										<pin-it url={{ShareUrl}} media="http://onebharathnews.in/assets/newsLogo2.png" description="One Bharath News Blog"></pin-it>							
 								</div>
 							</div>
+						</div>
+					</div>
+					<div *ngIf="CommentsList && CommentsList.length > 0">
+
+						<div *ngFor="let comments of CommentsList">
+							<div>{{comments.Description}}</div>
+							<div><small> {{comments.CommentedBy}}</small>  <small> commented on {{comments.CommentDate}}</small></div>
 						</div>
 					</div>
 
@@ -103,26 +105,16 @@
 							Leave a Comment
 						</h4>
 
-						<p class="f1-s-13 cl8 p-b-40">
-							Your email address will not be published. Required fields are marked *
-						</p>
-
-						<form>
+						<form [formGroup]="CommentsForm" >
 							<textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20"
-								name="msg" placeholder="Comment..."></textarea>
+								formControlName="Description" name="Description" placeholder="Comment..."></textarea>
 
 							<input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text"
-								name="name" placeholder="Name*">
+							formControlName="CommentBy" name="CommentBy" placeholder="Name*">
 
-							<input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text"
-								name="email" placeholder="Email*">
 
-							<input class="bo-1-rad-3 bocl13 size-a-16 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text"
-								name="website" placeholder="Website">
-
-							<button class="size-a-17 bg2 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-10">
-								Post Comment
-							</button>
+							<input type="button" (click)="SaveComments()" value ="Post Comment" class="size-a-17 bg2 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-10"  />
+								
 						</form>
 					</div>
 				</div>
@@ -277,6 +269,15 @@
 								</a>
 							</li>
 						</ul>
+
+						<input type="text" matInput style="min-width: 150px; max-width: 300px;background: aliceblue;"
+                        ngxDaterangepickerMd
+                        [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
+                        startKey="start"
+                        endKey="end"
+                        [(ngModel)]="selected"
+                        name="daterange"
+                        (ngModelChange)="change($event)" />
 					</div>
 
 					<!-- Popular Posts -->

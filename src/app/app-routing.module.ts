@@ -49,6 +49,10 @@ const routes: Routes = [
       {
         path: 'search-results',
         loadChildren: './pages/news-search-results/news-search-results.module#NewsSearchResultsModule'
+      },
+      {
+        path: 'careers',
+        loadChildren: './pages/careers/careers.module#CareersModule'
       }
     ]
   }

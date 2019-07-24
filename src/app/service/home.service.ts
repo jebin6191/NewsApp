@@ -94,6 +94,16 @@ export class HomeService {
       .pipe(catchError(this.handleError));
   }
 
+  NewsCommentsSave(data): Observable<any> {
+    return this._httpClient.post<any>(API_URL + "News/InsertComments", data)
+      .pipe(catchError(this.handleError));
+  }
+
+  NewsCommentsGet(newsId): Observable<any> {
+    return this._httpClient.get<any>(API_URL + "News/GetComments/"+ newsId)
+      .pipe(catchError(this.handleError));
+  }
+
   search(term) {
     var listOfNews = this._httpClient.get(API_URL+'News/GetSearchNews/' + term)
     .pipe(

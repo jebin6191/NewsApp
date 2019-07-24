@@ -13,15 +13,19 @@ import { MatDatepickerInputEvent } from '@angular/material';
 export class MainComponent implements OnInit {
   imageUrl = environment.imageUrl;
   imageUrlPath = environment.imageUrlPath;
+  MenuToggle: boolean = false;
+
+
   constructor(public homeService:HomeService,private _Router:Router, private router: Router) { }
   public categoryList:any;
   public advertisementList:any;
   searchTerm : FormControl = new FormControl();
   NewsList = <any>[]
   events: string[] = [];
+  selected: any = '';
  
   ngOnInit() {
-
+// document.getElementById("mat-input-1").textContent="";
 // debugger
 //     let result1 = [{
 //       "Id": 10014,
@@ -41,7 +45,7 @@ export class MainComponent implements OnInit {
         this.homeService.search(term).subscribe(
           data => {
             this.NewsList = data as any[];
-            console.log("this.NewsList"+JSON.stringify(this.NewsList))
+            // console.log("this.NewsList"+JSON.stringify(this.NewsList))
             //console.log(data[0].BookName);
         })
       }
@@ -67,20 +71,11 @@ export class MainComponent implements OnInit {
 
     // let res = new Date(dateStr.getDate, dateStr.getDay, dateStr.getFullYear)
   }
-  change(event:any){
-    if(event.start != null){
-      let start = new Date(event.start.toLocaleString());
-      let end = new Date(event.end.toLocaleString());
-      const StartDate = start.getFullYear()+'/'+ (start.getMonth()+1) +'/'+ start.getDate();
-      const EndDate = end.getFullYear()+'/'+ (end.getMonth()+1) +'/'+ end.getDate();
-      const data = {
-        StartDate : StartDate,
-        EndDate : EndDate
-      };
-      this.router.navigateByUrl('/search-results?StartDate='+StartDate+'&EndDate='+EndDate);  
-      // this.router.navigate(['/search-results',{queryParams:{StartDate: StartDate, EndDate: EndDate  }}])  
-    }
+  MenuToggleFn(){
+
+    this.MenuToggle = !this.MenuToggle;
   }
+
 
   Allcategory() {
     debugger;
@@ -98,7 +93,7 @@ export class MainComponent implements OnInit {
               }
           }
 
-          console.log(JSON.stringify(this.categoryList));
+          // console.log(JSON.stringify(this.categoryList));
           this.homeService.categoryList = this.categoryList
         }
       });

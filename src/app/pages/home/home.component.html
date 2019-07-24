@@ -117,9 +117,12 @@
                     <ul>
                         <li style="color: transparent">test</li>
                         <li *ngFor="let latestNews of homeService.latestNewsList">
+                                
+                                <!-- <a href="http://localhost:4200/news-description?newsId=100032" target="_blank"> -->
                             <a href="{{latestNews.Link}}" target="_blank">
                              <i class="fa fa-forward" aria-hidden="true"></i> 
                             </a>
+                            <!-- <a  href="http://localhost:4200/news-description?newsId=100032"  target="_blank" style="padding-left:10px; "> -->
                             <a href="{{latestNews.Link}}" target="_blank" style="padding-left:10px; ">
                                {{latestNews.Title}}
                             </a>

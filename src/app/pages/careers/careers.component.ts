@@ -27,7 +27,8 @@ export class CareersComponent implements OnInit {
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.form.get('avatar').setValue(file);
+      console.log(file);
+      this.form.get('uploadedfile').setValue(file);
     }
   }
 
@@ -38,7 +39,7 @@ export class CareersComponent implements OnInit {
       "Body": this.form.get('description').value
     };
     formData.append('data', JSON.stringify(body));
-
+    console.log(formData);
     this.homeService.FileUploads(formData).subscribe(
       (res) => this.uploadResponse = res,
       (err) => this.error = err

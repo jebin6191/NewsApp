@@ -42,3 +42,11 @@
  .tp-full-width {
     width: 100%;
  }
+.SetPadding{
+  padding-right:5px ;
+  padding-left: 5px 
+}
+
+.SetPaddingTop{
+  padding-top: 20px
+}
