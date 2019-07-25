@@ -15,6 +15,7 @@ export class NewsDescriptionComponent implements OnInit {
   ShareUrl:string;
   CommentsForm: FormGroup;
   CommentsList: any;
+  selected: any = '';
   constructor(private _Router:Router,private route: ActivatedRoute, private homeService:HomeService,
     private formBuilder: FormBuilder) { }
 
@@ -102,9 +103,8 @@ export class NewsDescriptionComponent implements OnInit {
     this.homeService.GetNews(id).subscribe(
       (result: any) => {
         if (result) {
-          // console.log(result);
           this.newsDetails = result;
-          // console.log(JSON.stringify(this.newsDetails)+ 'test')
+           console.log(JSON.stringify(this.newsDetails));
         }
       })
   }

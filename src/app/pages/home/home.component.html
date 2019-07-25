@@ -137,7 +137,7 @@
                     <div class="col-sm-6 p-rl-1 p-b-2" style="padding:1px"
                         *ngFor="let sliderNews of homeService.sliderNewsList">
                         <div class="bg-img1 size-a-5 how1 pos-relative"
-                            [ngStyle]="{'background': 'url(https://files.freeexamcoaching.com/CategoryFiles/' + sliderNews.SliderImage  + ') no-repeat 0 0 / cover'}">
+                            [ngStyle]="{'background': 'url(http://admin.onebharathnews.in/CategoryFiles/' + sliderNews.SliderImage  + ') no-repeat 0 0 / cover'}">
 
                             <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
 
@@ -481,7 +481,7 @@
                                             <a class="wrap-pic-w hov1 trans-03"
                                                 (click)="goProducts(category.SubCategoryJson[0].News[0].newsId)"
                                                 [routerLink]="['/news-details?newsId='+category.SubCategoryJson[0].News[0].newsId]">
-                                                <img src="https://files.freeexamcoaching.com/CategoryFiles/{{category.SubCategoryJson[0].News[0].Newsthump}}"
+                                                <img src="http://admin.onebharathnews.in/CategoryFiles/{{category.SubCategoryJson[0].News[0].Newsthump}}"
                                                     alt="IMG" style="max-height: 263px;max-width: 100%;">
                                             </a>
 
@@ -532,7 +532,7 @@
                                             <a class="size-w-1 wrap-pic-w hov1 trans-03" *ngIf="subcategory.News"
                                                 (click)="goProducts(subcategory.News[0].newsId)"
                                                 [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
-                                                <img src="https://files.freeexamcoaching.com/CategoryFiles/{{subcategory.News[0].Newsthump}}"
+                                                <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
                                                     alt="IMG" style="max-height: 75px;max-width:100%;">
                                             </a>
 
@@ -569,7 +569,7 @@
                                             <a class="wrap-pic-w hov1 trans-03"
                                                 (click)="goProducts(subcategory.News[0].newsId)"
                                                 [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
-                                                <img src="https://files.freeexamcoaching.com/CategoryFiles/{{subcategory.News[0].Newsthump}}"
+                                                <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
                                                     alt="IMG" style="max-height: 263px;max-width:100%;">
                                             </a>
 
@@ -607,7 +607,7 @@
                                             <a class="size-w-1 wrap-pic-w hov1 trans-03"
                                                 (click)="goProducts(news.newsId)"
                                                 [routerLink]="['/news-details?newsId='+news.newsId]">
-                                                <img src="https://files.freeexamcoaching.com/CategoryFiles/{{news.Newsthump}}"
+                                                <img src="http://admin.onebharathnews.in/CategoryFiles/{{news.Newsthump}}"
                                                     alt="IMG" style="max-height: 75px;max-width:100%;">
                                             </a>
 
