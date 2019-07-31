@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
@@ -15,13 +16,13 @@ const routes: Routes = [
   //   pathMatch: 'full'
   // },
   {
+    path:'home',
+    component: HomeComponent
+  }, 
+  {
     path:'',
     component: MainComponent,
-    children: [
-      {
-        path: 'home',
-        loadChildren: './pages/home/home.module#HomeModule'
-      },
+    children: [    
       {
         path: 'news-description',
         loadChildren: './pages/news-description/news-description.module#NewsDescriptionModule'

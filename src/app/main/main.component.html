@@ -33,7 +33,7 @@
     <header>
         <!-- Header desktop -->
         <div class="container-menu-desktop">
-            <div class="topbar">
+            <!-- <div class="topbar">
                 <div class="content-topbar container h-100">
                     <div class="left-topbar">
                         <span class="left-topbar-item flex-wr-s-c">
@@ -41,11 +41,6 @@
                                 India, TN
                             </span>
 
-                            <!-- <img class="m-b-1 m-rl-8" src="assets/images/icons/icon-night.png" alt="IMG">
-
-                            <span>
-                                HI 58° LO 56°
-                            </span> -->
                         </span>
 
                         <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
@@ -59,22 +54,6 @@
                             Careers
                         </a>
                     </div>
-                    <!-- <form>
-                        <mat-form-field class="container">
-                  
-                            <input type="text" style="background-color: white"
-                                matInput 
-                                [formControl]="searchTerm" 
-                                [matAutocomplete]="auto">  
-                  
-                            
-                            <mat-autocomplete #auto="matAutocomplete">
-                                  <mat-option *ngFor="let news of NewsList" [value]="news.HeadLine">
-                                    {{news.HeadLine}}
-                                  </mat-option>
-                              </mat-autocomplete>
-                        </mat-form-field>
-                    </form> -->
                     <form class = "tp-form">
                             <mat-form-field class ="tp-full-width">
                                <input type = "text" matInput style="background: white;padding: 8px;" 
@@ -90,18 +69,6 @@
 
                     <div class="right-topbar">
 
-                        <!-- <a routerLink="/">
-                            <span class="fab fa-twitter"></span>
-                        </a>
-
-                        <a routerLink="/">
-                            <span class="fab fa-pinterest-p"></span>
-                        </a>
-
-                        <a routerLink="/">
-                            <span class="fab fa-vimeo-v"></span>
-                        </a> -->
-
                         <a href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank">
                             <span class="fab fa-facebook-f SetPadding"></span>
                         </a>
@@ -116,45 +83,32 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
             
-    <!--Navbar-->
     <nav class="navbar navbar-light light-blue lighten-4 wrap-header-mobile" style="padding:0">
 
-            <!-- Navbar brand -->
-            <!-- <a class="navbar-brand" href="#">
-
-                    <div class="logo-mobile">
-                            <a routerLink="/"><img src="assets/newslogo.png" alt="IMG-LOGO"></a>
-                        </div>
-
-            </a> -->
             <a class="navbar-brand logo-mobile" href="/"><img src="assets/newslogo.png" alt="IMG-LOGO"></a>
-            <!-- Collapse button -->
-            <!-- <button class="navbar-toggler toggler-example" (click)="MenuToggleFn()"> -->
+
             <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
               aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
               <span class="dark-blue-text"><i
                   class="fas fa-bars fa-1x"></i></span>
                 </button>
           
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse"  id="navbarSupportedContent1">
-                <!-- <div  *ngIf="MenuToggle" id="navbarSupportedContent1"> -->
-          
-                    <ul class="topbar-mobile">
-                            <li class="left-topbar">
-                                <span class="left-topbar-item flex-wr-s-c">
-                                    <span>
-                                        India, TN
-                                    </span>
+            <div class="collapse navbar-collapse"  id="navbarSupportedContent1">         
+                    <!-- <ul class="topbar-mobile">
+                        <li class="left-topbar">
+                            <span class="left-topbar-item flex-wr-s-c">
+                                <span>
+                                    India, TN
                                 </span>
-                            </li>
+                            </span>
+                        </li>
         
-                            <li class="left-topbar">
-                                 <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
+                        <li class="left-topbar">
+                                <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
                             About
                         </a>
 
@@ -179,16 +133,7 @@
                                        </mat-autocomplete>
                                     </mat-form-field>
                                 </form>
-<!--         
-                               <input type="text" matInput style="min-width: 150px; max-width: 300px;background: aliceblue;"
-                                ngxDaterangepickerMd
-                                [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
-                                startKey="start"
-                                endKey="end"
-                                [(ngModel)]="selected"
-                                name="daterange"
-                                (ngModelChange)="change($event)"   /> -->
-        
+
                             <li class="right-topbar">
                                     <a href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank">
                                         <span class="fab fa-facebook-f SetPadding"></span>
@@ -202,32 +147,13 @@
                                     <a  href="https://www.youtube.com/channel/UCHKaqrWBHvBdS7dgpjpz5lg" target="_blank">
                                         <span class="fab fa-youtube"></span>
                                     </a>
-                                <!-- <a>
-                                    <span class="fab fa-facebook-f"></span>
-                                </a>
-        
-                                <a routerLink="/">
-                                    <span class="fab fa-twitter"></span>
-                                </a>
-        
-                                <a routerLink="/">
-                                    <span class="fab fa-pinterest-p"></span>
-                                </a>
-        
-                                <a routerLink="/">
-                                    <span class="fab fa-vimeo-v"></span>
-                                </a>
-        
-                                <a routerLink="/">
-                                    <span class="fab fa-youtube"></span>
-                                </a> -->
                             </li>
-                        </ul>
+                        </ul> -->
         
                         <ul class="main-menu-m">
                             
                             <li>
-                                <a routerLink="/">Home</a>
+                                <a routerLink="/home">Home</a>
                             </li>
                            
                             <li *ngFor="let category of categoryList;">
@@ -241,91 +167,11 @@
                                         <i [ngClass]="category.Toggle ? 'fa fa-angle-down' : 'fa fa-angle-right'"  (click)="category.Toggle = !category.Toggle;"></i>
                                     </span>                                   
                             </li>
-
-        
-                            <!-- <li>
-                                <a routerLink="/">Business</a>
-                            </li>
-        
-                            <li>
-                                <a routerLink="/">Travel</a>
-                            </li>
-        
-                            <li>
-                                <a routerLink="/">Life Style</a>
-                            </li>
-        
-                            <li>
-                                <a routerLink="/">Video</a>
-                            </li> -->
-        
-                            <!-- <li>
-                                <a href="#">Features</a>
-                                <ul class="sub-menu-m">
-                                    <li><a routerLink="/">Category Page v1</a></li>
-                                    <li><a routerLink="/">Category Page v2</a></li>
-                                    <li><a routerLink="/">Blog Grid Sidebar</a></li>
-                                    <li><a routerLink="/">Blog List Sidebar v1</a></li>
-                                    <li><a routerLink="/">Blog List Sidebar v2</a></li>
-                                    <li><a routerLink="/">Blog Detail Sidebar</a></li>
-                                    <li><a routerLink="/">Blog Detail No Sidebar</a></li>
-                                    <li><a routerLink="/">About Us</a></li>
-                                    <li><a routerLink="/">Contact Us</a></li>
-                                </ul>
-        
-                                <span class="arrow-main-menu-m">
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </span>
-                            </li> -->
+                           
                         </ul>
-
-
-              <!-- Links -->
-              <!-- <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Pricing</a>
-                </li>
-              </ul> -->
-              <!-- Links -->
-          
-            </div>
-            <!-- Collapsible content -->
-          
+            </div>         
           </nav>
-          <!--/.Navbar-->
-    
 
-          
-
-            <!-- Header Mobile -->
-            <!-- <div class="wrap-header-mobile">
-
-
-
-                
-                <div class="logo-mobile">
-                    <a routerLink="/"><img src="assets/newslogo.png" alt="IMG-LOGO"></a>
-                </div>
-
-                
-                <div class="btn-show-menu-mobile hamburger hamburger--squeeze m-r--8">
-                    <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
-                    </span>
-                </div>
-
-                
-
-
-            </div> -->
-
-            <!-- Menu Mobile -->
             <div class="menu-mobile">
                 <ul class="topbar-mobile">
                     <li class="left-topbar">
@@ -466,16 +312,11 @@
                         </a>
                        
                         <ul class="main-menu">
-                            <li class="main-menu-active">
-                                <a routerLink="/">Home</a>
-                                <!-- <ul class="sub-menu">
-                                   <li><a href="index.html">Homepage v1</a></li>
-                                   <li><a href="home-02.html">Homepage v2</a></li>
-                                   <li><a href="home-03.html">Homepage v3</a></li>
-                               </ul> -->
+                            <li>
+                                <a routerLink="/home">Home</a>
                             </li>
 
-                            <li class="mega-menu-item" *ngFor="let category of categoryList">
+                            <li class="mega-menu-item dropdownMenuIcon" *ngFor="let category of categoryList">
                                 <a [routerLink]="['/news-category']"
                                     [queryParams]="{categoryId: category.CategoryId}">{{category.CategoryName}}</a>
                                 <!-- [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]" -->
@@ -589,8 +430,8 @@
                                     </div>
                                 </div>
                             </li>
-
-
+                            
+                           
 
 
                             <!-- <li>
@@ -607,7 +448,20 @@
                                    <li><a href="contact.html">Contact Us</a></li>
                                </ul>
                            </li> -->
+                           <div class="pull-right"> <form class = "tp-form">
+                                <mat-form-field class ="tp-full-width">
+                                   <input type = "text" matInput style="background: white;padding: 8px;" 
+                                      [formControl] = "searchTerm" 
+                                      [matAutocomplete] = "auto">
+                                   <mat-autocomplete #auto = "matAutocomplete">
+                                      <mat-option *ngFor = "let news of NewsList" [value] = "news.NewsHeadLine" (click)="NavigateDesc(news.NewsId)">
+                                         {{news.NewsHeadLine}}
+                                      </mat-option>
+                                   </mat-autocomplete>
+                                </mat-form-field>
+                            </form></div>
                         </ul>
+                        
                     </nav>
                 </div>
             </div>
@@ -741,12 +595,32 @@
                     <div class="col-sm-6 col-lg-4 p-b-20">
                         <div class="size-h-3 flex-s-c">
                             <h5 class="f1-m-7 cl0">
-                                Popular Posts
+                              
                             </h5>
                         </div>
 
                         <ul>
-                            <li class="flex-wr-sb-s p-b-20">
+                                <li class="how-bor1 p-rl-5 p-tb-10">
+                                        <a routerLink="/" class="f1-s-5 cl11 hov-cl10 trans-03" (click)="gotobottom()">About</a>
+                                       
+                                    </li>
+                                <li class="how-bor1 p-rl-5 p-tb-10">
+                                        <a routerLink="/" class="f1-s-5 cl11 hov-cl10 trans-03" (click)="gotobottom()">Contact</a>
+                                    </li>
+                                <li class="how-bor1 p-rl-5 p-tb-10">
+                                        <a routerLink="/careers" class="f1-s-5 cl11 hov-cl10 trans-03" >Careers </a>
+                                    </li>
+                            <!-- <li>
+                                <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">About</a>
+                            </li>
+                            <li> 
+                                <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">Contact</a>
+                            </li>
+
+                            <li>
+                                    <a routerLink="/careers" class="left-topbar-item" >Careers </a>
+                            </li> -->
+                            <!-- <li class="flex-wr-sb-s p-b-20">
                                 <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
                                     <img src="assets/images/popular-post-01.jpg" alt="IMG">
                                 </a>
@@ -798,7 +672,7 @@
                                         Feb 15
                                     </span>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
 
