@@ -15,14 +15,15 @@ const routes: Routes = [
   //   redirectTo: '/home',
   //   pathMatch: 'full'
   // },
-  {
-    path:'home',
-    component: HomeComponent
-  }, 
+  
   {
     path:'',
     component: MainComponent,
-    children: [    
+    children: [ 
+      {
+        path:'home',
+        loadChildren: './pages/home/home.module#HomeModule'
+      },   
       {
         path: 'news-description',
         loadChildren: './pages/news-description/news-description.module#NewsDescriptionModule'

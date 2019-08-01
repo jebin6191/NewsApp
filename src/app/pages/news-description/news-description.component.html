@@ -16,7 +16,7 @@
 						<div class="flex-wr-s-s p-b-40">
 							<span class="f1-s-3 cl8 m-r-15">
 								<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-									by John Alvarado
+									by	{{newsDetails[0].CreatedName}}
 								</a>
 
 								<span class="m-rl-3">-</span>
@@ -60,15 +60,13 @@
 							<span class="f1-s-12 cl5 m-r-8">
 								Tags:
 							</span>
-
+							
 							<div class="flex-wr-s-s size-w-0">
-								<a href="#" class="f1-s-12 cl8 hov-link1 m-r-15">
-									Streetstyle
-								</a>
-
-								<a href="#" class="f1-s-12 cl8 hov-link1 m-r-15">
-									Crafts
-								</a>
+								<div *ngFor="let tag of HashTagList" >
+									<a href="#" class="f1-s-12 cl8 hov-link1 m-r-15">
+											{{tag}}
+										</a>
+								</div>
 							</div>
 						</div>
 
@@ -77,6 +75,7 @@
 							<span class="f1-s-12 cl5 p-t-1 m-r-15">
 								Share:
 							</span>
+							
 
 							<div class="flex-wr-s-s size-w-0">
 								<div class="socialshare">
@@ -384,45 +383,12 @@
 						</div>
 
 						<div class="flex-wr-s-s m-rl--5">
-							<a href="#"
-								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-								Fashion
-							</a>
-
-							<a href="#"
-								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-								Lifestyle
-							</a>
-
-							<a href="#"
-								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-								Denim
-							</a>
-
-							<a href="#"
-								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-								Streetstyle
-							</a>
-
-							<a href="#"
-								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-								Crafts
-							</a>
-
-							<a href="#"
-								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-								Magazine
-							</a>
-
-							<a href="#"
-								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-								News
-							</a>
-
-							<a href="#"
-								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-								Blogs
-							</a>
+							<div *ngFor="let tag of HashTagList" >
+								<a href="#"
+									class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
+									{{tag}}
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>

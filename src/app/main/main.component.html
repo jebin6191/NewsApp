@@ -151,16 +151,31 @@
                         </ul> -->
         
                         <ul class="main-menu-m">
-                            
+                                <li>
+                            <div > 
+                                    <form >
+                                        <mat-form-field class ="tp-full-width">
+                                            <input type = "text" matInput style="background: white;padding: 8px;" 
+                                                [formControl] = "searchTerm" 
+                                                [matAutocomplete] = "auto">
+                                                    <mat-autocomplete #auto = "matAutocomplete">
+                                                <mat-option *ngFor = "let news of NewsList" [value] = "news.NewsHeadLine" (click)="NavigateDesc(news.NewsId)">
+                                                    {{news.NewsHeadLine}}
+                                                </mat-option>
+                                                </mat-autocomplete>
+                                            </mat-form-field>
+                                        </form>
+                                    </div>
+                                </li>
                             <li>
-                                <a routerLink="/home">Home</a>
+                                <a (click)=ClosePopup() routerLink="/home">Home</a>
                             </li>
                            
                             <li *ngFor="let category of categoryList;">
-                                    <a [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}">{{category.CategoryName}}</a>
+                                    <a [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}" (click)=ClosePopup()>{{category.CategoryName}}</a>
                                     <ul class="sub-menu-m" *ngIf="category.Toggle">
                                         <li *ngFor="let subcategory of category.SubCategoryJson;">
-                                            <a [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}">{{subcategory.SubCategoryName}}</a>
+                                            <a [routerLink]="['/news-subcategory']" [queryParams]="{subcategoryId: subcategory.SubCategoryId}" (click)=ClosePopup()>{{subcategory.SubCategoryName}}</a>
                                         </li>
                                     </ul>
                                     <span class="arrow-main-menu-m">
@@ -448,18 +463,20 @@
                                    <li><a href="contact.html">Contact Us</a></li>
                                </ul>
                            </li> -->
-                           <div class="pull-right"> <form class = "tp-form">
+                           <div class="pull-right"> 
+                               <form class = "tp-form">
                                 <mat-form-field class ="tp-full-width">
-                                   <input type = "text" matInput style="background: white;padding: 8px;" 
-                                      [formControl] = "searchTerm" 
-                                      [matAutocomplete] = "auto">
-                                   <mat-autocomplete #auto = "matAutocomplete">
-                                      <mat-option *ngFor = "let news of NewsList" [value] = "news.NewsHeadLine" (click)="NavigateDesc(news.NewsId)">
-                                         {{news.NewsHeadLine}}
-                                      </mat-option>
-                                   </mat-autocomplete>
-                                </mat-form-field>
-                            </form></div>
+                                    <input type = "text" matInput style="background: white;padding: 8px;" 
+                                        [formControl] = "searchTerm" 
+                                        [matAutocomplete] = "auto">
+                                            <mat-autocomplete #auto = "matAutocomplete">
+                                        <mat-option *ngFor = "let news of NewsList" [value] = "news.NewsHeadLine" (click)="NavigateDesc(news.NewsId)">
+                                            {{news.NewsHeadLine}}
+                                        </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                </form>
+                            </div>
                         </ul>
                         
                     </nav>

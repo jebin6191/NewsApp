@@ -10,13 +10,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    HomeComponent
   ],
   imports: [
     BrowserModule,   

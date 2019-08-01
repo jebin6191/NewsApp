@@ -18,13 +18,13 @@
 						<div class="flex-wr-s-s p-b-40">
 							<span class="f1-s-3 cl8 m-r-15">
 								<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-									by John Alvarado
+									{{homeService.selectedArticleNews.CreatedName}}
 								</a>
 
 								<span class="m-rl-3">-</span>
 
 								<span>
-									Feb 18
+										{{homeService.selectedArticleNews.Date | date}}
 								</span>
 							</span>
 
@@ -75,7 +75,7 @@
 						</div>
 
 						<!-- Share -->
-						<div class="flex-s-s">
+						<!-- <div class="flex-s-s">
 							<span class="f1-s-12 cl5 p-t-1 m-r-15">
 								Share:
 							</span>
@@ -105,7 +105,7 @@
 									Pinterest
 								</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 
 					<!-- Leave a comment -->

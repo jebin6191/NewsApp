@@ -211,5 +211,8 @@ debugger
   gotoTop(){
     window.scrollTo(0,0)
   }
+  ClosePopup(){
+    document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
+  }
 
 }

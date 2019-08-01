@@ -19,6 +19,7 @@ export class CareersComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
+      Name: ['', Validators.required],
       uploadedfile: ['', Validators.required],
       description: ['']
     });
@@ -36,7 +37,8 @@ export class CareersComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.form.get('uploadedfile').value);
     const body = {
-      "Body": this.form.get('description').value
+      "Body": this.form.get('description').value,
+      "Name": this.form.get('Name').value,
     };
     formData.append('data', JSON.stringify(body));
     console.log(formData);

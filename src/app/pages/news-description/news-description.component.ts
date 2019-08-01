@@ -16,6 +16,7 @@ export class NewsDescriptionComponent implements OnInit {
   CommentsForm: FormGroup;
   CommentsList: any;
   selected: any = '';
+  HashTagList: any=[];
   constructor(private _Router:Router,private route: ActivatedRoute, private homeService:HomeService,
     private formBuilder: FormBuilder) { }
 
@@ -104,7 +105,11 @@ export class NewsDescriptionComponent implements OnInit {
       (result: any) => {
         if (result) {
           this.newsDetails = result;
-           console.log(JSON.stringify(this.newsDetails));
+
+           console.log(this.newsDetails[0].HashTag);
+           this.HashTagList = (this.newsDetails[0].HashTag).split(';');
+
+           console.log(JSON.stringify (this.HashTagList));
         }
       })
   }
