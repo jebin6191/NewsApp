@@ -16,7 +16,24 @@
     .marqee-horizontal>div {
         padding: 6px 0;
     }
+
+ .has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
 </style>
+
 <!-- <div class="tcontainer">
     <div class="ticker-wrap">
       <div class="ticker-move">
@@ -33,17 +50,17 @@
     <header>
         <!-- Header desktop -->
         <div class="container-menu-desktop">
-            <!-- <div class="topbar">
+            <div class="topbar">
                 <div class="content-topbar container h-100">
                     <div class="left-topbar">
                         <span class="left-topbar-item flex-wr-s-c">
-                            <span>
+                            <!-- <span>
                                 India, TN
-                            </span>
+                            </span> -->
 
                         </span>
 
-                        <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
+                        <!-- <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">
                             About
                         </a>
 
@@ -52,9 +69,11 @@
                         </a>
                         <a routerLink="/careers" class="left-topbar-item" >
                             Careers
-                        </a>
+                        </a> -->
+                        
                     </div>
-                    <form class = "tp-form">
+                    
+                    <!-- <form class = "tp-form">
                             <mat-form-field class ="tp-full-width">
                                <input type = "text" matInput style="background: white;padding: 8px;" 
                                   [formControl] = "searchTerm" 
@@ -65,7 +84,7 @@
                                   </mat-option>
                                </mat-autocomplete>
                             </mat-form-field>
-                        </form>
+                        </form> -->
 
                     <div class="right-topbar">
 
@@ -83,12 +102,11 @@
                         </a>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
 
             
     <nav class="navbar navbar-light light-blue lighten-4 wrap-header-mobile" style="padding:0">
-
             <a class="navbar-brand logo-mobile" href="/"><img src="assets/newslogo.png" alt="IMG-LOGO"></a>
 
             <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
@@ -153,10 +171,18 @@
                         <ul class="main-menu-m">
                                 <li>
                             <div > 
-                                    <form >
+                                    <div class="input-group">
+                                            <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search Here..">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-secondary" type="button" style="border-radius:0;" (click)="NavigateToSearch()" >
+                                                    <i class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>  
+                                    <!-- <form >
                                         <mat-form-field class ="tp-full-width">
                                             <input type = "text" matInput style="background: white;padding: 8px;" 
-                                                [formControl] = "searchTerm" 
+                                                [formControl] = "searchTerm1" 
                                                 [matAutocomplete] = "auto">
                                                     <mat-autocomplete #auto = "matAutocomplete">
                                                 <mat-option *ngFor = "let news of NewsList" [value] = "news.NewsHeadLine" (click)="NavigateDesc(news.NewsId)">
@@ -164,7 +190,7 @@
                                                 </mat-option>
                                                 </mat-autocomplete>
                                             </mat-form-field>
-                                        </form>
+                                        </form> -->
                                     </div>
                                 </li>
                             <li>
@@ -182,6 +208,7 @@
                                         <i [ngClass]="category.Toggle ? 'fa fa-angle-down' : 'fa fa-angle-right'"  (click)="category.Toggle = !category.Toggle;"></i>
                                     </span>                                   
                             </li>
+                            
                            
                         </ul>
             </div>         
@@ -303,39 +330,36 @@
             <div class="wrap-logo container">
                 <!-- Logo desktop -->
                 <div class="logo">
-                    <a routerLink="/"><img src="assets/newsLogo2.png" alt="LOGO"></a>
+                    <a  (click)="ReloadApp();"><img src="assets/newsLogo2.png" alt="LOGO"></a>
                 </div>
+                
                 <!-- onclick="fbs_click(this)" -->
                 <!-- Banner -->
                 <div class="banner-header">
                     <a *ngFor="let add of homeService.advertisementList">
-
                         <a *ngIf="add.Name == 'one'" href="{{add.Link}}" target="_blank" style="cursor: pointer;"><img
-                                src="{{imageUrlPath+ 'common/' + add.ImagePath}}" alt="IMG"
-                                style="height:100px;max-width: 100%;"></a>
+                            src="{{imageUrlPath+ 'common/' + add.ImagePath}}" alt="IMG"
+                            style="height:100px;max-width: 100%;"></a>
                     </a>
                 </div>
             </div>
 
-            <!--  -->
             <div class="wrap-main-nav">
                 <div class="main-nav">
                     <!-- Menu desktop -->
                     <nav class="menu-desktop">
-                        <a class="logo-stick" routerLink="/">
+                        <a class="logo-stick">
                             <img src="assets/images/icons/logo-01.png" alt="LOGO">
                         </a>
                        
                         <ul class="main-menu">
-                            <li>
-                                <a routerLink="/home">Home</a>
-                            </li>
+                            <li><a (click)="ReloadApp()">Home</a> </li>
 
                             <li class="mega-menu-item dropdownMenuIcon" *ngFor="let category of categoryList">
                                 <a [routerLink]="['/news-category']"
                                     [queryParams]="{categoryId: category.CategoryId}">{{category.CategoryName}}</a>
                                 <!-- [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]" -->
-                                <div class="sub-mega-menu">
+                                <div class="sub-mega-menu" *ngIf="category.CategoryName != 'National'">
                                     <div class="nav flex-column nav-pills" role="tablist">
                                         <a class="nav-link active" data-toggle="pill" href="#{{category.CategoryId}}"
                                             role="tab">All</a>
@@ -343,10 +367,8 @@
                                             [queryParams]="{subcategoryId: subcategory.SubCategoryId}"  -->
                                         <a *ngFor="let subcategory of category.SubCategoryJson" class="nav-link"
                                             data-toggle="pill" (click)="gotoSubcategory(subcategory)"
-                                           
                                             href="#{{subcategory.SubCategoryId}}"
                                             role="tab">{{subcategory.SubCategoryName}}</a>
-
                                     </div>
 
                                     <div class="tab-content">
@@ -372,18 +394,9 @@
                                                                     {{subcategory.News[0].NewsHeadLine}}
                                                                 </a>
                                                             </h5>
-
-                                                            <!-- <span class="cl8">
-
-
-                                                               <span class="f1-s-3">
-                                                                   {{subcategory.News[0].Date}}
-                                                               </span>
-                                                           </span> -->
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="row" *ngIf="category.SubCategoryJson">
                                                 <div class="col-12" *ngIf="category.SubCategoryJson.lenght > 4">
@@ -444,41 +457,17 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li> 
+                            <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search Here..">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button" style="border-radius:0;" (click)="NavigateToSearch()" >
+                                    <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>  
                             
-                           
-
-
-                            <!-- <li>
-                               <a href="#">Features</a>
-                               <ul class="sub-menu">
-                                   <li><a href="category-01.html">Category Page v1</a></li>
-                                   <li><a href="category-02.html">Category Page v2</a></li>
-                                   <li><a href="blog-grid.html">Blog Grid Sidebar</a></li>
-                                   <li><a href="blog-list-01.html">Blog List Sidebar v1</a></li>
-                                   <li><a href="blog-list-02.html">Blog List Sidebar v2</a></li>
-                                   <li><a href="blog-detail-01.html">Blog Detail Sidebar</a></li>
-                                   <li><a href="blog-detail-02.html">Blog Detail No Sidebar</a></li>
-                                   <li><a href="about.html">About Us</a></li>
-                                   <li><a href="contact.html">Contact Us</a></li>
-                               </ul>
-                           </li> -->
-                           <div class="pull-right"> 
-                               <form class = "tp-form">
-                                <mat-form-field class ="tp-full-width">
-                                    <input type = "text" matInput style="background: white;padding: 8px;" 
-                                        [formControl] = "searchTerm" 
-                                        [matAutocomplete] = "auto">
-                                            <mat-autocomplete #auto = "matAutocomplete">
-                                        <mat-option *ngFor = "let news of NewsList" [value] = "news.NewsHeadLine" (click)="NavigateDesc(news.NewsId)">
-                                            {{news.NewsHeadLine}}
-                                        </mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
-                                </form>
-                            </div>
-                        </ul>
-                        
+                        </ul>                         
                     </nav>
                 </div>
             </div>
@@ -558,6 +547,7 @@
     <!-- <app-home></app-home> -->
     <!-- Footer -->
     <footer>
+        
         <div class="bg2 p-t-40 p-b-25">
             <div class="container">
                 <div class="row">
@@ -569,26 +559,6 @@
                         </div>
 
                         <div class="SetPaddingTop">
-                            <p class="f1-s-1 cl11 p-b-16">
-                                One Bharath News brings you a daily connect with India's leading news,
-                                columns, coverage and many more. One Bharath News also provides the readers
-                                and viewers a digital experience with refreshed and accurate "Infotaiment" across the
-                                Nation.
-                            </p>
-
-                            <p class="f1-s-1 cl11 p-b-16">
-                                <!-- Any questions? Call us on (+1) 96 716 6879 -->
-
-
-                                <b>CONTACT US</b><br/> 
-
-                                2nd floor, B block, Romar House<br/>
-                                Jaganathan Road, Nungambakkam,<br/>
-                                Chennai-34.<br/>
-                                Email - info@onebharathnews.com
-
-                            </p>
-
                             <div class="p-t-15">
                                 <a href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
                                     <span class="fab fa-facebook-f SetPadding"></span>
@@ -607,6 +577,77 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div id="accordion SetPaddingTop">
+                                <div class="card">
+                                  <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                       About Us
+                                      </button>
+                                    </h5>
+                                  </div>
+                              
+                                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+
+                                            One Bharath News brings you a daily connect with India's leading news,
+                                            columns, coverage and many more. One Bharath News also provides the readers
+                                            and viewers a digital experience with refreshed and accurate "Infotaiment" across the
+                                            Nation.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Contact Us
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                            2nd floor, B block, Romar House<br/>
+                                            Jaganathan Road, Nungambakkam,<br/>
+                                            Chennai-34.<br/>
+                                            Email - info@onebharathnews.com
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="card">
+                                  <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Careers
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                    <div class="card-body">
+                                            <div class="col-md-12">
+                                                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                                                      
+                                                        <div class="form-group">
+                                                            <label for="Name">Name:</label>
+                                                            <input class="form-control" id="Name" formControlName="Name" name="Name" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="description">Description:</label>
+                                                            <textarea class="form-control" rows="5" id="description" formControlName="description" name="description"></textarea>
+                                                        </div>
+                                                        <div class="form-group" style="overflow: hidden">
+                                                            <label class="btn btn-primary" for="my-file-selector">
+                                                              <input type="file" name="uploadedfile" (change)="onFileChange($event)" />
+                                                            </label>
+                                                        </div>
+                                                        <button class="btn btn-success" type="submit">Upload</button>
+                                                        <div style="margin: 20px"></div>
+                                                      </form>
+                                                  </div></div>
+                                  </div>
+                                </div>
+                              </div>
                     </div>
 
                     <div class="col-sm-6 col-lg-4 p-b-20">
@@ -616,81 +657,18 @@
                             </h5>
                         </div>
 
-                        <ul>
-                                <li class="how-bor1 p-rl-5 p-tb-10">
-                                        <a routerLink="/" class="f1-s-5 cl11 hov-cl10 trans-03" (click)="gotobottom()">About</a>
-                                       
-                                    </li>
-                                <li class="how-bor1 p-rl-5 p-tb-10">
-                                        <a routerLink="/" class="f1-s-5 cl11 hov-cl10 trans-03" (click)="gotobottom()">Contact</a>
-                                    </li>
-                                <li class="how-bor1 p-rl-5 p-tb-10">
-                                        <a routerLink="/careers" class="f1-s-5 cl11 hov-cl10 trans-03" >Careers </a>
-                                    </li>
-                            <!-- <li>
-                                <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">About</a>
-                            </li>
-                            <li> 
-                                <a routerLink="/" class="left-topbar-item" (click)="gotobottom()">Contact</a>
-                            </li>
-
-                            <li>
-                                    <a routerLink="/careers" class="left-topbar-item" >Careers </a>
-                            </li> -->
-                            <!-- <li class="flex-wr-sb-s p-b-20">
-                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="assets/images/popular-post-01.jpg" alt="IMG">
-                                </a>
-
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Donec metus orci, malesuada et lectus vitae
-                                        </a>
-                                    </h6>
-
-                                    <span class="f1-s-3 cl6">
-                                        Feb 17
-                                    </span>
-                                </div>
-                            </li>
-
-                            <li class="flex-wr-sb-s p-b-20">
-                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="assets/images/popular-post-02.jpg" alt="IMG">
-                                </a>
-
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Lorem ipsum dolor sit amet, consectetur
-                                        </a>
-                                    </h6>
-
-                                    <span class="f1-s-3 cl6">
-                                        Feb 16
-                                    </span>
-                                </div>
-                            </li>
-
-                            <li class="flex-wr-sb-s p-b-20">
-                                <a href="#" class="size-w-4 wrap-pic-w hov1 trans-03">
-                                    <img src="assets/images/popular-post-03.jpg" alt="IMG">
-                                </a>
-
-                                <div class="size-w-5">
-                                    <h6 class="p-b-5">
-                                        <a href="#" class="f1-s-5 cl11 hov-cl10 trans-03">
-                                            Suspendisse dictum enim quis imperdiet auctor
-                                        </a>
-                                    </h6>
-
-                                    <span class="f1-s-3 cl6">
-                                        Feb 15
-                                    </span>
-                                </div>
-                            </li> -->
-                        </ul>
+                        <!-- <ul>
+                            <li class="how-bor1 p-rl-5 p-tb-10">
+                                    <a routerLink="/" class="f1-s-5 cl11 hov-cl10 trans-03" (click)="gotobottom()">About</a>
+                                    
+                                </li>
+                            <li class="how-bor1 p-rl-5 p-tb-10">
+                                    <a routerLink="/" class="f1-s-5 cl11 hov-cl10 trans-03" (click)="gotobottom()">Contact</a>
+                                </li>
+                            <li class="how-bor1 p-rl-5 p-tb-10">
+                                    <a routerLink="/careers" class="f1-s-5 cl11 hov-cl10 trans-03" >Careers </a>
+                                </li>
+                        </ul> -->
                     </div>
 
                     <div class="col-sm-6 col-lg-4 p-b-20">

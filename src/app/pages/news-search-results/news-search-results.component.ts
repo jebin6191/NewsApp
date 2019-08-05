@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HomeService } from 'src/app/service/home.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/app/environment/environment';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-news-search-results',
@@ -10,24 +11,63 @@ import { environment } from 'src/app/environment/environment';
 })
 export class NewsSearchResultsComponent implements OnInit {
   NewsListByDateRange= <any>[];
-  imageUrl = environment.imageUrl
+  NewsListBySearchTerm= <any>[];
+  imageUrl = environment.imageUrl;
+  StartDate: string;
+  EndDate: string;
+  SearchTerm : string;
 
-  constructor(public homeService:HomeService,private route: ActivatedRoute) {
+  constructor(public homeService:HomeService,private route: ActivatedRoute, private router: Router) {
+          this.route.url.subscribe(url =>{
+            console.log(url);
+      });
    }
 
+
   ngOnInit() {
-    let StartDate: string;
-    let EndDate: string;
+ 
     this.route
     .queryParams
     .subscribe(params => {
-        StartDate = params['StartDate'];
-        EndDate = params['EndDate'];
+        this.StartDate = params['StartDate'];
+        this.EndDate = params['EndDate'];
+        this.SearchTerm =  params['SearchTerm'];
     });
- 
+
+    if(this.StartDate != ""){
+      this.SearchByDate(this.StartDate, this.EndDate);
+    }
+    if(this.SearchTerm != ""){
+      this.SearchByTerm(this.SearchTerm);
+    }  
+  }
+  ngOnChanges(){
+    if(this.StartDate != ""){
+      this.SearchByDate(this.StartDate, this.EndDate);
+    }
+    if(this.SearchTerm != ""){
+      this.SearchByTerm(this.SearchTerm);
+    } 
+  }
+
+  SearchByTerm(searchstring){
+    this.homeService.search(searchstring).subscribe(
+      (result: any) => {
+        if (result) {
+          this.NewsListBySearchTerm = result; 
+          console.log(this.NewsListBySearchTerm);
+          // this.NewsListByDateRange.forEach(element => {
+          //   element.SubCategoryJson = JSON.parse(element.SubCategoryJson)
+
+          // });     
+        }
+      });
+  }
+
+  SearchByDate(Sdate: string, Edate: string){
     let data = {
-      StartDate : StartDate,
-      EndDate : EndDate
+      StartDate : Sdate,
+      EndDate : Edate
     }
     this.homeService.GetNewsByDateRange(data).subscribe(
       (result: any) => {
@@ -38,7 +78,6 @@ export class NewsSearchResultsComponent implements OnInit {
 
           });     
           console.log(JSON.stringify(this.NewsListByDateRange));
-          
         }
       });
   }

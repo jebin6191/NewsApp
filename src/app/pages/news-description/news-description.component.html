@@ -38,7 +38,7 @@
 							<img src="http://admin.onebharathnews.in/CategoryFiles/{{newsDetails[0].ImageThumb}}" alt="IMG">
 						</div>
 
-						<div class="wrap-pic-max-w p-b-30" [innerHTML]="newsDetails[0].News">
+						<div class="wrap-pic-max-w p-b-30" [innerHTML]="DetailedNews | SafePipe">
 
 						</div>
 
@@ -56,29 +56,33 @@
 							</p> -->
 
 						<!-- Tag -->
-						<div class="flex-s-s p-t-12 p-b-15">
+						<!-- <div class="flex-s-s p-t-12 p-b-15">
 							<span class="f1-s-12 cl5 m-r-8">
 								Tags:
 							</span>
 							
-							<div class="flex-wr-s-s size-w-0">
-								<div *ngFor="let tag of HashTagList" >
+							<div *ngFor="let tag of HashTagList">
+								<div class="flex-wr-s-s size-w-0">
 									<a href="#" class="f1-s-12 cl8 hov-link1 m-r-15">
 											{{tag}}
 										</a>
 								</div>
 							</div>
-						</div>
+							
+						</div> -->
 
 						<!-- Share -->
 						<div class="flex-s-s">
 							<span class="f1-s-12 cl5 p-t-1 m-r-15">
 								Share:
 							</span>
-							
-
 							<div class="flex-wr-s-s size-w-0">
-								<div class="socialshare">
+
+								<share-buttons theme="moon" [include]="['facebook','twitter','whatsapp']"
+								[title]="newsDetails[0].HeadLine"
+ 								[description]="newsDetails[0].HeadLine"></share-buttons>
+
+								<!-- <div class="socialshare">
 										<fb-like url={{ShareUrl}}></fb-like>
 								</div>
 								<div class="socialshare">
@@ -86,7 +90,10 @@
 								</div>
 								<div class="socialshare" >
 										<pin-it url={{ShareUrl}} media="http://onebharathnews.in/assets/newsLogo2.png" description="One Bharath News Blog"></pin-it>							
-								</div>
+								</div> -->
+								<!-- <button class="fa fa-whatsapp">share</button> -->
+								<!-- <a href="https://web.whatsapp.com/send?text=http://www.onebharathnews.in" data-text="Take a look at this awesome website:" class="wa_btn wa_btn_s " ><i class="">Share</i></a> -->
+								<!-- <a href="whatsapp://send?text=http://www.onebharathnews.in" data-action="share/whatsapp/share">Share via Whatsapp</a> -->
 							</div>
 						</div>
 					</div>
@@ -94,7 +101,7 @@
 
 						<div *ngFor="let comments of CommentsList">
 							<div>{{comments.Description}}</div>
-							<div><small> {{comments.CommentedBy}}</small>  <small> commented on {{comments.CommentDate}}</small></div>
+							<div><small> {{comments.CommentBy}}</small>  <small> commented on {{comments.CommentDate | date }}</small></div>
 						</div>
 					</div>
 
@@ -382,14 +389,14 @@
 							</h3>
 						</div>
 
-						<div class="flex-wr-s-s m-rl--5">
-							<div *ngFor="let tag of HashTagList" >
-								<a href="#"
-									class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
-									{{tag}}
-								</a>
-							</div>
-						</div>
+						<div class="flex-wr-s-s m-rl--5">	
+							<div *ngFor="let tag of newsDetails[0].HashTags">				
+							<a  *ngIf="tag != ''"  [routerLink]="['/search-results']" [queryParams]="{ SearchTerm:tag, StartDate: '', EndDate:'' }"
+								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
+								{{tag}}
+							</a>
+						</div>	
+						</div>						
 					</div>
 				</div>
 			</div>

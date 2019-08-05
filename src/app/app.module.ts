@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Inject } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,15 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
     MatMomentDateModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxDaterangepickerMd.forRoot()
+    NgxDaterangepickerMd.forRoot(),
+    DeviceDetectorModule.forRoot()
   ],
+  exports:[],
   providers: [
     HomeService,
     MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

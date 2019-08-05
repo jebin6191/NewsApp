@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent, SafePipe } from './home.component';
-import { JwSocialButtonsModule } from 'jw-angular-social-buttons';
+import { HomeComponent } from './home.component';
 
 
 @NgModule({
-  declarations: [HomeComponent,SafePipe],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    JwSocialButtonsModule
   ]
 })
 export class HomeModule { }

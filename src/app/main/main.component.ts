@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from '../service/home.service';
 import { environment } from '../environment/environment';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({
@@ -14,17 +14,29 @@ export class MainComponent implements OnInit {
   imageUrl = environment.imageUrl;
   imageUrlPath = environment.imageUrlPath;
   MenuToggle: boolean = false;
+  form: FormGroup;
+  error: string;
+  userId: number = 1;
+  uploadResponse = { status: '', message: '', filePath: '' };
 
 
-  constructor(public homeService:HomeService,private _Router:Router, private router: Router) { }
+
+  constructor(public homeService:HomeService,private _Router:Router, private router: Router, 
+    private formBuilder: FormBuilder) { }
   public categoryList:any;
   public advertisementList:any;
   searchTerm : FormControl = new FormControl();
   NewsList = <any>[]
   events: string[] = [];
   selected: any = '';
+  searchString ="";
  
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      Name: ['', Validators.required],
+      uploadedfile: ['', Validators.required],
+      description: ['']
+    });
 // document.getElementById("mat-input-1").textContent="";
 // debugger
 //     let result1 = [{
@@ -61,6 +73,10 @@ export class MainComponent implements OnInit {
     this.getScrollNews();
   }
 
+
+  ReloadApp(){
+    window.open("http://www.onebharathnews.in/home", "_self")
+  }
 
   addEvent(event: MatDatepickerInputEvent<Date>) {
     // console.log(event);
@@ -195,13 +211,22 @@ debugger
       });
   }
   NavigateDesc(id){
-    console.log(id);
     window.open("http://onebharathnews.in/news-description?newsId="+id, "_blank");
     // window.location.href = 'http://onebharathnews.in/news-description?newsId='+id
   }
 
   gotoSubcategory(obj){
     this._Router.navigate(['/news-subcategory'], { queryParams: { subcategoryId: obj.SubCategoryId } });
+  }
+
+  NavigateToSearch(){
+    document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
+    if(this.searchString == null || this.searchString == ""){
+      alert("SearchText can't be empty");
+      return false;
+     
+    }
+    this._Router.navigate(['/search-results'], { queryParams: { SearchTerm: this.searchString , StartDate: "", EndDate:""} } )
   }
 
   gotobottom(){
@@ -212,7 +237,34 @@ debugger
     window.scrollTo(0,0)
   }
   ClosePopup(){
+    window.location.reload();
     document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
+
+  }
+
+
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file);
+      this.form.get('uploadedfile').setValue(file);
+    }
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.form.get('uploadedfile').value);
+    const body = {
+      "Body": this.form.get('description').value,
+      "Name": this.form.get('Name').value,
+    };
+    formData.append('data', JSON.stringify(body));
+    console.log(formData);
+    this.homeService.FileUploads(formData).subscribe(
+      (res) => this.uploadResponse = res,
+      (err) => this.error = err
+    );
   }
 
 }

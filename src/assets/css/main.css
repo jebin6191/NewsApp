@@ -169,7 +169,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 /*==================================================================
 [ Top-bar ]*/
 .topbar {
-  background-color: #111;
+  background-color: #2b5167;
 }
 
 .content-topbar {
@@ -1563,7 +1563,7 @@ a.breadcrumb-item:hover {
 .bg-none {background-color: transparent;}
 .bg0 {background-color: #fff;}
 .bg1 {background-color: #111;}
-.bg2 {background-color: #222;}
+.bg2 {background-color: #2b5167;}
 .bg3 {background-color: #333;}
 .bg4 {background-color: #444;}
 .bg5 {background-color: #555;}
@@ -1573,7 +1573,7 @@ a.breadcrumb-item:hover {
 .bg9 {background-color: #999;}
 .bg10 {background-color: #17b978;}
 /* .bg10 {background-color: #ff0303;} */
-.bg11 {background-color: #151515;}
+.bg11 {background-color: #2b5167;}
 
 
 /*---------------------------------------------*/

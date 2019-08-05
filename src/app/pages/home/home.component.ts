@@ -2,7 +2,6 @@ import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/app/service/home.service';
 import { environment } from 'src/app/environment/environment';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -15,11 +14,13 @@ export class HomeComponent implements OnInit {
   imageUrlPath = environment.imageUrlPath;
   iframeVideo = 'https://www.youtube.com/embed/wJnBTPUQS5A?rel=0';
   iframeVideoIndex:any = "";
+  PopularNews:any = [];
 
   constructor(public homeService:HomeService,private _Router:Router) { }
 
   ngOnInit() {
     window.scrollTo(0,0);
+    this.GetAllPopularPosts();
     // this.Allcategory();
   }
 
@@ -56,6 +57,17 @@ export class HomeComponent implements OnInit {
     this.homeService.selectedArticleNews = obj;
   }
 
+  GetAllPopularPosts(){  
+      
+    this.homeService.GetPopularNews().subscribe(
+      (result: any) => {
+        if (result) {
+           this.PopularNews = result;
+           console.log(this.PopularNews);
+        }
+      })
+  }
+
 videopopup(){
   document.getElementById("iframeVideo").innerHTML = "";
 }
@@ -64,10 +76,10 @@ videopopup(){
 }
 
 
-@Pipe({ name: 'safe' })
-export class SafePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {}
-  transform(url) {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  }
-} 
+// @Pipe({ name: 'safe' })
+// export class SafePipe implements PipeTransform {
+//   constructor(private sanitizer: DomSanitizer) {}
+//   transform(url) {
+//     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+//   }
+// } 

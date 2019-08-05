@@ -110,9 +110,9 @@
                         </ul>
                     </div> -->
                 <div class="marqee-header">
-                    JUST IN
+                   TOP NEWS
                 </div>
-                <marquee class="marqee-vertical" behavior="scroll" direction="up" scrolldelay="200"
+                <marquee class="marqee-vertical" behavior="scroll" direction="up"
                     onmouseover="this.stop();" onmouseout="this.start();">
                     <ul>
                         <li style="color: transparent">test</li>
@@ -139,18 +139,20 @@
                         <div class="bg-img1 size-a-5 how1 pos-relative"
                             [ngStyle]="{'background': 'url(http://admin.onebharathnews.in/CategoryFiles/' + sliderNews.SliderImage  + ') no-repeat 0 0 / cover'}">
 
-                            <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
+                            <a (click)="goProducts(sliderNews.NewsId)"
+                            [routerLink]="['/news-description']" [queryParams]="{newsId: sliderNews.NewsId}"
+                            class="dis-block how1-child1 trans-03"></a>
 
                             <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
                                 <a (click)="goProducts(sliderNews.NewsId)"
-                                    [routerLink]="['/news-details?newsId='+sliderNews.NewsId]"
+                                [routerLink]="['/news-description']" [queryParams]="{newsId: sliderNews.NewsId}"
                                     class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
                                     {{sliderNews.CategoryName}}
                                 </a>
 
                                 <h3 class="how1-child2 m-t-14">
                                     <a (click)="goProducts(sliderNews.NewsId)"
-                                        [routerLink]="['/news-details?newsId='+sliderNews.NewsId]"
+                                    [routerLink]="['/news-description']" [queryParams]="{newsId: sliderNews.NewsId}"
                                         class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
                                         {{sliderNews.HeadLine}}
                                     </a>
@@ -158,140 +160,11 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <!-- 
-                    <div class="col-sm-6 p-rl-1 p-b-2"
-                        *ngIf="homeService.categoryList&&homeService.categoryList[1].SubCategoryJson&&homeService.categoryList[1].SubCategoryJson[0].News"
-                        style="padding:1px">
-                        <div class="bg-img1 size-a-5 how1 pos-relative"
-                            [ngStyle]="{'background': 'url(https://files.freeexamcoaching.com/CategoryFiles/' + homeService.categoryList[1].SubCategoryJson[0].News[0].Newsthump  + ') no-repeat 0 0 / cover'}">
-
-                            <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                            <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                <a (click)="goProducts(homeService.categoryList[1].SubCategoryJson[0].News[0].newsId)"
-                                    [routerLink]="['/news-details?newsId='+homeService.categoryList[1].SubCategoryJson[0].News[0].newsId]"
-                                    class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                    {{homeService.categoryList[1].CategoryName}}
-                                </a>
-
-                                <h3 class="how1-child2 m-t-14">
-                                    <a (click)="goProducts(homeService.categoryList[1].SubCategoryJson[0].News[0].newsId)"
-                                        [routerLink]="['/news-details?newsId='+homeService.categoryList[1].SubCategoryJson[0].News[0].newsId]"
-                                        class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                        {{homeService.categoryList[1].SubCategoryJson[0].News[0].NewsHeadLine}}
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 p-rl-1 p-b-2"
-                        *ngIf="homeService.categoryList&&homeService.categoryList[2].SubCategoryJson&&homeService.categoryList[2].SubCategoryJson[0].News"
-                        style="padding:1px">
-                        <div class="bg-img1 size-a-5 how1 pos-relative"
-                            [ngStyle]="{'background': 'url(https://files.freeexamcoaching.com/CategoryFiles/' + homeService.categoryList[2].SubCategoryJson[0].News[0].Newsthump  + ') no-repeat 0 0 / cover'}">
-
-                            <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                            <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                <a (click)="goProducts(homeService.categoryList[2].SubCategoryJson[0].News[0].newsId)"
-                                    [routerLink]="['/news-details?newsId='+homeService.categoryList[2].SubCategoryJson[0].News[0].newsId]"
-                                    class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                    {{homeService.categoryList[2].CategoryName}}
-                                </a>
-
-                                <h3 class="how1-child2 m-t-14">
-                                    <a (click)="goProducts(homeService.categoryList[2].SubCategoryJson[0].News[0].newsId)"
-                                        [routerLink]="['/news-details?newsId='+homeService.categoryList[2].SubCategoryJson[0].News[0].newsId]"
-                                        class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                        {{homeService.categoryList[2].SubCategoryJson[0].News[0].NewsHeadLine}}
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 p-rl-1 p-b-2"
-                        *ngIf="homeService.categoryList&&homeService.categoryList[3].SubCategoryJson&&homeService.categoryList[3].SubCategoryJson[0].News"
-                        style="padding:1px">
-                        <div class="bg-img1 size-a-5 how1 pos-relative"
-                            [ngStyle]="{'background': 'url(https://files.freeexamcoaching.com/CategoryFiles/' + homeService.categoryList[3].SubCategoryJson[0].News[0].Newsthump  + ') no-repeat 0 0 / cover'}">
-
-                            <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                            <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                <a (click)="goProducts(homeService.categoryList[3].SubCategoryJson[0].News[0].newsId)"
-                                    [routerLink]="['/news-details?newsId='+homeService.categoryList[3].SubCategoryJson[0].News[0].newsId]"
-                                    class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                    {{homeService.categoryList[3].CategoryName}}
-                                </a>
-
-                                <h3 class="how1-child2 m-t-14">
-                                    <a (click)="goProducts(homeService.categoryList[3].SubCategoryJson[0].News[0].newsId)"
-                                        [routerLink]="['/news-details?newsId='+homeService.categoryList[3].SubCategoryJson[0].News[0].newsId]"
-                                        class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                        {{homeService.categoryList[3].SubCategoryJson[0].News[0].NewsHeadLine}}
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 p-rl-1 p-b-2"
-                        *ngIf="homeService.categoryList&&homeService.categoryList[4].SubCategoryJson&&homeService.categoryList[4].SubCategoryJson[0].News"
-                        style="padding:1px">
-                        <div class="bg-img1 size-a-5 how1 pos-relative"
-                            [ngStyle]="{'background': 'url(https://files.freeexamcoaching.com/CategoryFiles/' + homeService.categoryList[4].SubCategoryJson[0].News[0].Newsthump  + ') no-repeat 0 0 / cover'}">
-
-                            <a href="/" class="dis-block how1-child1 trans-03"></a>
-
-                            <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                <a (click)="goProducts(homeService.categoryList[4].SubCategoryJson[0].News[0].newsId)"
-                                    [routerLink]="['/news-details?newsId='+homeService.categoryList[4].SubCategoryJson[0].News[0].newsId]"
-                                    class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                    {{homeService.categoryList[4].CategoryName}}
-                                </a>
-
-                                <h3 class="how1-child2 m-t-14">
-                                    <a (click)="goProducts(homeService.categoryList[4].SubCategoryJson[0].News[0].newsId)"
-                                        [routerLink]="['/news-details?newsId='+homeService.categoryList[4].SubCategoryJson[0].News[0].newsId]"
-                                        class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                        {{homeService.categoryList[4].SubCategoryJson[0].News[0].NewsHeadLine}}
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="col-sm-6 p-rl-1 p-b-2">
-                        <div class="bg-img1 size-a-5 how1 pos-relative"
-                        [ngStyle]="{'background': 'url(https://files.freeexamcoaching.com/CategoryFiles/' + categoryList[2].SubCategoryJson[0].News[0].Newsthump  + ') no-repeat 0 0 / cover'}">
-
-                            <a href="blog-detail-01.html" class="dis-block how1-child1 trans-03"></a>
-
-                            <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                <a href="#"
-                                    class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-                                    Sport
-                                </a>
-
-                                <h3 class="how1-child2 m-t-14">
-                                    <a href="blog-detail-01.html"
-                                        class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-                                        Motobike Vestibulum vene-natis purus nec nibh volutpat
-                                    </a>
-                                </h3>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-
 
 <section class="bg0 p-t-10 p-b-10">
     <div class="container">
@@ -309,91 +182,41 @@
                     </div>
                 </div>
                 <div class="row p-t-35">
-
                         <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
-                                <div class="carousel-inner w-100" role="listbox">
-                                    <div class="carousel-item row no-gutters active">
-                                        <div *ngFor="let videoNews of homeService.videoNews | slice:0:4 ; let i = index"
-                                        class="col-sm-3 p-r-25 p-r-15-sr991" style="float: left;padding: 5px;" >
-                                                <div>
-                                                <div class="wrap-pic-w pos-relative">
-                                                    <img src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt="IMG">
-                                                    <button (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
-                                                        data-target="#modal-video-01"
-                                                        class="s-full ab-t-l flex-c-c fs-32 cl0 hov-cl10 trans-03">
-                                                        <span class="fab fa-youtube"></span>
-                                                    </button>
-                                                </div>
-                                                <div class="p-tb-16 p-rl-25 bg3" style="height: 88px">
-                                                    <h5 class="p-b-5">
-                                                        <a href="#" (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
-                                                        data-target="#modal-video-01" class="f1-m-3 cl0 hov-cl10 trans-03">
-                                                            {{videoNews.Title}}
-                                                        </a>
-                                                    </h5>
-                                                </div>
-                                            </div>
+                        <div class="carousel-inner w-100" role="listbox">
+                            <div class="carousel-item row no-gutters active">
+                                <div *ngFor="let videoNews of homeService.videoNews | slice:0:4 ; let i = index"
+                                    class="col-sm-3 p-r-25 p-r-15-sr991" style="float: left;padding: 5px;" >
+                                    <div>
+                                        <div class="wrap-pic-w pos-relative">
+                                            <img src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt="IMG">
+                                            <button (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
+                                                data-target="#modal-video-01"
+                                                class="s-full ab-t-l flex-c-c fs-32 cl0 hov-cl10 trans-03">
+                                                <span class="fab fa-youtube"></span>
+                                            </button>
                                         </div>
-                                       
+                                        <div class="p-tb-16 p-rl-25 bg3" >
+                                            <h5 class="p-b-5">
+                                                <a (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
+                                                data-target="#modal-video-01" class="f1-m-3 cl0 hov-cl10 trans-03">
+                                                    <span style="color:white"> {{ (videoNews.Title.length>50)? (videoNews.Title | slice:0:50)+'...':(videoNews.Title) }}</span>
+                                                </a>
+                                            </h5>
+                                        </div>
                                     </div>
-
-                                    <!-- <div *ngIf="homeService.videoNews.length > 4" class="carousel-item row no-gutters">
-                                            <div *ngFor="let videoNews of homeService.videoNews | slice:4:8 ; let i = index"
-                                            class="col-sm-3 p-r-25 p-r-15-sr991" style="float: left;padding: 5px;" >
-                                                    <div>
-                                                    <div class="wrap-pic-w pos-relative">
-                                                        <img src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt="IMG">
-                                                        <button (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
-                                                            data-target="#modal-video-01"
-                                                            class="s-full ab-t-l flex-c-c fs-32 cl0 hov-cl10 trans-03">
-                                                            <span class="fab fa-youtube"></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="p-tb-16 p-rl-25 bg3" style="height: 88px">
-                                                        <h5 class="p-b-5">
-                                                            <a href="#" (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
-                                                            data-target="#modal-video-01" class="f1-m-3 cl0 hov-cl10 trans-03">
-                                                                {{videoNews.Title}}
-                                                            </a>
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div> -->
-                                    <!-- <div *ngIf="homeService.videoNews.length > 8" class="carousel-item row no-gutters">
-                                            <div *ngFor="let videoNews of homeService.videoNews | slice:8:12 ; let i = index"
-                                            class="col-sm-3 p-r-25 p-r-15-sr991" style="float: left;padding: 5px;" >
-                                                    <div>
-                                                    <div class="wrap-pic-w pos-relative">
-                                                        <img src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt="IMG">
-                                                        <button (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
-                                                            data-target="#modal-video-01"
-                                                            class="s-full ab-t-l flex-c-c fs-32 cl0 hov-cl10 trans-03">
-                                                            <span class="fab fa-youtube"></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="p-tb-16 p-rl-25 bg3" style="height: 88px">
-                                                        <h5 class="p-b-5">
-                                                            <a href="#" (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
-                                                            data-target="#modal-video-01" class="f1-m-3 cl0 hov-cl10 trans-03 how-txt1">
-                                                                {{videoNews.Title}}
-                                                            </a>
-                                                        </h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </div> -->
-                                </div>
-                                <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-
+                                </div>                                
+                            </div>    
+                        </div>
+                        <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
 
                     <!-- <div *ngFor="let videoNews of homeService.videoNews | slice:0:4 ; let i = index"
                         class="col-sm-3 p-r-25 p-r-15-sr991" style="margin-bottom: 30px;">
@@ -450,7 +273,7 @@
                                         role="tab">All</a>
                                 </li>
 
-                                <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson">
+                                <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson | slice:1:2">
                                     <a class="nav-link" data-toggle="tab" href="#{{subcategory.SubCategoryId}}ta"
                                         role="tab">{{subcategory.SubCategoryName}}</a>
                                 </li>
@@ -480,7 +303,8 @@
                                             *ngIf="category.SubCategoryJson && category.SubCategoryJson[0].News">
                                             <a class="wrap-pic-w hov1 trans-03"
                                                 (click)="goProducts(category.SubCategoryJson[0].News[0].newsId)"
-                                                [routerLink]="['/news-details?newsId='+category.SubCategoryJson[0].News[0].newsId]">
+                                                [routerLink]="['/news-description']" [queryParams]="{newsId: category.SubCategoryJson[0].News[0].newsId}">
+                                                <!-- [routerLink]="['/news-details?newsId='+category.SubCategoryJson[0].News[0].newsId]"> -->
                                                 <img src="http://admin.onebharathnews.in/CategoryFiles/{{category.SubCategoryJson[0].News[0].Newsthump}}"
                                                     alt="IMG" style="max-height: 263px;max-width: 100%;">
                                             </a>
@@ -489,7 +313,7 @@
                                                 <h5 class="p-b-5">
                                                     <a class="f1-m-3 cl2 hov-cl10 trans-03"
                                                         (click)="goProducts(category.SubCategoryJson[0].News[0].newsId)"
-                                                        [routerLink]="['/news-details?newsId='+category.SubCategoryJson[0].News[0].newsId]">
+                                                        [routerLink]="['/news-description']" [queryParams]="{newsId: category.SubCategoryJson[0].News[0].newsId}">
                                                         {{category.SubCategoryJson[0].News[0].NewsHeadLine}}
                                                         <!-- <p
                                                             [innerHTML]="category.SubCategoryJson[0].News[0].NewsHeadLine">
@@ -517,21 +341,19 @@
                                                             (click)="goProducts(subcategory.News[0].newsId)"
                                                             [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
                                                            
-                                                           {{subcategory.News[0].NewsHeadLine}}
-                                                           
+                                                           {{subcategory.News[0].NewsHeadLine}}                                                          
                                                         </a>
                                                     </h5>
-
                                                 </div>
                                         </div>
                                     </div> -->
 
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991" *ngIf="category.SubCategoryJson">
                                         <div class="flex-wr-sb-s m-b-30"
-                                            *ngFor="let subcategory of category.SubCategoryJson | slice:1:4">
+                                            *ngFor="let subcategory of category.SubCategoryJson | slice:1:2">
                                             <a class="size-w-1 wrap-pic-w hov1 trans-03" *ngIf="subcategory.News"
                                                 (click)="goProducts(subcategory.News[0].newsId)"
-                                                [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
+                                                [routerLink]="['/news-description?newsId='+subcategory.News[0].newsId]">
                                                 <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
                                                     alt="IMG" style="max-height: 75px;max-width:100%;">
                                             </a>
@@ -540,7 +362,7 @@
                                                 <h5 class="p-b-5">
                                                     <a class="f1-s-5 cl3 hov-cl10 trans-03"
                                                         (click)="goProducts(subcategory.News[0].newsId)"
-                                                        [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
+                                                        [routerLink]="['/news-description?newsId='+subcategory.News[0].newsId]">
                                                         {{subcategory.News[0].NewsHeadLine}}
                                                     </a>
                                                 </h5>
@@ -550,11 +372,11 @@
 
                                 </div>
                                 <div class="row" *ngIf="category.SubCategoryJson">
-                                    <div class="col-12" *ngIf="category.SubCategoryJson.lenght > 4">
+                                    <div class="col-12" *ngIf="category.SubCategoryJson.length > 4">
                                         <a class="tab01-link f1-s-1 cl9 hov-cl10 trans-03"
                                             [routerLink]="['/news-category']"
                                             [queryParams]="{categoryId: category.CategoryId}"
-                                            style="float:right;cursor:pointer;">View All</a>
+                                            style="float:right;cursor:pointer; padding: 0px 10px;">View All</a>
                                     </div>
                                 </div>
                             </div>
@@ -568,7 +390,7 @@
                                         <div class="m-b-30">
                                             <a class="wrap-pic-w hov1 trans-03"
                                                 (click)="goProducts(subcategory.News[0].newsId)"
-                                                [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
+                                                [routerLink]="['/news-description']" [queryParams]="{newsId: subcategory.News[0].newsId}">
                                                 <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
                                                     alt="IMG" style="max-height: 263px;max-width:100%;">
                                             </a>
@@ -577,7 +399,7 @@
                                                 <h5 class="p-b-5">
                                                     <a (click)="goProducts(subcategory.News[0].newsId)"
                                                         class="f1-m-3 cl2 hov-cl10 trans-03"
-                                                        [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
+                                                        [routerLink]="['/news-description']" [queryParams]="{newsId: subcategory.News[0].newsId}">
                                                         {{subcategory.News[0].NewsHeadLine}}
                                                         <!-- <p *ngIf="subcategory.News"
                                                             [innerHTML]="subcategory.News[0].NewsHeadLine"></p> -->
@@ -606,7 +428,7 @@
                                             *ngFor="let news of subcategory.News | slice:1:4">
                                             <a class="size-w-1 wrap-pic-w hov1 trans-03"
                                                 (click)="goProducts(news.newsId)"
-                                                [routerLink]="['/news-details?newsId='+news.newsId]">
+                                                [routerLink]="['/news-description']" [queryParams]="{newsId: news.newsId}">
                                                 <img src="http://admin.onebharathnews.in/CategoryFiles/{{news.Newsthump}}"
                                                     alt="IMG" style="max-height: 75px;max-width:100%;">
                                             </a>
@@ -615,7 +437,7 @@
                                                 <h5 class="p-b-5">
                                                     <a class="f1-s-5 cl3 hov-cl10 trans-03"
                                                         (click)="goProducts(news.newsId)"
-                                                        [routerLink]="['/news-details?newsId='+news.newsId]">
+                                                        [routerLink]="['/news-description']" [queryParams]="{newsId: news.newsId}">
                                                         {{news.NewsHeadLine}}
                                                         <!-- <p *ngIf="subcategory.News" [innerHTML]="news.NewsHeadLine"></p> -->
                                                     </a>
@@ -664,55 +486,16 @@
                         </div>
 
                         <ul class="p-t-35">
-                            <li class="flex-wr-sb-s p-b-22">
+                            <li class="flex-wr-sb-s p-b-22" *ngFor="let popular of PopularNews; let i = index ">
                                 <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
-                                    1
+                                   {{i +1}}
                                 </div>
 
-                                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                                <a href="{{popular.Link}}" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
+                                        {{popular.Title}}
                                 </a>
                             </li>
 
-                            <li class="flex-wr-sb-s p-b-22">
-                                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
-                                    2
-                                </div>
-
-                                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                                    Proin velit consectetur non neque
-                                </a>
-                            </li>
-
-                            <li class="flex-wr-sb-s p-b-22">
-                                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
-                                    3
-                                </div>
-
-                                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                                    Nunc vestibulum, enim vitae condimentum volutpat lobortis ante
-                                </a>
-                            </li>
-
-                            <li class="flex-wr-sb-s p-b-22">
-                                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0 m-b-6">
-                                    4
-                                </div>
-
-                                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                                    Proin velit justo consectetur non neque elementum
-                                </a>
-                            </li>
-
-                            <li class="flex-wr-sb-s p-b-22">
-                                <div class="size-a-8 flex-c-c borad-3 size-a-8 bg9 f1-m-4 cl0">
-                                    5
-                                </div>
-
-                                <a href="#" class="size-w-3 f1-s-7 cl3 hov-cl10 trans-03">
-                                    Proin velit consectetur non neque
-                                </a>
-                            </li>
                         </ul>
                     </div>
 

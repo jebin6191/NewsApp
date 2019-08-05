@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HomeService } from 'src/app/service/home.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { DeviceDetectorService } from 'ngx-device-detector';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-news-description',
@@ -17,8 +19,9 @@ export class NewsDescriptionComponent implements OnInit {
   CommentsList: any;
   selected: any = '';
   HashTagList: any=[];
+  DetailedNews: any;
   constructor(private _Router:Router,private route: ActivatedRoute, private homeService:HomeService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder, private deviceService: DeviceDetectorService, private meta: Meta) { }
 
 
   ngOnInit() {
@@ -26,7 +29,6 @@ export class NewsDescriptionComponent implements OnInit {
     this.route.queryParams
     .subscribe(params => {
       window.scrollTo(0,0);
-
       this.newsId = params.newsId;
       this.GetNews(this.newsId)
       this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId
@@ -40,6 +42,8 @@ export class NewsDescriptionComponent implements OnInit {
       CommentBy:[''],
     });
     this.GetComments();
+
+  
   }
 
   change(event:any){
@@ -61,7 +65,6 @@ export class NewsDescriptionComponent implements OnInit {
   SaveComments(){
     debugger;
     const data = this.CommentsForm.value;
-    console.log("this.CommentsForm"+this.CommentsForm);
     if(data){
       this.homeService.NewsCommentsSave(data).subscribe(
         (result: any) => {
@@ -74,28 +77,12 @@ export class NewsDescriptionComponent implements OnInit {
   }
 
   GetComments(){  
-    
-    // this.CommentsList  = [{
-    //   "Description": "Test Comment By Jebin ",
-    //   "CommentDate": "20-09-2018",
-    //   "CommentedBy": "jebin"
-    //   },
-    //    {
-    //   "Description": "Test Comment By joel ",
-    //   "CommentDate": "20-09-2018",
-    //   "CommentedBy": "joel"
-    //   },
-    //    {
-    //   "Description": "Test Comment By Jemisha ",
-    //   "CommentDate": "20-09-2018",
-    //   "CommentedBy": "Jemisha"
-    //   }]
       
-    this.homeService.NewsCommentsSave(this.newsId).subscribe(
+    this.homeService.NewsCommentsGet(this.newsId).subscribe(
       (result: any) => {
         if (result) {
-          // console.log(result);
            this.CommentsList = result;
+           console.log(this.CommentsList);
         }
       })
   }
@@ -105,11 +92,12 @@ export class NewsDescriptionComponent implements OnInit {
       (result: any) => {
         if (result) {
           this.newsDetails = result;
-
-           console.log(this.newsDetails[0].HashTag);
-           this.HashTagList = (this.newsDetails[0].HashTag).split(';');
-
-           console.log(JSON.stringify (this.HashTagList));
+          this.DetailedNews = this.newsDetails[0].News;
+           console.log(this.newsDetails[0]);
+           this.meta.addTag({httpEquiv: 'Content-Type', content: 'text/html'});
+           this.meta.addTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
+           this.meta.addTag({property: 'og:description', content: this.newsDetails[0].News });
+           this.meta.addTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/'+this.newsDetails[0].ImageThumb});
         }
       })
   }
