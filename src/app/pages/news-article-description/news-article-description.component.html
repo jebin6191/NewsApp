@@ -392,8 +392,16 @@
 								Tags
 							</h3>
 						</div>
+						<div class="flex-wr-s-s m-rl--5">	
+								<div *ngFor="let tag of homeService.selectedArticleNews.HashTags">				
+								<a  *ngIf="tag != ''"  [routerLink]="['/search-results']" [queryParams]="{ SearchTerm:tag, StartDate: '', EndDate:'' }"
+									class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
+									{{tag}}
+								</a>
+							</div>	
+							</div>	
 
-						<div class="flex-wr-s-s m-rl--5">
+						<!-- <div class="flex-wr-s-s m-rl--5">
 							<a href="#"
 								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
 								Fashion
@@ -433,7 +441,7 @@
 								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
 								Blogs
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>

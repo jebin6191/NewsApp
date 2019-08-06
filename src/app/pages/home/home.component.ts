@@ -1,5 +1,5 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { HomeService } from 'src/app/service/home.service';
 import { environment } from 'src/app/environment/environment';
 
@@ -15,13 +15,43 @@ export class HomeComponent implements OnInit {
   iframeVideo = 'https://www.youtube.com/embed/wJnBTPUQS5A?rel=0';
   iframeVideoIndex:any = "";
   PopularNews:any = [];
+  private twitter: any;
 
-  constructor(public homeService:HomeService,private _Router:Router) { }
+  constructor(public homeService:HomeService,private _Router:Router) {
+    this.initTwitterWidget();
+   }
 
   ngOnInit() {
     window.scrollTo(0,0);
     this.GetAllPopularPosts();
     // this.Allcategory();
+  }
+
+  initTwitterWidget() {
+    this.twitter = this._Router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        (<any>window).twttr = (function (d, s, id) {
+          let js: any, fjs = d.getElementsByTagName(s)[0],
+              t = (<any>window).twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+
+          t._e = [];
+          t.ready = function (f: any) {
+              t._e.push(f);
+          };
+
+          return t;
+        }(document, "script", "twitter-wjs"));
+
+        if ((<any>window).twttr.ready())
+          (<any>window).twttr.widgets.load();
+
+      }
+    });
   }
 
   // Allcategory() {
