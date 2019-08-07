@@ -1,7 +1,8 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform, Inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { HomeService } from 'src/app/service/home.service';
 import { environment } from 'src/app/environment/environment';
+import { WINDOW } from '@ng-toolkit/universal';
 
 @Component({
   selector: 'app-home',
@@ -17,17 +18,17 @@ export class HomeComponent implements OnInit {
   PopularNews:any = [];
   private twitter: any;
 
-  constructor(public homeService:HomeService,private _Router:Router) {
-    this.initTwitterWidget();
+  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) {
+    this.initTwitterWidget(window);
    }
 
   ngOnInit() {
-    window.scrollTo(0,0);
+    this.window.scrollTo(0,0);
     this.GetAllPopularPosts();
     // this.Allcategory();
   }
 
-  initTwitterWidget() {
+  initTwitterWidget(window) {
     this.twitter = this._Router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         (<any>window).twttr = (function (d, s, id) {

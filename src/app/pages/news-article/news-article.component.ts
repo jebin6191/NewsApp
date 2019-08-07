@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { environment } from 'src/app/environment/environment';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/app/service/home.service';
+import { WINDOW } from '@ng-toolkit/universal';
 
 @Component({
   selector: 'app-news-article',
@@ -11,10 +12,10 @@ import { HomeService } from 'src/app/service/home.service';
 export class NewsArticleComponent implements OnInit {
   imageUrl = environment.imageUrl;
   imageUrlPath = environment.imageUrlPath;
-  constructor(public homeService:HomeService,private _Router:Router) { }
+  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) { }
 
   ngOnInit() {
-    window.scrollTo(0,0);
+    this.window.scrollTo(0,0);
   }
 
 }

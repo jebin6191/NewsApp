@@ -4,6 +4,7 @@ import { HomeService } from '../service/home.service';
 import { environment } from '../environment/environment';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material';
+import { WINDOW } from '@ng-toolkit/universal';
 
 @Component({
   selector: 'app-main',
@@ -21,7 +22,7 @@ export class MainComponent implements OnInit {
 
 
 
-  constructor(public homeService:HomeService,private _Router:Router, private router: Router, 
+  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router, private router: Router, 
     private formBuilder: FormBuilder) { }
   public categoryList:any;
   public advertisementList:any;
@@ -75,7 +76,7 @@ export class MainComponent implements OnInit {
 
 
   ReloadApp(){
-    window.open("http://www.onebharathnews.in/home", "_self")
+    this.window.open("http://www.onebharathnews.in/home", "_self")
   }
 
   addEvent(event: MatDatepickerInputEvent<Date>) {
@@ -211,7 +212,7 @@ debugger
       });
   }
   NavigateDesc(id){
-    window.open("http://onebharathnews.in/news-description?newsId="+id, "_blank");
+    this.window.open("http://onebharathnews.in/news-description?newsId="+id, "_blank");
     // window.location.href = 'http://onebharathnews.in/news-description?newsId='+id
   }
 
@@ -230,14 +231,14 @@ debugger
   }
 
   gotobottom(){
-    window.scrollTo(0,document.body.scrollHeight);
+    this.window.scrollTo(0,document.body.scrollHeight);
   }
 
   gotoTop(){
-    window.scrollTo(0,0)
+    this.window.scrollTo(0,0)
   }
   ClosePopup(){
-    window.location.reload();
+    this.window.location.reload();
     document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
 
   }

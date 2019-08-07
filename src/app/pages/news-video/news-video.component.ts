@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { environment } from 'src/app/environment/environment';
 import { HomeService } from 'src/app/service/home.service';
 import { Router } from '@angular/router';
+import { WINDOW } from '@ng-toolkit/universal';
 
 @Component({
   selector: 'app-news-video',
@@ -14,10 +15,10 @@ export class NewsVideoComponent implements OnInit {
   imageUrlPath = environment.imageUrlPath;
   iframeVideo = '';
   iframeVideoIndex:any = "";
-  constructor(public homeService:HomeService,private _Router:Router) { }
+  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) { }
 
   ngOnInit() {
-    window.scrollTo(0,0);
+    this.window.scrollTo(0,0);
   }
 
 

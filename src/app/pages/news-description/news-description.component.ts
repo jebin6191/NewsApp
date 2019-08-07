@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { HomeService } from 'src/app/service/home.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { Meta } from '@angular/platform-browser';
+import { WINDOW } from '@ng-toolkit/universal';
 
 @Component({
   selector: 'app-news-description',
@@ -20,18 +20,45 @@ export class NewsDescriptionComponent implements OnInit {
   selected: any = '';
   HashTagList: any=[];
   DetailedNews: any;
-  constructor(private _Router:Router,private route: ActivatedRoute, private homeService:HomeService,
-    private formBuilder: FormBuilder, private deviceService: DeviceDetectorService, private meta: Meta) { }
+  constructor(@Inject(WINDOW) private window: Window, private _Router:Router,private route: ActivatedRoute, private homeService:HomeService,
+    private formBuilder: FormBuilder, private meta: Meta) { 
+
+
+//       <meta name="description" content="Page description. No longer than 155 characters." />
+
+// <!-- Twitter Card data -->
+// <meta name="twitter:card" value="summary">
+
+// <!-- Open Graph data -->
+// <meta property="og:title" content="Title Here" />
+// <meta property="og:type" content="article" />
+// <meta property="og:url" content="http://www.example.com/" />
+// <meta property="og:image" content="http://example.com/image.jpg" />
+// <meta property="og:description" content="Description Here" />
+      this.meta.addTags([
+        {name: 'description', content: 'Title and Meta tags examples'},      
+        {name: 'keywords', content: 'OneBharathNews, DailyNews'},
+        {name: 'date', content: '2018-06-02', scheme: 'YYYY-MM-DD'},
+        {httpEquiv: 'Content-Type', content: 'text/html'},
+        {property: 'og:title', content: "My Text"},
+        {property: 'og:type', content: "website"},
+        {property: 'og:image', content: "image"},
+        {property: 'og:url', content: "http://www.onebharathnews.in/news-description?newsId=100001"},
+        {property: 'og:description', content: "description"},
+        {property: 'twitter:card', content: "description"}
+        
+     ]);    
+    }
 
 
   ngOnInit() {
     
     this.route.queryParams
     .subscribe(params => {
-      window.scrollTo(0,0);
+      this.window.scrollTo(0,0);
       this.newsId = params.newsId;
       this.GetNews(this.newsId)
-      this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId
+      this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId;
     })
 
     this.CommentsForm = this.formBuilder.group({
@@ -94,10 +121,12 @@ export class NewsDescriptionComponent implements OnInit {
           this.newsDetails = result;
           this.DetailedNews = this.newsDetails[0].News;
            console.log(this.newsDetails[0]);
-           this.meta.addTag({httpEquiv: 'Content-Type', content: 'text/html'});
-           this.meta.addTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
-           this.meta.addTag({property: 'og:description', content: this.newsDetails[0].News });
-           this.meta.addTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/'+this.newsDetails[0].ImageThumb});
+
+           this.meta.updateTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
+           this.meta.updateTag({property: 'og:description', content: this.newsDetails[0].HeadLine });
+           this.meta.updateTag({property: 'og:url', content:  this.ShareUrl });
+           this.meta.updateTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/'+this.newsDetails[0].ImageThumb});
+           this.meta.updateTag({property: 'twitter:card', content: this.newsDetails[0].HeadLine });
         }
       })
   }
@@ -105,6 +134,7 @@ export class NewsDescriptionComponent implements OnInit {
 }
 
 export class Comments {
+  constructor(@Inject(WINDOW) private window: Window) {}
   NewsId: number;
   ParentId:number;
   Description: string;

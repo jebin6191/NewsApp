@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HomeService } from 'src/app/service/home.service';
 import { environment } from 'src/app/environment/environment';
+import { WINDOW } from '@ng-toolkit/universal';
 
 @Component({
   selector: 'app-news-category',
@@ -12,13 +13,13 @@ export class NewsCategoryComponent implements OnInit {
   newsCategoryId:any;
   newsCategoryList:any;
   imageUrl = environment.imageUrl
-  constructor(public homeService:HomeService,private route: ActivatedRoute,private _Router:Router) { }
+  constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private route: ActivatedRoute,private _Router:Router) { }
 
   ngOnInit() {
     
     this.route.queryParams
     .subscribe(params => {
-      window.scrollTo(0,0);
+      this.window.scrollTo(0,0);
       this.newsCategoryId = params.categoryId;
       this.getNewsByCategory(this.newsCategoryId);
     })
