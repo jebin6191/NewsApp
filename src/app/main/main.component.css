@@ -50,6 +50,12 @@
 .SetPaddingTop{
   padding-top: 20px !important
 }
+.CursorPointer{
+  cursor: pointer;
+}
+.wheat{
+  color:wheat
+}
 
 
 /* Search Bar */

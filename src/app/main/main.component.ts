@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
   form: FormGroup;
   error: string;
   userId: number = 1;
-  uploadResponse = { status: '', message: '', filePath: '' };
+  uploadResponse: any = "";
 
 
 
@@ -109,8 +109,6 @@ export class MainComponent implements OnInit {
                 c.SubCategoryJson = JSON.parse(c.SubCategoryJson);
               }
           }
-
-          // console.log(JSON.stringify(this.categoryList));
           this.homeService.categoryList = this.categoryList
         }
       });
@@ -126,7 +124,6 @@ export class MainComponent implements OnInit {
     this.homeService.GetAdvertisement().subscribe(
       (result: any) => {
         if (result) {
-debugger
           for(let i in result){
             // let test = result[i].Link;
             // let res = test.split("/");
@@ -261,10 +258,14 @@ debugger
       "Name": this.form.get('Name').value,
     };
     formData.append('data', JSON.stringify(body));
-    console.log(formData);
     this.homeService.FileUploads(formData).subscribe(
-      (res) => this.uploadResponse = res,
-      (err) => this.error = err
+      (res) => {this.uploadResponse = res
+      console.log(this.uploadResponse);
+      if(this.uploadResponse == "Mail Sent"){
+        alert("Submitted Successfully");
+        this.form.reset();
+      }     
+      }
     );
   }
 

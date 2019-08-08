@@ -109,6 +109,11 @@ export class HomeService {
       .pipe(catchError(this.handleError));
   }
 
+  GetNationalNews(): Observable<any> {
+    return this._httpClient.get<any>(API_URL + "News/GetNationalNews")
+      .pipe(catchError(this.handleError));
+  }
+
   search(term) {
     var listOfNews = this._httpClient.get(API_URL+'News/GetSearchNews/' + term)
     .pipe(

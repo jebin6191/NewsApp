@@ -216,38 +216,11 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
-                    </div>
-
-                    <!-- <div *ngFor="let videoNews of homeService.videoNews | slice:0:4 ; let i = index"
-                        class="col-sm-3 p-r-25 p-r-15-sr991" style="margin-bottom: 30px;">
-                        <div class="wrap-pic-w pos-relative">
-                                        <img src="http://img.youtube.com/vi/{{videoNews.videoId}}/0.jpg" alt="IMG">
-                            <button (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
-                                data-target="#modal-video-01"
-                                class="s-full ab-t-l flex-c-c fs-32 cl0 hov-cl10 trans-03">
-                                <span class="fab fa-youtube"></span>
-                            </button>
-                        </div>
-                        <div class="p-tb-16 p-rl-25 bg3">
-                            <h5 class="p-b-5">
-                                <a href="#" (click)="ifraVideo(i,videoNews.Link)" data-toggle="modal"
-                                data-target="#modal-video-01" class="f1-m-3 cl0 hov-cl10 trans-03">
-                                    {{videoNews.Title}}
-                                </a>
-                            </h5>
-                        </div>
-                    </div> -->
-                    
+                    </div>                    
                 </div>
-
             </div>
         </div>
     </div>
-
-
-
-    
-
 </section>
 
 
@@ -258,22 +231,88 @@
             <div class="col-md-10 col-lg-8">
                 <div class="p-b-20">
 
+
+                    <!-- National START-->
+
+                    <div class="tab01 p-b-20" >
+                            <div class="tab01-head how2 how2-cl2 bocl12 flex-s-c m-r-10 m-r-0-sr991">
+    
+                                <h3 class="f1-m-2 cl13 tab01-title">
+                                    National
+                                </h3>
+                                <ul class="nav nav-tabs" role="tablist">
+
+                                </ul>
+                                <a [routerLink]="['/news-category']" [queryParams]="{categoryId: 'national'}"
+                                    class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                    View all
+                                    <i class="fs-12 m-l-5 fa fa-caret-right"></i>
+                                </a>
+                            </div>
+                            <div class="tab-content p-t-35">
+                                <div class="tab-pane fade show active"  role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-sm-6 p-r-25 p-r-15-sr991">
+                                            <div class="m-b-30">
+                                                <a class="wrap-pic-w hov1 trans-03"
+                                                    [routerLink]="['/news-description']" [queryParams]="{newsId: NationalNewsList[0].NewsId}">
+                                                      <img src="http://admin.onebharathnews.in/CategoryFiles/{{NationalNewsList[0].Newsthump}}"
+                                                        alt="IMG" style="max-height: 263px;max-width: 100%;">
+                                                </a>
+    
+                                                <div class="p-t-20">
+                                                    <h5 class="p-b-5">
+                                                        <a class="f1-m-3 cl2 hov-cl10 trans-03"
+                                                            [routerLink]="['/news-description']" [queryParams]="{newsId:  NationalNewsList[0].NewsId}">
+                                                           {{ NationalNewsList[0].NewsHeadLine}}
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 p-r-25 p-r-15-sr991" >
+                                            <div class="flex-wr-sb-s m-b-30"
+                                                *ngFor="let national of NationalNewsList | slice:1:4">
+                                                <a class="size-w-1 wrap-pic-w hov1 trans-03"
+                                                    [routerLink]="['/news-description']"
+                                                    [queryParams]="{newsId: national.NewsId}">
+                                                    <img src="http://admin.onebharathnews.in/CategoryFiles/{{national.Newsthump}}"
+                                                        alt="IMG" style="max-height: 75px;max-width:100%;">
+                                                </a>
+    
+                                                <div class="size-w-2">
+                                                    <h5 class="p-b-5">
+                                                        <a class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                               [routerLink]="['/news-description']"
+                                                                [queryParams]="{newsId: national.NewsId}">
+                                                            {{national.NewsHeadLine}}
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- National END -->
+
+
+
                     <!-- Business -->
                     <div class="tab01 p-b-20" *ngFor="let category of homeService.categoryList">
                         <div class="tab01-head how2 how2-cl2 bocl12 flex-s-c m-r-10 m-r-0-sr991">
 
                             <h3 class="f1-m-2 cl13 tab01-title">
-                                {{category.CategoryName}}
+                                {{category.CategoryName}} 
                             </h3>
-
-
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#{{category.CategoryId}}ta"
                                         role="tab">All</a>
                                 </li>
 
-                                <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson | slice:1:2">
+                                <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson | slice:1:3">
                                     <a class="nav-link" data-toggle="tab" href="#{{subcategory.SubCategoryId}}ta"
                                         role="tab">{{subcategory.SubCategoryName}}</a>
                                 </li>
@@ -284,11 +323,9 @@
                                     </a>
 
                                     <ul class="dropdown-menu">
-
                                     </ul>
                                 </li>
                             </ul>
-                            <!-- *ngIf="category.SubCategoryJson && category.SubCategoryJson.lenght > 4" -->
                             <a [routerLink]="['/news-category']" [queryParams]="{categoryId: category.CategoryId}"
                                 class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
                                 View all
@@ -324,33 +361,9 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- <div class="col-sm-6 p-r-25 p-r-15-sr991" *ngIf="category.SubCategoryJson">
-                                        <div class="flex-wr-sb-s m-b-30"
-                                            *ngFor="let subcategory of category.SubCategoryJson | slice:1:4">
-                                            <a  *ngIf="subcategory.News" class="wrap-pic-w hov1 trans-03"
-                                                    (click)="goProducts(subcategory.News[0].newsId)"
-                                                    [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
-                                                    <img src="https://files.freeexamcoaching.com/CategoryFiles/{{subcategory.News[0].Newsthump}}"
-                                                        alt="IMG" style="height: 75px;width:auto;">
-                                                </a>
-
-                                                <div class="p-t-20" *ngIf="subcategory.News">
-                                                    <h5 class="p-b-5">
-                                                        <a class="f1-m-3 cl2 hov-cl10 trans-03"
-                                                            (click)="goProducts(subcategory.News[0].newsId)"
-                                                            [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
-                                                           
-                                                           {{subcategory.News[0].NewsHeadLine}}                                                          
-                                                        </a>
-                                                    </h5>
-                                                </div>
-                                        </div>
-                                    </div> -->
-
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991" *ngIf="category.SubCategoryJson">
                                         <div class="flex-wr-sb-s m-b-30"
-                                            *ngFor="let subcategory of category.SubCategoryJson | slice:1:2">
+                                            *ngFor="let subcategory of category.SubCategoryJson | slice:1:3">
                                             <a class="size-w-1 wrap-pic-w hov1 trans-03" *ngIf="subcategory.News"
                                                 (click)="goProducts(subcategory.News[0].newsId)"
                                                 [routerLink]="['/news-description?newsId='+subcategory.News[0].newsId]">
@@ -369,7 +382,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="row" *ngIf="category.SubCategoryJson">
                                     <div class="col-12" *ngIf="category.SubCategoryJson.length > 4">
@@ -394,7 +406,6 @@
                                                 <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
                                                     alt="IMG" style="max-height: 263px;max-width:100%;">
                                             </a>
-
                                             <div class="p-t-20">
                                                 <h5 class="p-b-5">
                                                     <a (click)="goProducts(subcategory.News[0].newsId)"
@@ -405,20 +416,6 @@
                                                             [innerHTML]="subcategory.News[0].NewsHeadLine"></p> -->
                                                     </a>
                                                 </h5>
-
-                                                <!-- <span class="cl8">
-                                                    <a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-                                                        Finance
-                                                    </a>
-
-                                                    <span class="f1-s-3 m-rl-3">
-                                                        -
-                                                    </span>
-
-                                                    <span class="f1-s-3">
-                                                        Feb 18
-                                                    </span>
-                                                </span> -->
                                             </div>
                                         </div>
                                     </div>
@@ -439,20 +436,10 @@
                                                         (click)="goProducts(news.newsId)"
                                                         [routerLink]="['/news-description']" [queryParams]="{newsId: news.newsId}">
                                                         {{news.NewsHeadLine}}
-                                                        <!-- <p *ngIf="subcategory.News" [innerHTML]="news.NewsHeadLine"></p> -->
                                                     </a>
                                                 </h5>
-
-                                                <!-- <span class="cl8">
-
-                                                    <span class="f1-s-3">
-                                                      {{news.Date}}
-                                                    </span>
-                                                </span> -->
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
                                 <div class="row" *ngIf="subcategory.News">
@@ -471,7 +458,6 @@
 
             <div class="col-md-10 col-lg-4">
                 <div class="p-l-10 p-rl-0-sr991 p-b-20">
-                    <!--  -->
                     <div>
                         <div class="how2 how2-cl4 flex-s-c">
                             <h3 class="f1-m-2 cl3 tab01-title">
@@ -574,15 +560,6 @@
         </div>
     </div>
 </section>
-
-<!-- Banner -->
-<!-- <div class="container">
-    <div class="flex-c-c">
-        <a href="#">
-            <img class="max-w-full" src="assets/images/banner-01.jpg" alt="IMG">
-        </a>
-    </div>
-</div> -->
 
 
 

@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   iframeVideoIndex:any = "";
   PopularNews:any = [];
   private twitter: any;
+  NationalNewsList:any = [];
 
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) {
     this.initTwitterWidget(window);
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.window.scrollTo(0,0);
     this.GetAllPopularPosts();
+    this.NationalNews()
     // this.Allcategory();
   }
 
@@ -55,21 +57,13 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // Allcategory() {
-  //   debugger;
-  //   this.homeService.Allcategory().subscribe(
-  //     (result: any) => {
-  //       if (result) {
-  //         this.categoryList = result;
-  //         for(let c of this.categoryList){
-  //           if(c.SubCategoryJson){
-  //             c.SubCategoryJson = JSON.parse(c.SubCategoryJson);
-  //         }
-  //         }
-  //         this.homeService.categoryList = this.categoryList
-  //       }
-  //     });
-  // }
+  NationalNews() {
+    this.homeService.GetNationalNews().subscribe((result: any) => {
+        if (result) {
+          this.NationalNewsList = result;
+        }
+      });
+    }
 
   goProducts(newsId) {
     debugger

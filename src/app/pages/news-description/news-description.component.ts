@@ -13,28 +13,17 @@ import { WINDOW } from '@ng-toolkit/universal';
 export class NewsDescriptionComponent implements OnInit {
 
   newsId:any;
-  newsDetails:any;
+  newsDetails:any = [];
   ShareUrl:string;
   CommentsForm: FormGroup;
   CommentsList: any;
   selected: any = '';
   HashTagList: any=[];
   DetailedNews: any;
+  categoryList: any = [];
   constructor(@Inject(WINDOW) private window: Window, private _Router:Router,private route: ActivatedRoute, private homeService:HomeService,
     private formBuilder: FormBuilder, private meta: Meta) { 
 
-
-//       <meta name="description" content="Page description. No longer than 155 characters." />
-
-// <!-- Twitter Card data -->
-// <meta name="twitter:card" value="summary">
-
-// <!-- Open Graph data -->
-// <meta property="og:title" content="Title Here" />
-// <meta property="og:type" content="article" />
-// <meta property="og:url" content="http://www.example.com/" />
-// <meta property="og:image" content="http://example.com/image.jpg" />
-// <meta property="og:description" content="Description Here" />
       this.meta.addTags([
         {name: 'description', content: 'Title and Meta tags examples'},      
         {name: 'keywords', content: 'OneBharathNews, DailyNews'},
@@ -69,8 +58,7 @@ export class NewsDescriptionComponent implements OnInit {
       CommentBy:[''],
     });
     this.GetComments();
-
-  
+    this.Allcategory();
   }
 
   change(event:any){
@@ -89,8 +77,13 @@ export class NewsDescriptionComponent implements OnInit {
     }
   }
 
+  Allcategory() {
+    this.homeService.Allcategory().subscribe((result: any) => {
+          this.categoryList = result;
+      });
+  }
+
   SaveComments(){
-    debugger;
     const data = this.CommentsForm.value;
     if(data){
       this.homeService.NewsCommentsSave(data).subscribe(
@@ -100,7 +93,6 @@ export class NewsDescriptionComponent implements OnInit {
           }
         })
     }
-
   }
 
   GetComments(){  
@@ -109,7 +101,6 @@ export class NewsDescriptionComponent implements OnInit {
       (result: any) => {
         if (result) {
            this.CommentsList = result;
-           console.log(this.CommentsList);
         }
       })
   }
@@ -119,14 +110,16 @@ export class NewsDescriptionComponent implements OnInit {
       (result: any) => {
         if (result) {
           this.newsDetails = result;
-          this.DetailedNews = this.newsDetails[0].News;
-           console.log(this.newsDetails[0]);
-
-           this.meta.updateTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
-           this.meta.updateTag({property: 'og:description', content: this.newsDetails[0].HeadLine });
-           this.meta.updateTag({property: 'og:url', content:  this.ShareUrl });
-           this.meta.updateTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/'+this.newsDetails[0].ImageThumb});
-           this.meta.updateTag({property: 'twitter:card', content: this.newsDetails[0].HeadLine });
+          if(this.newsDetails.length > 0) {
+            this.DetailedNews = this.newsDetails[0].News;
+           
+            this.meta.updateTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
+            this.meta.updateTag({property: 'og:description', content: this.newsDetails[0].HeadLine });
+            this.meta.updateTag({property: 'og:url', content:  this.ShareUrl });
+            this.meta.updateTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/'+this.newsDetails[0].ImageThumb});
+            this.meta.updateTag({property: 'twitter:card', content: this.newsDetails[0].HeadLine });
+          }
+         
         }
       })
   }

@@ -1,4 +1,5 @@
-<section class="bg0 p-t-10 p-b-10" *ngFor="let subcategory of newsCategoryList">
+<div  *ngIf="newsCategoryId !='national'">
+<section class="bg0 p-t-10 p-b-10"  *ngFor="let subcategory of newsCategoryList">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-12 p-b-20">
@@ -33,17 +34,40 @@
                                 </h5>
 
                                 <span class="cl8">
-                                    <!-- <a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-                                            by John Alvarado
-                                        </a>
-    
-                                        <span class="f1-s-3 m-rl-3">
-                                            -
-                                        </span> -->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
 
-                                    <!-- <span class="f1-s-3">
-                                            Feb 18
-                                        </span> -->
+
+<section class="bg0 p-t-10 p-b-10" *ngIf="newsCategoryId =='national'" >
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-12 p-b-20">
+                <div class="row p-t-35">
+                    <div class="col-sm-3 p-r-25 p-r-15-sr991" *ngFor="let news of subcategory.News">
+                        <!-- Item latest -->
+                        <div class="m-b-45">
+                            <a [routerLink]="['/news-description']" [queryParams]="{newsId: news.NewsId}"
+                                class="wrap-pic-w hov1 trans-03">
+                                <img src="{{imageUrl+news.Newsthump}}" style="height: 150px;widows: 150px;" alt="IMG">
+                            </a>
+
+                            <div class="p-t-16">
+                                <h5 class="p-b-5">
+                                    <a [routerLink]="['/news-description']" [queryParams]="{newsId: news.NewsId}"
+                                        class="f1-m-3 cl2 hov-cl10 trans-03">
+                                        {{ (news.NewsHeadLine.length>60)? (news.NewsHeadLine | slice:0:60)+'...':(news.NewsHeadLine) }}
+                                    </a>
+                                </h5>
+
+                                <span class="cl8">
                                 </span>
                             </div>
                         </div>

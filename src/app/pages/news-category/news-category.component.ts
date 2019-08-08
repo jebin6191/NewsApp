@@ -13,6 +13,9 @@ export class NewsCategoryComponent implements OnInit {
   newsCategoryId:any;
   newsCategoryList:any;
   imageUrl = environment.imageUrl
+  subcategory = {
+    "News": []
+  };
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private route: ActivatedRoute,private _Router:Router) { }
 
   ngOnInit() {
@@ -21,7 +24,11 @@ export class NewsCategoryComponent implements OnInit {
     .subscribe(params => {
       this.window.scrollTo(0,0);
       this.newsCategoryId = params.categoryId;
-      this.getNewsByCategory(this.newsCategoryId);
+      if(this.newsCategoryId == 'national'){
+        this.NationalNews();
+      }else{
+        this.getNewsByCategory(this.newsCategoryId);   
+      }     
     })
   }
 
@@ -40,4 +47,11 @@ export class NewsCategoryComponent implements OnInit {
       });
   }
 
-}
+  NationalNews() {
+    this.homeService.GetNationalNews().subscribe((result: any) => {
+        if (result) {
+          this.subcategory.News = result;
+        }
+      });
+    }
+  }
