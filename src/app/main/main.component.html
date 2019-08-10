@@ -71,17 +71,18 @@
                             Careers
                         </a> -->
                     </div>                     
-                    <div class="input-group" style="width: 60%">
+                    <!-- <div class="input-group" style="width: 60%">
                         <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search Here..">
                             <div class="input-group-append">
                                 <button class="btn btn-secondary" type="button" style="border-radius:0;" (click)="NavigateToSearch()" >
                                 <i class="fa fa-search"></i>
                                 </button>
                             </div>
-                        </div> 
-
-                    <div class="right-topbar">
-                       
+                        </div>  -->
+                    <div class="input-group search-group">
+                        <input type="text" class="form-control search-control" placeholder="Enter your search term...">
+                    </div>
+                    <div class="right-topbar" style="min-width: 165px;">
                         <a href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank">
                             <span class="fab fa-facebook-f SetPadding"></span>
                         </a>
@@ -356,7 +357,7 @@
                                 <a class="CursorPointer" [routerLink]="['/news-category']"
                                     [queryParams]="{categoryId: category.CategoryId}">{{category.CategoryName}}</a>
                                 <!-- [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]" -->
-                                <div class="sub-mega-menu" *ngIf="category.CategoryName != 'National'">
+                                <div class="sub-mega-menu">
                                     <div class="nav flex-column nav-pills" role="tablist">
                                         <a class="nav-link active" data-toggle="pill" href="#{{category.CategoryId}}"
                                             role="tab">All</a>
