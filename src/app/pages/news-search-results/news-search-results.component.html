@@ -1,43 +1,52 @@
-<div *ngIf="NewsListByDateRange.length > 0">
-
 <section class="bg0 p-t-10 p-b-10" >
-        <div class="container">
-            <div class="row justify-content-center">
-                <div  *ngFor="let result of NewsListByDateRange[0].SubCategoryJson">
-                <div class="col-md-12 col-lg-12 p-b-20">
-                        <div *ngIf="result.News" class="how2 how2-cl4 flex-s-c m-r-10 m-r-0-sr991">
-                                <h3 class="f1-m-2 cl3 tab01-title">
-                                   {{result.SubCategoryName}}
-                                </h3>
-                            </div>
-    
-                    <div class="row p-t-35" >
-                        <div class="col-sm-3 p-r-25 p-r-15-sr991"  *ngFor="let res of result.News">
-                            
-                            <div class="m-b-45">
-                                <a [routerLink]="['/news-description']" [queryParams]="{newsId: res.newsId}" class="wrap-pic-w hov1 trans-03">
-                                    <img src="{{imageUrl+res.Newsthump}}" alt="IMG">
-                                </a>
-    
-                                <div class="p-t-16">
-                                    <h5 class="p-b-5">
-                                        <a [routerLink]="['/news-description']" [queryParams]="{newsId: res.newsId}" class="f1-m-3 cl2 hov-cl10 trans-03">
-                                          {{res.NewsHeadLine}}
-                                        </a>
-                                    </h5>
-    
-                                    <span class="cl8">
-                                     
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="row ">
+            <div class="row m-rl--1">
+                <div style="font-size: 25px;">Search Results for the keyword"<span style="color:red"> {{SearchTerm}}"</span></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<div *ngIf="NewsListByDateRange.length > 0">
+    <section class="bg0 p-t-10 p-b-10" >
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div  *ngFor="let result of NewsListByDateRange[0].SubCategoryJson">
+                    <div class="col-md-12 col-lg-12 p-b-20">
+                            <div *ngIf="result.News" class="how2 how2-cl4 flex-s-c m-r-10 m-r-0-sr991">
+                                    <h3 class="f1-m-2 cl3 tab01-title">
+                                    {{result.SubCategoryName}}
+                                    </h3>
+                                </div>
+        
+                        <div class="row p-t-35" >
+                            <div class="col-sm-3 p-r-25 p-r-15-sr991"  *ngFor="let res of result.News">
+                                
+                                <div class="m-b-45">
+                                    <a [routerLink]="['/news-description']" [queryParams]="{newsId: res.newsId}" class="wrap-pic-w hov1 trans-03">
+                                        <img src="{{imageUrl+res.Newsthump}}" alt="IMG">
+                                    </a>
+        
+                                    <div class="p-t-16">
+                                        <h5 class="p-b-5">
+                                            <a [routerLink]="['/news-description']" [queryParams]="{newsId: res.newsId}" class="f1-m-3 cl2 hov-cl10 trans-03">
+                                            {{res.NewsHeadLine}}
+                                            </a>
+                                        </h5>
+        
+                                        <span class="cl8">
+                                        
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
 </div>
 
     <section class="bg0 p-b-140 p-t-10">
@@ -47,11 +56,10 @@
 
     <div class="col-md-12 p-rl-1">
             <div class="row m-rl--1" *ngIf="NewsListBySearchTerm">
-
                 <div class="col-sm-4 p-rl-1 p-b-2" style="padding:1px"
                     *ngFor="let sliderNews of NewsListBySearchTerm">
                     <div class="bg-img1 size-a-5 how1 pos-relative"
-                        [ngStyle]="{'background': 'url(http://admin.onebharathnews.in/CategoryFiles/' + sliderNews.NewsThumb  + ') no-repeat 0 0 / cover'}">
+                        [ngStyle]="{'background': 'url(http://admin.onebharathnews.in/CategoryFiles/' + sliderNews.Newsthump  + ') no-repeat 0 0 / cover'}">
 
                         <a  [routerLink]="['/news-description']" [queryParams]="{newsId: sliderNews.NewsId}"
                         class="dis-block how1-child1 trans-03"></a>

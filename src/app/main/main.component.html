@@ -80,7 +80,7 @@
                             </div>
                         </div>  -->
                     <div class="input-group search-group">
-                        <input type="text" class="form-control search-control" placeholder="Enter your search term...">
+                        <input type="text" class="form-control search-control" [(ngModel)]="searchString" (keyup.enter)="NavigateToSearch($event)" placeholder="Enter your search term...">
                     </div>
                     <div class="right-topbar" style="min-width: 165px;">
                         <a href="https://www.facebook.com/One-Bharath-News-389976705062474/" target="_blank">
@@ -169,7 +169,7 @@
                                     <div class="input-group">
                                             <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search Here..">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-secondary" type="button" style="border-radius:0;" (click)="NavigateToSearch()" >
+                                                    <button class="btn btn-secondary" type="button" style="border-radius:0;" (click)="NavigateToSearch($event)" >
                                                     <i class="fa fa-search"></i>
                                                     </button>
                                                 </div>
@@ -349,8 +349,8 @@
                         </a>
                        
                         <ul class="main-menu">
-                            <li><a class="CursorPointer" (click)="ReloadApp()">Home</a> </li>
-                            <li><a class="CursorPointer" [routerLink]="['/news-category']"
+                            <li><a class="mega-menu-item CursorPointer" (click)="ReloadApp()">Home</a> </li>
+                            <li><a class="mega-menu-item  CursorPointer" [routerLink]="['/news-category']"
                                 [queryParams]="{categoryId: 'national'}">National</a> </li>
 
                             <li class="mega-menu-item dropdownMenuIcon" *ngFor="let category of categoryList">
@@ -359,7 +359,8 @@
                                 <!-- [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]" -->
                                 <div class="sub-mega-menu">
                                     <div class="nav flex-column nav-pills" role="tablist">
-                                        <a class="nav-link active" data-toggle="pill" href="#{{category.CategoryId}}"
+                                        <a class="nav-link active" data-toggle="pill" [routerLink]="['/news-category']"
+                                        [queryParams]="{categoryId: category.CategoryId}"
                                             role="tab">All</a>
                                         <!--  [routerLink]="['/news-subcategory']"
                                             [queryParams]="{subcategoryId: subcategory.SubCategoryId}"  -->

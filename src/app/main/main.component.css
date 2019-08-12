@@ -52,6 +52,7 @@
 }
 .CursorPointer{
   cursor: pointer;
+  color: #222 !important;
 }
 .wheat{
   color:wheat
@@ -93,10 +94,10 @@ body {
 .input-group .form-control:hover, 
 .input-group .form-control:focus {
     padding: 10px 10px;
-    width: 380px;
+    width: 250px;
     color: #000;
     cursor: auto;
-    background-color: #fff;
+    background-color: rgba(231, 231, 230, 0.651);
 }
 
 .input-group .form-control::-moz-placeholder {
@@ -122,14 +123,14 @@ body {
 }
 
 .form-control.search-control {
-  background: url(http://milansavov.com/img/zoom.svg) no-repeat right 16px center / 22px;
+  background: url(http://milansavov.com/img/zoom.svg) no-repeat right 15px center / 20px;
   border: 1px solid transparent;
   border-radius: 5px;
   color: transparent;
-  font-size: 16px;
-  width: 50px;
-  height: 40px;
-  margin: 0;
+  font-size: 14px;
+  width: 40px;
+  height: 35px;
+  margin: 7px 0px;
   padding: 0;
   outline: 0 none;
   position: absolute;

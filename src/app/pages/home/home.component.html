@@ -476,42 +476,35 @@
                             </li>
                         </ul>
                     </div>
-
-                    <!--  -->
-                    <div class="flex-c-s p-t-8">
-                        <!-- <a *ngIf="homeService.advertisementList && homeService.advertisementList[1]" href="{{homeService.advertisementList[1].Link}}" target="_blank" style="cursor: pointer;">
-                                    <img src="{{imageUrl + homeService.advertisementList[1].ImagePath}}" alt="IMG" style="max-height:600px;max-width: 300px;">
-                                </a> -->
-
-                                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FOne-Bharath-News-389976705062474%2F&tabs=timeline&width=335&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                                 width="340" height="500" style="border:none;overflow:hidden" 
-                                scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-<!-- 
-                        <a *ngFor="let add of homeService.advertisementList">
-
-                            <a *ngIf="add.Name == 'two'" href="{{add.Link}}" target="_blank"
-                                style="cursor: pointer;"><img src="{{imageUrlPath + 'common/' + add.ImagePath}}" alt="IMG"
-                                    style="max-height:600px;max-width: 300px;"></a>
-                        </a> -->
-                        <!-- <a href="#">                                
-                            <img class="max-w-full" src="assets/images/banner-02.jpg" alt="IMG">
-                        </a> -->
-                    </div>
-
-                    <!--  -->
+            
                     <div class="p-t-50">
                         <div class="how2 how2-cl4 flex-s-c">
                             <h3 class="f1-m-2 cl3 tab01-title">
                                 Stay Connected
                             </h3>
                         </div>
-                       
+                        <div class="flex-c-s p-t-8">
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FOne-Bharath-News-389976705062474%2F&tabs=timeline&width=335&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                                width="340" height="500" style="border:none;overflow:hidden" 
+                            scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                        </div>  
+                    </div>
+
+                    
+                    <div class="p-t-50">
+                        <a *ngFor="let add of homeService.advertisementList">
+
+                            <a *ngIf="add.Name == 'two'" href="{{add.Link}}" target="_blank"
+                                style="cursor: pointer;"><img src="{{imageUrlPath + 'common/' + add.ImagePath}}" alt="IMG"
+                                    style="max-height:600px;max-width: 300px;"></a>
+                        </a>
+                    </div>
+
+                    <div class="p-t-50">
                         <ul class="p-t-35" style="height: 500px; overflow-y: scroll;">
-                                <a class="twitter-timeline" href="https://twitter.com/news_bharath?ref_src=twsrc%5Etfw">Tweets by news_bharath</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+                            <a class="twitter-timeline" href="https://twitter.com/news_bharath?ref_src=twsrc%5Etfw">Tweets by news_bharath</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
-                         </ul>
-
-                
+                     </ul>
                     </div>
                 </div>
             </div>

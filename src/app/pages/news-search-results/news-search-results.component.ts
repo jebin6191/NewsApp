@@ -23,7 +23,6 @@ export class NewsSearchResultsComponent implements OnInit {
       });
    }
 
-
   ngOnInit() {
  
     this.route
@@ -55,11 +54,6 @@ export class NewsSearchResultsComponent implements OnInit {
       (result: any) => {
         if (result) {
           this.NewsListBySearchTerm = result; 
-          console.log(this.NewsListBySearchTerm);
-          // this.NewsListByDateRange.forEach(element => {
-          //   element.SubCategoryJson = JSON.parse(element.SubCategoryJson)
-
-          // });     
         }
       });
   }

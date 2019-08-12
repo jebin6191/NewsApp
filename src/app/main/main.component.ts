@@ -215,14 +215,17 @@ export class MainComponent implements OnInit {
 
   gotoSubcategory(obj){
     this._Router.navigate(['/news-subcategory'], { queryParams: { subcategoryId: obj.SubCategoryId } });
+    this.  gotoTop();
   }
 
-  NavigateToSearch(){
-    document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
-    if(this.searchString == null || this.searchString == ""){
-      alert("SearchText can't be empty");
-      return false;
-     
+  NavigateToSearch(event){
+    console.log("Event Triggered")
+    if(event){
+      document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
+      if(this.searchString == null || this.searchString == ""){
+        alert("SearchText can't be empty");
+        return false;
+    }
     }
     this._Router.navigate(['/search-results'], { queryParams: { SearchTerm: this.searchString , StartDate: "", EndDate:""} } )
   }
@@ -261,10 +264,10 @@ export class MainComponent implements OnInit {
     this.homeService.FileUploads(formData).subscribe(
       (res) => {this.uploadResponse = res
       console.log(this.uploadResponse);
-      if(this.uploadResponse == "Mail Sent"){
-        alert("Submitted Successfully");
-        this.form.reset();
-      }     
+        if(this.uploadResponse == "Mail Sent"){
+          alert("Submitted Successfully");
+          this.form.reset();
+        }     
       }
     );
   }
