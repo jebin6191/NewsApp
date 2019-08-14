@@ -24,10 +24,9 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.window.scrollTo(0,0);
+    window.scrollTo(0,0);
+    this.NationalNews();  
     this.GetAllPopularPosts();
-    this.NationalNews()
-    // this.Allcategory();
   }
 
   initTwitterWidget(window) {
@@ -65,9 +64,10 @@ export class HomeComponent implements OnInit {
       });
     }
 
-  goProducts(newsId) {
+  goProducts(data) {
     debugger
-    this._Router.navigate(['/news-description'], { queryParams: { newsId: newsId } });
+    console.log("data"+JSON.stringify(data))
+    this._Router.navigate(['/news-description'], { queryParams: { newsId: data.newsId } });
   }
 
   ifraVideo(index,link){
@@ -75,6 +75,14 @@ export class HomeComponent implements OnInit {
     this.iframeVideoIndex = index
        this.iframeVideo = link;
       document.getElementById("iframeVideo").innerHTML = '<iframe src="'+link.toString().trim()+'" width="420" height="345"></iframe>'
+  }
+
+  GotToDesc(data){
+    // this._Router.navigate(['/news-description'], { queryParams: { newsId: data.NewsId, title: btoa(data.NewsHeadLine),
+    // url: btoa("http://admin.onebharathnews.in/CategoryFiles/"+data.NewsId) } });
+
+    this.window.open(("http://www.onebharathnews.in/news-description?newsId="+data.NewsId+
+    "&title="+data.NewsHeadLine+"&image=http://admin.onebharathnews.in/CategoryFiles/"+data.NewsId));
   }
 
 

@@ -22,7 +22,7 @@ export class NewsCategoryComponent implements OnInit {
     
     this.route.queryParams
     .subscribe(params => {
-      this.window.scrollTo(0,0);
+      window.scrollTo(0,0);
       this.newsCategoryId = params.categoryId;
       if(this.newsCategoryId == 'national'){
         this.NationalNews();

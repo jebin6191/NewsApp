@@ -23,33 +23,32 @@ export class NewsDescriptionComponent implements OnInit {
   categoryList: any = [];
   constructor(@Inject(WINDOW) private window: Window, private _Router:Router,private route: ActivatedRoute, private homeService:HomeService,
     private formBuilder: FormBuilder, private meta: Meta) { 
+      this.route.queryParams
+      .subscribe(params => {
+        window.scrollTo(0,0);
+        this.newsId = params.newsId;
+       
+        this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId;
+      })  
 
-      this.meta.addTags([
-        {name: 'description', content: 'Title and Meta tags examples'},      
-        {name: 'keywords', content: 'OneBharathNews, DailyNews'},
-        {name: 'date', content: '2018-06-02', scheme: 'YYYY-MM-DD'},
-        {httpEquiv: 'Content-Type', content: 'text/html'},
-        {property: 'og:title', content: "My Text"},
-        {property: 'og:type', content: "website"},
-        {property: 'og:image', content: "image"},
-        {property: 'og:url', content: "http://www.onebharathnews.in/news-description?newsId=100001"},
-        {property: 'og:description', content: "description"},
-        {property: 'twitter:card', content: "description"}
+    //   this.meta.addTags([
+    //     {name: 'description', content: 'Title and Meta tags examples'},      
+    //     {name: 'keywords', content: 'OneBharathNews, DailyNews'},
+    //     {name: 'date', content: '2018-06-02', scheme: 'YYYY-MM-DD'},
+    //     {httpEquiv: 'Content-Type', content: 'text/html'},
+    //     {property: 'og:title', content: this.ShareUrl},
+    //     {property: 'og:type', content: "website"},
+    //     {property: 'og:image', content: "http://admin.onebharathnews.in/CategoryFiles/1564739004-Untitled_design_-_2019-08-02T144613.985.jpg"},
+    //     {property: 'og:url', content: this.ShareUrl},
+    //     {property: 'og:description', content: "This is the sharing desciption ."},
+    //     {property: 'twitter:card', content: "description"}
         
-     ]);    
+    //  ]); 
     }
 
 
-  ngOnInit() {
-    
-    this.route.queryParams
-    .subscribe(params => {
-      this.window.scrollTo(0,0);
-      this.newsId = params.newsId;
-      this.GetNews(this.newsId)
-      this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId;
-    })
-
+  ngOnInit() {   
+    this.GetNews(this.newsId);
     this.CommentsForm = this.formBuilder.group({
       NewsId:[this.newsId],
       ParentId:[0],
@@ -116,7 +115,7 @@ export class NewsDescriptionComponent implements OnInit {
             this.meta.updateTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
             this.meta.updateTag({property: 'og:description', content: this.newsDetails[0].HeadLine });
             this.meta.updateTag({property: 'og:url', content:  this.ShareUrl });
-            this.meta.updateTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/'+this.newsDetails[0].ImageThumb});
+            this.meta.updateTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/1564739004-Untitled_design_-_2019-08-02T144613.985.jpg'});
             this.meta.updateTag({property: 'twitter:card', content: this.newsDetails[0].HeadLine });
           }
          

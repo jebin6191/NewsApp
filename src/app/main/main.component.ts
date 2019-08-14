@@ -152,7 +152,9 @@ export class MainComponent implements OnInit {
     this.homeService.GetSliderNews().subscribe(
       (result: any) => {
         if (result) {
-          this.homeService.sliderNewsList = result;        
+          this.homeService.sliderNewsList = result;  
+          
+          console.log(this.homeService.sliderNewsList, "this.homeService.sliderNewsList");
         }
       });
   }

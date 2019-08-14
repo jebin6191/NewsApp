@@ -15,7 +15,7 @@ export class NewsArticleComponent implements OnInit {
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) { }
 
   ngOnInit() {
-    this.window.scrollTo(0,0);
+    window.scrollTo(0,0);
   }
 
 }

@@ -19,7 +19,7 @@ export class NewsSubcategoryComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams
     .subscribe(params => {
-      this.window.scrollTo(0,0);
+      window.scrollTo(0,0);
       this.subcategoryId = params.subcategoryId;
       this.getNewsBySubcategory(this.subcategoryId);
     })
