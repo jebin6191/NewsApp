@@ -81,8 +81,8 @@ export class HomeComponent implements OnInit {
     // this._Router.navigate(['/news-description'], { queryParams: { newsId: data.NewsId, title: btoa(data.NewsHeadLine),
     // url: btoa("http://admin.onebharathnews.in/CategoryFiles/"+data.NewsId) } });
 
-    this.window.open(("http://www.onebharathnews.in/news-description?newsId="+data.NewsId+
-    "&title="+data.NewsHeadLine+"&image=http://admin.onebharathnews.in/CategoryFiles/"+data.NewsId));
+    this.window.open("http://www.onebharathnews.in/news-description?newsId="+data.NewsId+
+    "&title="+data.NewsHeadLine+"&image=http://admin.onebharathnews.in/CategoryFiles/"+data.Newsthump);
   }
 
 
