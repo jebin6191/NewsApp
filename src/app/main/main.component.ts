@@ -51,15 +51,13 @@ export class MainComponent implements OnInit {
 //           result1[i]['videoId']=  src1[1]
 //     })
 
-//     console.log("getVideoNews forloop  ==>>  " + JSON.stringify(result1))
   this.searchTerm.valueChanges.subscribe(
     term => {
       if (term != '') {
         this.homeService.search(term).subscribe(
           data => {
             this.NewsList = data as any[];
-            // console.log("this.NewsList"+JSON.stringify(this.NewsList))
-            //console.log(data[0].BookName);
+
         })
       }
   })
@@ -125,23 +123,8 @@ export class MainComponent implements OnInit {
       (result: any) => {
         if (result) {
           for(let i in result){
-            // let test = result[i].Link;
-            // let res = test.split("/");
-            // let res1 = res.indexOf('embed');
-            // res1 = res[res1+1]
-            // result[i].VideoId = res1;
             this.homeService.advertisementList = result;
           }
-          
-
-        // var video_id = window.location.search.split('v=')[1];
-        // var ampersandPosition = video_id.indexOf('&');
-        // if(ampersandPosition != -1) {
-        //   video_id = video_id.substring(0, ampersandPosition);
-
-         
-        // }
-
           
         }
       });

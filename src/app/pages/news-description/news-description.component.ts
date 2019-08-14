@@ -112,11 +112,11 @@ export class NewsDescriptionComponent implements OnInit {
           if(this.newsDetails.length > 0) {
             this.DetailedNews = this.newsDetails[0].News;
            
-            this.meta.updateTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
-            this.meta.updateTag({property: 'og:description', content: this.newsDetails[0].HeadLine });
-            this.meta.updateTag({property: 'og:url', content:  this.ShareUrl });
-            this.meta.updateTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/1564739004-Untitled_design_-_2019-08-02T144613.985.jpg'});
-            this.meta.updateTag({property: 'twitter:card', content: this.newsDetails[0].HeadLine });
+            // this.meta.updateTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
+            // this.meta.updateTag({property: 'og:description', content: this.newsDetails[0].HeadLine });
+            // this.meta.updateTag({property: 'og:url', content:  this.ShareUrl });
+            // this.meta.updateTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/1564739004-Untitled_design_-_2019-08-02T144613.985.jpg'});
+            // this.meta.updateTag({property: 'twitter:card', content: this.newsDetails[0].HeadLine });
           }
          
         }
