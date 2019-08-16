@@ -31,7 +31,11 @@ export class NewsCategoryComponent implements OnInit {
       }     
     })
   }
-
+  GotToDesc(data){  
+    console.log("test"+JSON.stringify(data));
+    this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId+
+    "&title="+ encodeURIComponent(data.NewsHeadLine)+"&image="+encodeURIComponent(environment.imageUrl+data.Newsthump), '_self');
+  }
   getNewsByCategory(id) {
     this.homeService.GetNewsByCategory(id).subscribe(
       (result: any) => {

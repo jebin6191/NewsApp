@@ -378,7 +378,7 @@
                                                     <!-- Item post -->
                                                     <div *ngIf="subcategory.News">
                                                         <a class="wrap-pic-w hov1 trans-03"
-                                                            (click)="goProducts(subcategory.News[0].newsId)"
+                                                            (click)="GotToDesc(subcategory.News[0])"
                                                             [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
                                                             <img src="{{imageUrl + subcategory.News[0].Newsthump}}"
                                                                 alt="IMG" style="max-height: 120px;max-width:100%;">
@@ -386,8 +386,8 @@
 
                                                         <div class="p-t-10">
                                                             <h5 class="p-b-5">
-                                                                <a (click)="goProducts(subcategory.News[0].newsId)"
-                                                                    class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                                <a (click)="GotToDesc(subcategory.News[0])"
+                                                                    class="f1-s-5 cl3 hov-cl10 trans-03 CursorPointer"
                                                                     [routerLink]="['/news-details?newsId='+subcategory.News[0].newsId]">
                                                                     <!-- <p [innerHTML]="subcategory.News[0].NewsHeadLine"></p> -->
                                                                     {{subcategory.News[0].NewsHeadLine}}
@@ -414,7 +414,7 @@
                                                 <div class="col-3" *ngFor="let news of subcategory.News | slice:0:4">
                                                     <!-- Item post -->
                                                     <div>
-                                                        <a (click)="goProducts(news.newsId)"
+                                                        <a (click)="GotToDesc(news)"
                                                             class="wrap-pic-w hov1 trans-03"
                                                             [routerLink]="['/news-details?newsId='+news.newsId]">
                                                             <!-- <img src="assets/New/images/post-50.jpg" alt="IMG"> -->
@@ -424,8 +424,8 @@
 
                                                         <div class="p-t-10">
                                                             <h5 class="p-b-5">
-                                                                <a (click)="goProducts(news.newsId)"
-                                                                    class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                                <a (click)="GotToDesc(news)"
+                                                                    class="f1-s-5 cl3 hov-cl10 trans-03 CursorPointer"
                                                                     [routerLink]="['/news-details?newsId='+news.newsId]">
                                                                     <!-- <p *ngIf="news" [innerHTML]="news.NewsHeadLine"></p> -->
                                                                     {{news.NewsHeadLine}}
@@ -480,7 +480,8 @@
         onmouseout="this.start();">
         <div>
             <span *ngFor="let scrollNews of homeService.scrollNews">
-                <a [routerLink]="['/news-description']" [queryParams]="{newsId: scrollNews.NewsId}" target="_blank">
+                
+                <a (click)="GotToDesc(scrollNews)">
                     <i class="fa fa-forward" aria-hidden="true"></i> {{scrollNews.HeadLine}}
                 </a>
             </span>

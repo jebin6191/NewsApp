@@ -28,6 +28,9 @@
         font-weight: bold;
         color: #ffff;
     }
+    .CursorPointer{
+        cursor:pointer;
+    }
 
 
     .carousel-control-next, .carousel-control-prev{
@@ -119,12 +122,12 @@
                         <li *ngFor="let latestNews of homeService.latestNewsList">
                                 
                                 <!-- <a href="http://localhost:4200/news-description?newsId=100032" target="_blank"> -->
-                            <a href="{{latestNews.Link}}" target="_blank">
+                            <a  (click)="GotToDesc(latestNews)">
                              <i class="fa fa-forward" aria-hidden="true"></i> 
                             </a>
                             <!-- <a  href="http://localhost:4200/news-description?newsId=100032"  target="_blank" style="padding-left:10px; "> -->
-                            <a href="{{latestNews.Link}}" target="_blank" style="padding-left:10px; ">
-                               {{latestNews.Title}}
+                            <a  (click)="GotToDesc(latestNews)" style="padding-left:10px; ">
+                               {{latestNews.HeadLine}}
                             </a>
                         </li>
                     </ul>
@@ -133,26 +136,22 @@
 
             <div class="col-md-6 p-rl-1">
                 <div class="row m-rl--1" *ngIf="homeService.sliderNewsList">
-
                     <div class="col-sm-6 p-rl-1 p-b-2" style="padding:1px"
                         *ngFor="let sliderNews of homeService.sliderNewsList">
-                        <div class="bg-img1 size-a-5 how1 pos-relative"
-                            [ngStyle]="{'background': 'url(http://admin.onebharathnews.in/CategoryFiles/' + sliderNews.SliderImage  + ') no-repeat 0 0 / cover'}">
+                        <div class="bg-img1 size-a-5 how1 pos-relative CursorPointer"
+                            [ngStyle]="{'background': 'url(http://admin.onebharathnews.in/CategoryFiles/' + sliderNews.Newsthump  + ') no-repeat 0 0 / cover'}">
 
-                            <a (click)="goProducts(sliderNews.NewsId)"
-                            [routerLink]="['/news-description']" [queryParams]="{newsId: sliderNews.NewsId}"
+                            <a (click)="GotToDesc(sliderNews)"
                             class="dis-block how1-child1 trans-03"></a>
 
-                            <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-                                <a (click)="goProducts(sliderNews.NewsId)"
-                                [routerLink]="['/news-description']" [queryParams]="{newsId: sliderNews.NewsId}"
+                            <div class="flex-col-e-s s-full p-rl-25 p-tb-20 CursorPointer">
+                                <a (click)="GotToDesc(sliderNews)"
                                     class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
                                     {{sliderNews.CategoryName}}
                                 </a>
 
-                                <h3 class="how1-child2 m-t-14">
-                                    <a (click)="goProducts(sliderNews.NewsId)"
-                                    [routerLink]="['/news-description']" [queryParams]="{newsId: sliderNews.NewsId}"
+                                <h3 class="how1-child2 m-t-14 CursorPointer">
+                                    <a (click)="GotToDesc(sliderNews)"
                                         class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
                                         {{sliderNews.HeadLine}}
                                     </a>
@@ -254,14 +253,14 @@
                                     <div class="row">
                                         <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                             <div class="m-b-30">
-                                                <a class="wrap-pic-w hov1 trans-03" (click)="GotToDesc(NationalNewsList[0])">
+                                                <a class="wrap-pic-w hov1 trans-03 CursorPointer" (click)="GotToDesc(NationalNewsList[0])">
                                                       <img src="http://admin.onebharathnews.in/CategoryFiles/{{NationalNewsList[0].Newsthump}}"
                                                         alt="IMG" style="max-height: 263px;max-width: 100%;">
                                                 </a>
                                                 <!-- [routerLink]="['/news-description']" [queryParams]="{newsId: NationalNewsList[0].NewsId, title: NationalNewsList[0].NewsHeadLine}" -->
                                                 <div class="p-t-20">
                                                     <h5 class="p-b-5">
-                                                        <a class="f1-m-3 cl2 hov-cl10 trans-03" (click)="GotToDesc(NationalNewsList[0])">
+                                                        <a class="f1-m-3 cl2 hov-cl10 trans-03 CursorPointer" (click)="GotToDesc(NationalNewsList[0])">
                                                            {{ NationalNewsList[0].NewsHeadLine}}
                                                         </a>
                                                     </h5>
@@ -273,7 +272,7 @@
                                         <div class="col-sm-6 p-r-25 p-r-15-sr991" >
                                             <div class="flex-wr-sb-s m-b-30"
                                                 *ngFor="let national of NationalNewsList | slice:1:4">
-                                                <a class="size-w-1 wrap-pic-w hov1 trans-03"
+                                                <a class="size-w-1 wrap-pic-w hov1 trans-03 CursorPointer"
                            
                                                     (click)="GotToDesc(national)"
                                                     >
@@ -283,7 +282,7 @@
     
                                                 <div class="size-w-2">
                                                     <h5 class="p-b-5">
-                                                        <a class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                        <a class="f1-s-5 cl3 hov-cl10 trans-03 CursorPointer"
                                                         (click)="GotToDesc(national)">
                                                             {{national.NewsHeadLine}}
                                                         </a>
@@ -338,7 +337,7 @@
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                         <div class="m-b-30"
                                             *ngIf="category.SubCategoryJson && category.SubCategoryJson[0].News">
-                                            <a class="wrap-pic-w hov1 trans-03"
+                                            <a class="wrap-pic-w hov1 trans-03 CursorPointer"
                                                 (click)="GotToDesc(category.SubCategoryJson[0].News[0])"
                                                >
                                                 <!-- [routerLink]="['/news-details?newsId='+category.SubCategoryJson[0].News[0].newsId]"> -->
@@ -348,7 +347,7 @@
 
                                             <div class="p-t-20">
                                                 <h5 class="p-b-5">
-                                                    <a class="f1-m-3 cl2 hov-cl10 trans-03"
+                                                    <a class="f1-m-3 cl2 hov-cl10 trans-03 CursorPointer"
                                                         (click)="GotToDesc(category.SubCategoryJson[0].News[0])"
                                                        >
                                                         {{category.SubCategoryJson[0].News[0].NewsHeadLine}}
@@ -361,7 +360,7 @@
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991" *ngIf="category.SubCategoryJson">
                                         <div class="flex-wr-sb-s m-b-30"
                                             *ngFor="let subcategory of category.SubCategoryJson | slice:1:3">
-                                            <a class="size-w-1 wrap-pic-w hov1 trans-03" *ngIf="subcategory.News"
+                                            <a class="size-w-1 wrap-pic-w hov1 trans-03 CursorPointer" *ngIf="subcategory.News"
                                                 (click)="GotToDesc(subcategory.News[0])"
                                                >
                                                 <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
@@ -370,7 +369,7 @@
 
                                             <div class="size-w-2" *ngIf="subcategory.News">
                                                 <h5 class="p-b-5">
-                                                    <a class="f1-s-5 cl3 hov-cl10 trans-03"
+                                                    <a class="f1-s-5 cl3 hov-cl10 trans-03 CursorPointer"
                                                         (click)="GotToDesc(subcategory.News[0])"
                                                      >
                                                         {{subcategory.News[0].NewsHeadLine}}
@@ -397,7 +396,7 @@
                                         *ngFor="let news of subcategory.News| slice:0:1; let i = index">
 
                                         <div class="m-b-30">
-                                            <a class="wrap-pic-w hov1 trans-03"
+                                            <a class="wrap-pic-w hov1 trans-03 CursorPointer"
                                                 (click)="GotToDesc(subcategory.News[0])"
                                                 >
                                                 <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
@@ -406,7 +405,7 @@
                                             <div class="p-t-20">
                                                 <h5 class="p-b-5">
                                                     <a (click)="GotToDesc(subcategory.News[0])"
-                                                        class="f1-m-3 cl2 hov-cl10 trans-03"
+                                                        class="f1-m-3 cl2 hov-cl10 trans-03 CursorPointer"
                                                       >
                                                         {{subcategory.News[0].NewsHeadLine}}
                                                         <!-- <p *ngIf="subcategory.News"

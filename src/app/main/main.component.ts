@@ -20,8 +20,6 @@ export class MainComponent implements OnInit {
   userId: number = 1;
   uploadResponse: any = "";
 
-
-
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router, private router: Router, 
     private formBuilder: FormBuilder) { }
   public categoryList:any;
@@ -38,30 +36,17 @@ export class MainComponent implements OnInit {
       uploadedfile: ['', Validators.required],
       description: ['']
     });
-// document.getElementById("mat-input-1").textContent="";
-// debugger
-//     let result1 = [{
-//       "Id": 10014,
-//       "Title": "UK Ambassador Reportedly Calls Trump ‘Inept,’ ‘Insecure’ In Leaked",
-//       "Link": "https://www.youtube.com/embed/BfLZJyek5qU"
-//     }]
-//     result1.forEach((item,i) => {
-//          var src = item.Link;
-//          var src1 = src.split("embed/");
-//           result1[i]['videoId']=  src1[1]
-//     })
 
-  this.searchTerm.valueChanges.subscribe(
-    term => {
-      if (term != '') {
-        this.homeService.search(term).subscribe(
-          data => {
-            this.NewsList = data as any[];
+    this.searchTerm.valueChanges.subscribe(
+      term => {
+        if (term != '') {
+          this.homeService.search(term).subscribe(
+            data => {
+              this.NewsList = data as any[];
 
-        })
-      }
-  })
-
+          })
+        }
+      })
 
     this.Allcategory();
     this.getAdvertisement();
@@ -72,28 +57,22 @@ export class MainComponent implements OnInit {
     this.getScrollNews();
   }
 
-
   ReloadApp(){
     this.window.open("http://www.onebharathnews.in/home", "_self")
   }
 
   addEvent(event: MatDatepickerInputEvent<Date>) {
-    // console.log(event);
     let dateStr = event.value.toLocaleString();
     const d = new Date(dateStr);
     const date1 = Date.UTC(d.getFullYear(), d.getMonth(), d.getDate());
-
-
-    // let res = new Date(dateStr.getDate, dateStr.getDay, dateStr.getFullYear)
   }
-  MenuToggleFn(){
 
+  MenuToggleFn(){
     this.MenuToggle = !this.MenuToggle;
   }
 
 
   Allcategory() {
-    debugger;
     this.homeService.Allcategory().subscribe(
       (result: any) => {
         if (result) {
@@ -102,8 +81,7 @@ export class MainComponent implements OnInit {
             c.IsSubCatAvail = false;
             c.Toggle = false;
               if(c.SubCategoryJson){
-                c.IsSubCatAvail = true;
-                
+                c.IsSubCatAvail = true;              
                 c.SubCategoryJson = JSON.parse(c.SubCategoryJson);
               }
           }
@@ -124,10 +102,15 @@ export class MainComponent implements OnInit {
         if (result) {
           for(let i in result){
             this.homeService.advertisementList = result;
-          }
-          
+          }         
         }
       });
+  }
+
+  GotToDesc(data){  
+    console.log("test"+JSON.stringify(data));
+    this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId+
+    "&title="+ encodeURIComponent(data.NewsHeadLine)+"&image="+encodeURIComponent(environment.imageUrl+data.Newsthump), '_self');
   }
 
   getSliderNews() {
@@ -135,9 +118,11 @@ export class MainComponent implements OnInit {
     this.homeService.GetSliderNews().subscribe(
       (result: any) => {
         if (result) {
+          for(let res of result){
+            res.NewsHeadLine = res.HeadLine;
+          }
           this.homeService.sliderNewsList = result;  
           
-          console.log(this.homeService.sliderNewsList, "this.homeService.sliderNewsList");
         }
       });
   }
@@ -148,7 +133,10 @@ export class MainComponent implements OnInit {
     this.homeService.GetLatestNews().subscribe(
       (result: any) => {
         if (result) {
-          this.homeService.latestNewsList = result;    
+          for(let res of result){
+            res.NewsHeadLine = res.HeadLine;
+          }
+          this.homeService.latestNewsList = result; 
         }
       });
   }
@@ -189,6 +177,9 @@ export class MainComponent implements OnInit {
     this.homeService.GetScrollNews().subscribe(
       (result: any) => {
         if (result) {
+          for(let res of result){
+            res.NewsHeadLine = res.HeadLine;
+          }
           this.homeService.scrollNews = result;          
         }
       });

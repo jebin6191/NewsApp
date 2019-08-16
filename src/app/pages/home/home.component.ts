@@ -10,7 +10,6 @@ import { WINDOW } from '@ng-toolkit/universal';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // public categoryList:any;
   imageUrl = environment.imageUrl
   imageUrlPath = environment.imageUrlPath;
   iframeVideo = 'https://www.youtube.com/embed/wJnBTPUQS5A?rel=0';
@@ -65,32 +64,26 @@ export class HomeComponent implements OnInit {
     }
 
   goProducts(data) {
-    debugger
-    console.log("data"+JSON.stringify(data))
     this._Router.navigate(['/news-description'], { queryParams: { newsId: data.newsId } });
   }
 
   ifraVideo(index,link){
-    debugger
     this.iframeVideoIndex = index
        this.iframeVideo = link;
       document.getElementById("iframeVideo").innerHTML = '<iframe src="'+link.toString().trim()+'" width="420" height="345"></iframe>'
   }
 
-  GotToDesc(data){
-    console.log(JSON.stringify(data));
-    console.log("http://www.onebharathnews.in/news-description?newsId="+data.newsId+"&title="+data.NewsHeadLine+"&image=http://admin.onebharathnews.in/CategoryFiles/"+data.Newsthump)
-    this.window.open("http://www.onebharathnews.in/news-description?newsId="+data.newsId+
-    "&title="+data.NewsHeadLine+"&image=http://admin.onebharathnews.in/CategoryFiles/"+data.Newsthump, '_self');
+  GotToDesc(data){  
+    console.log("test"+JSON.stringify(data));
+    this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId+
+    "&title="+ encodeURIComponent(data.NewsHeadLine)+"&image="+encodeURIComponent(environment.imageUrl+data.Newsthump), '_self');
   }
-
 
   gotoArticle(obj){
     this.homeService.selectedArticleNews = obj;
   }
 
-  GetAllPopularPosts(){  
-      
+  GetAllPopularPosts(){      
     this.homeService.GetPopularNews().subscribe(
       (result: any) => {
         if (result) {
@@ -100,18 +93,8 @@ export class HomeComponent implements OnInit {
       })
   }
 
-videopopup(){
-  document.getElementById("iframeVideo").innerHTML = "";
+  videopopup(){
+    document.getElementById("iframeVideo").innerHTML = "";
+  }
 }
 
-
-}
-
-
-// @Pipe({ name: 'safe' })
-// export class SafePipe implements PipeTransform {
-//   constructor(private sanitizer: DomSanitizer) {}
-//   transform(url) {
-//     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-//   }
-// } 
