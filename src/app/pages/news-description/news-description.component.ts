@@ -30,20 +30,6 @@ export class NewsDescriptionComponent implements OnInit {
        
         this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId;
       })  
-
-    //   this.meta.addTags([
-    //     {name: 'description', content: 'Title and Meta tags examples'},      
-    //     {name: 'keywords', content: 'OneBharathNews, DailyNews'},
-    //     {name: 'date', content: '2018-06-02', scheme: 'YYYY-MM-DD'},
-    //     {httpEquiv: 'Content-Type', content: 'text/html'},
-    //     {property: 'og:title', content: this.ShareUrl},
-    //     {property: 'og:type', content: "website"},
-    //     {property: 'og:image', content: "http://admin.onebharathnews.in/CategoryFiles/1564739004-Untitled_design_-_2019-08-02T144613.985.jpg"},
-    //     {property: 'og:url', content: this.ShareUrl},
-    //     {property: 'og:description', content: "This is the sharing desciption ."},
-    //     {property: 'twitter:card', content: "description"}
-        
-    //  ]); 
     }
 
 
@@ -87,9 +73,16 @@ export class NewsDescriptionComponent implements OnInit {
     if(data){
       this.homeService.NewsCommentsSave(data).subscribe(
         (result: any) => {
-          if (result) {
-            let Response = result;
-          }
+        
+          this.CommentsForm = this.formBuilder.group({
+            NewsId:[this.newsId],
+            ParentId:[0],
+            Description:[''],
+            CommentType:['comment'],
+            CommentBy:[''],
+          });
+
+          this.GetComments();
         })
     }
   }

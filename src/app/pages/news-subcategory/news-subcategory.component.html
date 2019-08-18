@@ -11,13 +11,13 @@
                     <div class="row p-t-35">
                         <div class="col-sm-3 p-r-25 p-r-15-sr991" *ngFor="let news of subCategoryList[0].News">
                             <div class="m-b-45">
-                                <a [routerLink]="['/news-description']" [queryParams]="{newsId: news.newsId}" class="wrap-pic-w hov1 trans-03">
+                                <a (click)="GotToDesc(news)" class="wrap-pic-w hov1 trans-03">
                                     <img src="{{imageUrl+news.Newsthump}}" style="height: 150px;widows: 150px;" alt="IMG">
                                 </a>
     
                                 <div class="p-t-16">
                                     <h5 class="p-b-5">
-                                        <a [routerLink]="['/news-description']" [queryParams]="{newsId: news.newsId}" class="f1-m-3 cl2 hov-cl10 trans-03">
+                                        <a (click)="GotToDesc(news)" class="f1-m-3 cl2 hov-cl10 trans-03">
                                             {{ (news.NewsHeadLine.length>60)? (news.NewsHeadLine | slice:0:60)+'...':(news.NewsHeadLine) }}
                                         </a>
                                     </h5>

@@ -11,15 +11,16 @@
                     </div>
     
                     <div class="row p-t-35">
+                            <!-- [routerLink]="['/news-description']" [queryParams]="{newsId: article.NewsId}" -->
                         <div class="col-sm-3 p-r-25 p-r-15-sr991" *ngFor="let article of homeService.articles">
                             <div class="m-b-45">
-                                <a [routerLink]="['/news-description']" [queryParams]="{newsId: article.NewsId}" class="wrap-pic-w hov1 trans-03">
-                                    <img src="{{imageUrlPath+'article/'+article.BookImage}}" alt="IMG">
+                                <a (click)="gotoArticle(article)"  class="wrap-pic-w hov1 trans-03">
+                                    <img src="{{imageUrlPath+'article/'+article.Newsthump}}" alt="IMG">
                                 </a>
     
                                 <div class="p-t-16">
                                     <h5 class="p-b-5">
-                                        <a [routerLink]="['/news-description']" [queryParams]="{newsId: article.NewsId}" class="f1-m-3 cl2 hov-cl10 trans-03">
+                                        <a (click)="gotoArticle(article)" class="f1-m-3 cl2 hov-cl10 trans-03">
                                           {{article.HeadLine}}
                                         </a>
                                     </h5>

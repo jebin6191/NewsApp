@@ -74,13 +74,16 @@ export class HomeComponent implements OnInit {
   }
 
   GotToDesc(data){  
-    console.log("test"+JSON.stringify(data));
     this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId+
-    "&title="+ encodeURIComponent(data.NewsHeadLine)+"&image="+encodeURIComponent(environment.imageUrl+data.Newsthump), '_self');
+    "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump);
   }
 
-  gotoArticle(obj){
-    this.homeService.selectedArticleNews = obj;
+  gotoArticle(data){
+    console.log(data);
+    // this.window.open("http://localhost:4200/"+"article-description?newsId="+data.newsId+
+    // "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump, '_self');
+    this.window.open(environment.endPoint+ "article-description?newsId="+data.newsId+
+    "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump);
   }
 
   GetAllPopularPosts(){      

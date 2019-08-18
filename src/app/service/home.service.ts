@@ -78,7 +78,10 @@ export class HomeService {
       .pipe(catchError(this.handleError));
   }
 
-
+  GetArticleComments(): Observable<any> {
+    return this._httpClient.get<any>(API_URL + "News/GetArticles")
+      .pipe(catchError(this.handleError));
+  }
   GetSearchedNews(data): Observable<any> {
     return this._httpClient.get<any>(API_URL + "News/GetSearchNews/"+data)
       .pipe(catchError(this.handleError));
@@ -111,6 +114,11 @@ export class HomeService {
 
   GetNationalNews(): Observable<any> {
     return this._httpClient.get<any>(API_URL + "News/GetNationalNews")
+      .pipe(catchError(this.handleError));
+  }
+
+  GeArticleById(data): Observable<any> {
+    return this._httpClient.get<any>(API_URL + "News/GetArticleById/"+data)
       .pipe(catchError(this.handleError));
   }
 

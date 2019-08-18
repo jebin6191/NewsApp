@@ -110,7 +110,7 @@ export class MainComponent implements OnInit {
   GotToDesc(data){  
     console.log("test"+JSON.stringify(data));
     this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId+
-    "&title="+ encodeURIComponent(data.NewsHeadLine)+"&image="+encodeURIComponent(environment.imageUrl+data.Newsthump), '_self');
+    "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump);
   }
 
   getSliderNews() {
@@ -121,6 +121,7 @@ export class MainComponent implements OnInit {
           for(let res of result){
             res.NewsHeadLine = res.HeadLine;
           }
+          console.log("Slider News"+JSON.stringify(result))
           this.homeService.sliderNewsList = result;  
           
         }
@@ -167,7 +168,12 @@ export class MainComponent implements OnInit {
     this.homeService.GetArticles().subscribe(
       (result: any) => {
         if (result) {
-          this.homeService.articles = result;        
+          console.log(result);
+          result.forEach(element => {
+            element.NewsHeadLine = element.HeadLine
+          });  
+          this.homeService.articles = result;    
+            
         }
       });
   }
