@@ -310,7 +310,7 @@
                                         role="tab">All</a>
                                 </li>
 
-                                <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson | slice:1:4">
+                                <li class="nav-item" *ngFor="let subcategory of category.SubCategoryJson | slice:0:4">
                                     <a class="nav-link" data-toggle="tab" href="#{{subcategory.SubCategoryId}}ta"
                                         role="tab">{{subcategory.SubCategoryName}}</a>
                                 </li>
@@ -335,43 +335,43 @@
                                 <div class="row">
                                     <div class="col-sm-6 p-r-25 p-r-15-sr991">
                                         <div class="m-b-30"
-                                            *ngIf="category.SubCategoryJson && category.SubCategoryJson[0].News">
+                                            *ngIf="category.SubCategoryJson && category.AllNews">
                                             <a class="wrap-pic-w hov1 trans-03"
-                                            href="http://www.onebharathnews.in/news-description?newsId={{category.SubCategoryJson[0].News[0].newsId}}&title={{category.SubCategoryJson[0].News[0].NewsHeadLine}}&image=http://admin.onebharathnews.in/CategoryFiles/{{category.SubCategoryJson[0].News[0].Newsthump}}"
+                                            href="http://www.onebharathnews.in/news-description?newsId={{category.AllNews[0].newsId}}&title={{category.AllNews[0].NewsHeadLine}}&image=http://admin.onebharathnews.in/CategoryFiles/{{category.AllNews[0].Newsthump}}"
                                                 >
                                                 <!-- [routerLink]="['/news-details?newsId='+category.SubCategoryJson[0].News[0].newsId]"> -->
-                                                <img src="http://admin.onebharathnews.in/CategoryFiles/{{category.SubCategoryJson[0].News[0].Newsthump}}"
+                                                <img src="http://admin.onebharathnews.in/CategoryFiles/{{category.AllNews[0].Newsthump}}"
                                                     alt="IMG" style="max-height: 263px;max-width: 100%;">
                                             </a>
 
                                             <div class="p-t-20">
                                                 <h5 class="p-b-5">
                                                     <a class="f1-m-3 cl2 hov-cl10 trans-03 "
-                                                    href="http://www.onebharathnews.in/news-description?newsId={{category.SubCategoryJson[0].News[0].newsId}}&title={{category.SubCategoryJson[0].News[0].NewsHeadLine}}&image=http://admin.onebharathnews.in/CategoryFiles/{{category.SubCategoryJson[0].News[0].Newsthump}}"
+                                                    href="http://www.onebharathnews.in/news-description?newsId={{category.AllNews[0].newsId}}&title={{category.AllNews[0].NewsHeadLine}}&image=http://admin.onebharathnews.in/CategoryFiles/{{category.AllNews[0].Newsthump}}"
                                                        >
-                                                        {{category.SubCategoryJson[0].News[0].NewsHeadLine}}
+                                                        {{category.AllNews[0].NewsHeadLine}}
                                                     </a>
                                                 </h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 p-r-25 p-r-15-sr991" *ngIf="category.SubCategoryJson">
+                                    <div class="col-sm-6 p-r-25 p-r-15-sr991" *ngIf="category.AllNews">
                                         <div class="flex-wr-sb-s m-b-30"
-                                            *ngFor="let subcategory of category.SubCategoryJson | slice:1:4">
-                                            <a class="size-w-1 wrap-pic-w hov1 trans-03 CursorPointer" *ngIf="subcategory.News"
-                                            href="http://www.onebharathnews.in/news-description?newsId={{subcategory.News[0].newsId}}&title={{subcategory.News[0].NewsHeadLine}}&image=http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
+                                            *ngFor="let subcategory of category.AllNews | slice:1:4">
+                                            <a class="size-w-1 wrap-pic-w hov1 trans-03 CursorPointer"
+                                            href="http://www.onebharathnews.in/news-description?newsId={{subcategory.newsId}}&title={{subcategory.NewsHeadLine}}&image=http://admin.onebharathnews.in/CategoryFiles/{{subcategory.Newsthump}}"
 
                                                >
-                                                <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
+                                                <img src="http://admin.onebharathnews.in/CategoryFiles/{{subcategory.Newsthump}}"
                                                     alt="IMG" style="max-height: 75px;max-width:100%;">
                                             </a>
 
-                                            <div class="size-w-2" *ngIf="subcategory.News">
+                                            <div class="size-w-2">
                                                 <h5 class="p-b-5">
                                                     <a class="f1-s-5 cl3 hov-cl10 trans-03 "
-                                                    href="http://www.onebharathnews.in/news-description?newsId={{subcategory.News[0].newsId}}&title={{subcategory.News[0].NewsHeadLine}}&image=http://admin.onebharathnews.in/CategoryFiles/{{subcategory.News[0].Newsthump}}"
+                                                    href="http://www.onebharathnews.in/news-description?newsId={{subcategory.newsId}}&title={{subcategory.NewsHeadLine}}&image=http://admin.onebharathnews.in/CategoryFiles/{{subcategory.Newsthump}}"
                                                   >
-                                                        {{subcategory.News[0].NewsHeadLine}}
+                                                        {{subcategory.NewsHeadLine}}
                                                     </a>
                                                 </h5>
                                             </div>

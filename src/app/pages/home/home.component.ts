@@ -3,7 +3,6 @@ import { Router, NavigationEnd } from '@angular/router';
 import { HomeService } from 'src/app/service/home.service';
 import { environment } from 'src/app/environment/environment';
 import { WINDOW } from '@ng-toolkit/universal';
-import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-home',
@@ -87,7 +86,6 @@ export class HomeComponent implements OnInit {
   }
 
   gotoArticle(data){
-    console.log(data);
     // this.window.open("http://localhost:4200/"+"article-description?newsId="+data.newsId+
     // "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump, '_self');
     this.window.open(environment.endPoint+ "article-description?newsId="+data.newsId+

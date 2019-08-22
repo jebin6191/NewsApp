@@ -13,7 +13,6 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { CommonModule } from '@angular/common';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgtUniversalModule } from '@ng-toolkit/universal';
-import { SlickCarouselModule } from 'ngx-slick-carousel';  
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     NgxDaterangepickerMd.forRoot(),
     CommonModule,
     TransferHttpCacheModule,
-    NgtUniversalModule,
-    SlickCarouselModule
+    NgtUniversalModule
   ],
   exports:[],
   providers: [

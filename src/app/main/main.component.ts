@@ -19,6 +19,7 @@ export class MainComponent implements OnInit {
   error: string;
   userId: number = 1;
   uploadResponse: any = "";
+  Temparr = [];
 
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router, private router: Router, 
     private formBuilder: FormBuilder) { }
@@ -76,14 +77,22 @@ export class MainComponent implements OnInit {
     this.homeService.Allcategory().subscribe(
       (result: any) => {
         if (result) {
+          debugger;
           this.categoryList = result;
           for(var c of this.categoryList){
+            this.Temparr = [];
             c.IsSubCatAvail = false;
             c.Toggle = false;
               if(c.SubCategoryJson){
                 c.IsSubCatAvail = true;              
                 c.SubCategoryJson = JSON.parse(c.SubCategoryJson);
               }
+                for(var n of c.SubCategoryJson){
+                  for(var news of n.News){
+                    this.Temparr.push(news)
+                  }
+                }
+              c.AllNews = (this.Temparr).sort((a, b) => parseInt(b.newsId) - parseInt(a.newsId));;
           }
           this.homeService.categoryList = this.categoryList
         }
