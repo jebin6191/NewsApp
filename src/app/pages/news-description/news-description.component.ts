@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { HomeService } from 'src/app/service/home.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
 import { WINDOW } from '@ng-toolkit/universal';
+import { environment } from 'src/app/environment/environment';
 
 @Component({
   selector: 'app-news-description',
@@ -13,6 +14,7 @@ import { WINDOW } from '@ng-toolkit/universal';
 export class NewsDescriptionComponent implements OnInit {
 
   newsId:any;
+  CommentType="news";
   newsDetails:any = [];
   ShareUrl:string;
   CommentsForm: FormGroup;
@@ -21,7 +23,9 @@ export class NewsDescriptionComponent implements OnInit {
   HashTagList: any=[];
   DetailedNews: any;
   categoryList: any = [];
-  constructor(@Inject(WINDOW) private window: Window, private _Router:Router,private route: ActivatedRoute, private homeService:HomeService,
+  imageUrlPath = environment.imageUrlPath;
+  private twitter: any;
+  constructor(@Inject(WINDOW) private window: Window, private _Router:Router,private route: ActivatedRoute, public homeService:HomeService,
     private formBuilder: FormBuilder, private meta: Meta) { 
       this.route.queryParams
       .subscribe(params => {
@@ -29,7 +33,8 @@ export class NewsDescriptionComponent implements OnInit {
         this.newsId = params.newsId;
        
         this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId;
-      })  
+      })
+      this.initTwitterWidget(window);  
     }
 
 
@@ -39,11 +44,38 @@ export class NewsDescriptionComponent implements OnInit {
       NewsId:[this.newsId],
       ParentId:[0],
       Description:[''],
-      CommentType:['comment'],
+      CommentType:['news'],
       CommentBy:[''],
     });
     this.GetComments();
     this.Allcategory();
+  }
+
+  initTwitterWidget(window) {
+    this.twitter = this._Router.events.subscribe(val => {
+      if (val instanceof NavigationEnd) {
+        (<any>window).twttr = (function (d, s, id) {
+          let js: any, fjs = d.getElementsByTagName(s)[0],
+              t = (<any>window).twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+
+          t._e = [];
+          t.ready = function (f: any) {
+              t._e.push(f);
+          };
+
+          return t;
+        }(document, "script", "twitter-wjs"));
+
+        if ((<any>window).twttr.ready())
+          (<any>window).twttr.widgets.load();
+
+      }
+    });
   }
 
   change(event:any){
@@ -58,8 +90,7 @@ export class NewsDescriptionComponent implements OnInit {
       };
       document.getElementById("navbarSupportedContent1").className = 'collapse navbar-collapse';
       this._Router.navigateByUrl('/search-results?StartDate='+StartDate+'&EndDate='+EndDate);  
-      // this.router.navigate(['/search-results',{queryParams:{StartDate: StartDate, EndDate: EndDate  }}])  
-    }
+     }
   }
 
   Allcategory() {
@@ -78,18 +109,16 @@ export class NewsDescriptionComponent implements OnInit {
             NewsId:[this.newsId],
             ParentId:[0],
             Description:[''],
-            CommentType:['comment'],
+            CommentType:['news'],
             CommentBy:[''],
           });
-
           this.GetComments();
         })
     }
   }
 
-  GetComments(){  
-      
-    this.homeService.NewsCommentsGet(this.newsId).subscribe(
+  GetComments(){       
+    this.homeService.NewsCommentsGet(this.newsId, this.CommentType).subscribe(
       (result: any) => {
         if (result) {
            this.CommentsList = result;
@@ -101,22 +130,15 @@ export class NewsDescriptionComponent implements OnInit {
     this.homeService.GetNews(id).subscribe(
       (result: any) => {
         if (result) {
+          console.log("restultt===>>  "+JSON.stringify(result))
           this.newsDetails = result;
           if(this.newsDetails.length > 0) {
             this.DetailedNews = this.newsDetails[0].News;
-           
-            // this.meta.updateTag({property: 'og:title', content: this.newsDetails[0].HeadLine});
-            // this.meta.updateTag({property: 'og:description', content: this.newsDetails[0].HeadLine });
-            // this.meta.updateTag({property: 'og:url', content:  this.ShareUrl });
-            // this.meta.updateTag({property: 'og:image', content: 'http://admin.onebharathnews.in/CategoryFiles/1564739004-Untitled_design_-_2019-08-02T144613.985.jpg'});
-            // this.meta.updateTag({property: 'twitter:card', content: this.newsDetails[0].HeadLine });
           }
-         
         }
       })
+    }
   }
-
-}
 
 export class Comments {
   constructor(@Inject(WINDOW) private window: Window) {}

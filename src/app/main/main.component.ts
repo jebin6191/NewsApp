@@ -121,7 +121,7 @@ export class MainComponent implements OnInit {
           for(let res of result){
             res.NewsHeadLine = res.HeadLine;
           }
-          console.log("Slider News"+JSON.stringify(result))
+          // console.log("Slider News"+JSON.stringify(result))
           this.homeService.sliderNewsList = result;  
           
         }

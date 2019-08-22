@@ -102,8 +102,8 @@ export class HomeService {
       .pipe(catchError(this.handleError));
   }
 
-  NewsCommentsGet(newsId): Observable<any> {
-    return this._httpClient.get<any>(API_URL + "News/GetComments/"+ newsId)
+  NewsCommentsGet(newsId, CommentType): Observable<any> {
+    return this._httpClient.get<any>(API_URL + "News/GetComments?newsId="+newsId+"&CommentType="+CommentType)
       .pipe(catchError(this.handleError));
   }
 

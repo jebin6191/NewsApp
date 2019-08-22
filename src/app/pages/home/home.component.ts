@@ -1,8 +1,9 @@
-import { Component, OnInit, Pipe, PipeTransform, Inject } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform, Inject, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { HomeService } from 'src/app/service/home.service';
 import { environment } from 'src/app/environment/environment';
 import { WINDOW } from '@ng-toolkit/universal';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,13 @@ export class HomeComponent implements OnInit {
   PopularNews:any = [];
   private twitter: any;
   NationalNewsList:any = [];
+  // @ViewChild('slickModal',{static: false}) slickModal: SlickCarouselComponent;
+  // slideConfig = {  
+  //   "slidesToShow": 3,  
+  //   "slidesToScroll": 3,  
+  //   "dots": true,  
+  //   "infinite": true  
+  // }; 
 
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) {
     this.initTwitterWidget(window);

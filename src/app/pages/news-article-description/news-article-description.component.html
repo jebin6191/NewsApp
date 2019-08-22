@@ -9,7 +9,6 @@
 					<div class="p-b-70">
 
 						<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2" [innerHTML]="NewsArticle[0].HeadLine">
-							
 						</h3>
 
 						<div class="flex-wr-s-s p-b-40">
@@ -23,35 +22,29 @@
 								<span>
 										{{NewsArticle[0].Date | date}}
 								</span>
+		
 							</span>
-
-							<!-- <span class="f1-s-3 cl8 m-r-15">
-								5239 Views
+							<span class="f1-s-3 cl8 m-r-15">
+								{{NewsArticle[0].viewCount}} Views
 							</span>
-
-							<a href="#" class="f1-s-3 cl8 hov-cl10 trans-03 m-r-15">
-								0 Comment
-							</a> -->
 						</div>
+
 						<div class="wrap-pic-max-w p-b-30">
 							<img src="{{imageUrlPath+'article/'+NewsArticle[0].Newsthump}}" alt="IMG">
 						</div>
 
 						<div class="wrap-pic-max-w p-b-30" [innerHTML]="NewsArticle[0].News">
-
 						</div>
 
 						<div class="flex-s-s">
-								<span class="f1-s-12 cl5 p-t-1 m-r-15">
-									<b>Share:</b>
-								</span>
-								<div class="flex-wr-s-s size-w-0">
-	
-									<share-buttons theme="moon" [include]="['facebook','twitter','whatsapp']"
-									[title]="NewsArticle[0].HeadLine"
-									 [description]="NewsArticle[0].HeadLine"></share-buttons>
-								</div>
+							<span class="f1-s-12 cl5 p-t-1 m-r-15">
+								<b>Share:</b>
+							</span>
+							<div class="flex-wr-s-s size-w-0">
+								<share-buttons theme="moon" [include]="['facebook','twitter','whatsapp']" 
+								[title]="NewsArticle[0].HeadLine" [description]="NewsArticle[0].HeadLine"></share-buttons>
 							</div>
+						</div>
 
 						<!-- Tag -->
 						<!-- <div class="flex-s-s p-t-12 p-b-15">
@@ -77,10 +70,6 @@
 							Leave a Comment
 						</h4>
 
-						<!-- <p class="f1-s-13 cl8 p-b-40">
-							Your email address will not be published. Required fields are marked *
-						</p> -->
-
 						<form>
 							<textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20"
 								name="msg" placeholder="Comment..."></textarea>
@@ -100,7 +89,7 @@
 			<div class="col-md-10 col-lg-4 p-b-30">
 				<div class="p-l-10 p-rl-0-sr991 p-t-70">
 					<!-- Category -->
-					<div class="p-b-60">
+					<!-- <div class="p-b-60">
 						<div class="how2 how2-cl4 flex-s-c">
 							<h3 class="f1-m-2 cl3 tab01-title">
 								Category
@@ -115,17 +104,35 @@
 									</a>
 								</li>						
 							</ul>
-					</div>
+					</div> -->
+
+					<div class="p-t-60">
+							<div class="how2 how2-cl4 flex-s-c">
+									<h3 class="f1-m-2 cl3 tab01-title">
+										Stay Connected
+									</h3>
+								</div>
+							<ul class="p-t-35" style="height: 500px; overflow-y: scroll;">
+								<a class="twitter-timeline" href="https://twitter.com/news_bharath?ref_src=twsrc%5Etfw">Tweets by news_bharath</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+							</ul>
+						</div>
 
 					<!-- Archive -->
 					<div class="p-b-37">
-						<div class="how2 how2-cl4 flex-s-c">
+
+						<div class="p-t-50">
+							<a *ngFor="let add of homeService.advertisementList">
+								<a *ngIf="add.Name == 'two'" href="{{add.Link}}" target="_blank"
+									style="cursor: pointer;"><img src="{{imageUrlPath + 'common/' + add.ImagePath}}" alt="IMG"
+										style="max-height:600px;max-width: 300px;"></a>
+							</a>
+						</div>
+						<!-- <div class="how2 how2-cl4 flex-s-c">
 							<h3 class="f1-m-2 cl3 tab01-title">
 								Archive
 							</h3>
-						</div>
-
-						<ul class="p-t-32">
+						</div> -->
+						<!-- <ul class="p-t-32">
 							<li class="p-rl-4 p-b-19">
 								<a href="#" class="flex-wr-sb-c f1-s-10 text-uppercase cl2 hov-cl10 trans-03">
 									<span>
@@ -221,8 +228,8 @@
 									</span>
 								</a>
 							</li>
-						</ul>
-					</div>
+						</ul> -->
+					</div> 
 
 					<!-- Popular Posts -->
 					<div class="p-b-30">
