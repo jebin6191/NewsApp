@@ -21,6 +21,8 @@ export class MainComponent implements OnInit {
   uploadResponse: any = "";
   Temparr = [];
 
+
+
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router, private router: Router, 
     private formBuilder: FormBuilder) { }
   public categoryList:any;
@@ -163,8 +165,10 @@ export class MainComponent implements OnInit {
             var src = item.Link;
             var src1 = src.split("embed/");
             result[i]['videoId']=  src1[1]
+            result[i]['video']=  "https://youtu.be/rvTep-ryMtE"
+            result[i]['posterImage'] = "http://img.youtube.com/vi/"+src1[1]+"/0.jpg"
        })
-
+       console.log("Video NEWS ===>> "+JSON.stringify(result))
        this.homeService.videoNews = result;
         }
       });

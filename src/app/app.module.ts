@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgtUniversalModule } from '@ng-toolkit/universal';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { NgtUniversalModule } from '@ng-toolkit/universal';
     NgxDaterangepickerMd.forRoot(),
     CommonModule,
     TransferHttpCacheModule,
-    NgtUniversalModule
+    NgtUniversalModule,
+    
   ],
   exports:[],
   providers: [

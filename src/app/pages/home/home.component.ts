@@ -17,14 +17,16 @@ export class HomeComponent implements OnInit {
   PopularNews:any = [];
   private twitter: any;
   NationalNewsList:any = [];
-  // @ViewChild('slickModal',{static: false}) slickModal: SlickCarouselComponent;
-  // slideConfig = {  
-  //   "slidesToShow": 3,  
-  //   "slidesToScroll": 3,  
-  //   "dots": true,  
-  //   "infinite": true  
-  // }; 
-
+  VideoNewsArr:any = [{
+    "video": "https://youtu.be/rvTep-ryMtE"
+  },{
+    "video": "https://youtu.be/rvTep-ryMtE"
+  },
+  {
+    "video": "https://youtu.be/rvTep-ryMtE"
+  },{
+    "video": "https://youtu.be/rvTep-ryMtE"
+  }]
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) {
     this.initTwitterWidget(window);
    }
@@ -57,7 +59,6 @@ export class HomeComponent implements OnInit {
 
         if ((<any>window).twttr.ready())
           (<any>window).twttr.widgets.load();
-
       }
     });
   }
