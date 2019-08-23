@@ -159,14 +159,15 @@ export class MainComponent implements OnInit {
     debugger;
     this.homeService.GetVideoNews().subscribe(
       (result: any) => {
+      
+
+        // this.homeService.videoNews = result;
         if (result) {
-        
           result.forEach((item,i) => {
             var src = item.Link;
             var src1 = src.split("embed/");
             result[i]['videoId']=  src1[1]
-            result[i]['video']=  "https://youtu.be/rvTep-ryMtE"
-            result[i]['posterImage'] = "http://img.youtube.com/vi/"+src1[1]+"/0.jpg"
+            result[i]['video'] = item.Link;
        })
        console.log("Video NEWS ===>> "+JSON.stringify(result))
        this.homeService.videoNews = result;

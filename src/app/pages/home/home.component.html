@@ -65,6 +65,16 @@
     font-size: 14px;
     line-height: 1.25;
 }
+
+.video-slider ::ng-deep .ng-image-slider .ng-image-slider-container .main .main-inner .img-div .caption {
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+    color: #fff;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    box-sizing: border-box;
+}
 </style>
 
 
@@ -77,6 +87,7 @@
                 <div class="marqee-header">
                    TOP NEWS
                 </div>
+
                     <!-- <div class="marqee-vertical" >
                         <ul>
                             <li style="color: transparent">test</li>
@@ -175,11 +186,7 @@
                     </div>
                 </div>
                 <div class="row p-t-35">
-
-                        <!-- <ng-image-slider [images]="VideoNewsArr" #nav></ng-image-slider> -->
-
-
-                        <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                        <!-- <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
                         <div class="carousel-inner w-100" role="listbox">
                             <div class="carousel-item row no-gutters active">
                                 <div *ngFor="let videoNews of homeService.videoNews | slice:0:4 ; let i = index"
@@ -205,7 +212,10 @@
                                 </div>                                
                             </div>    
                         </div>
-                    </div>                    
+                    </div>                     -->
+                </div>
+                <div class="video-slider">
+                    <ng-image-slider [images]="SliderImages" [slideImage]="4" [infinite]="true" [imageSize]="imageSize"  #nav ></ng-image-slider>
                 </div>
             </div>
         </div>

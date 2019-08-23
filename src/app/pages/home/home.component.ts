@@ -17,24 +17,21 @@ export class HomeComponent implements OnInit {
   PopularNews:any = [];
   private twitter: any;
   NationalNewsList:any = [];
-  VideoNewsArr:any = [{
-    "video": "https://youtu.be/rvTep-ryMtE"
-  },{
-    "video": "https://youtu.be/rvTep-ryMtE"
-  },
-  {
-    "video": "https://youtu.be/rvTep-ryMtE"
-  },{
-    "video": "https://youtu.be/rvTep-ryMtE"
-  }]
+  SliderImages:any;
+
+  imageSize = {width: 210, height: 200}
+
+
+
   constructor(@Inject(WINDOW) private window: Window, public homeService:HomeService,private _Router:Router) {
     this.initTwitterWidget(window);
    }
 
   ngOnInit() {
     window.scrollTo(0,0);
+    this.getVideoNews();
     this.NationalNews();  
-    this.GetAllPopularPosts();
+    this.GetAllPopularPosts();   
   }
 
   initTwitterWidget(window) {
@@ -61,6 +58,23 @@ export class HomeComponent implements OnInit {
           (<any>window).twttr.widgets.load();
       }
     });
+  }
+
+  getVideoNews() {
+    this.homeService.GetVideoNews().subscribe(
+      (result: any) => {
+        if (result) {
+          result.forEach((item,i) => {
+            var src = item.Link;
+            var src1 = src.split("embed/");
+            result[i]['videoId']=  src1[1]
+            result[i]['video'] = item.Link;
+            result[i]['title'] = (item.Title.length>50)? ((item.Title).slice(0, 50)+'...') : (item.Title) ;
+            result[i]['thumbImage'] = "http://img.youtube.com/vi/"+src1[1]+"/0.jpg"; 
+          })
+          this.SliderImages = result;
+        }
+      });
   }
 
   NationalNews() {

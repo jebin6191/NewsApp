@@ -13,6 +13,7 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { CommonModule } from '@angular/common';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgtUniversalModule } from '@ng-toolkit/universal';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { NgtUniversalModule } from '@ng-toolkit/universal';
     CommonModule,
     TransferHttpCacheModule,
     NgtUniversalModule,
-    
+    NgImageSliderModule
   ],
   exports:[],
   providers: [
