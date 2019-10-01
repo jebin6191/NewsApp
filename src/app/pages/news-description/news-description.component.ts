@@ -73,7 +73,6 @@ export class NewsDescriptionComponent implements OnInit {
 
         if ((<any>window).twttr.ready())
           (<any>window).twttr.widgets.load();
-
       }
     });
   }

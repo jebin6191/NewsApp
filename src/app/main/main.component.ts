@@ -61,7 +61,7 @@ export class MainComponent implements OnInit {
   }
 
   ReloadApp(){
-    this.window.open("http://www.onebharathnews.in/home", "_self")
+    this.window.open("http://www.onebharathnews.tv/home", "_self")
   }
 
   addEvent(event: MatDatepickerInputEvent<Date>) {

@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
   NationalNewsList:any = [];
   SliderImages:any;
 
+  ShareBaseUrl = 'http://admin.onebharathnews.tv'
+
   imageSize = {width: 210, height: 200}
 
 
