@@ -61,7 +61,7 @@ export class MainComponent implements OnInit {
   }
 
   ReloadApp(){
-    this.window.open("http://www.onebharathnews.tv/home", "_self")
+    this.window.open("https://www.onebharathnews.tv/home", "_self")
   }
 
   addEvent(event: MatDatepickerInputEvent<Date>) {
@@ -205,7 +205,7 @@ export class MainComponent implements OnInit {
       });
   }
   NavigateDesc(id){
-    this.window.open("http://onebharathnews.in/news-description?newsId="+id, "_blank");
+    this.window.open("https://onebharathnews.tv/news-description?newsId="+id, "_blank");
     // window.location.href = 'http://onebharathnews.in/news-description?newsId='+id
   }
 
