@@ -32,7 +32,7 @@ export class NewsDescriptionComponent implements OnInit {
         window.scrollTo(0,0);
         this.newsId = params.newsId;
        
-        this.ShareUrl = "http://www.onebharathnews.in/news-description?newsId="+this.newsId;
+        this.ShareUrl = "https://www.onebharathnews.tv/news-description?newsId="+this.newsId;
       })
       this.initTwitterWidget(window);  
     }
