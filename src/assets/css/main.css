@@ -160,6 +160,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .show-btn-back-to-top {bottom: 0;}
 
 
+.articleinnerhtml > p > img {
+  width: 550px !important;
+}
+
+
 /*//////////////////////////////////////////////////////////////////
 [ Header ]*/
 

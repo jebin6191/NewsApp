@@ -1,5 +1,13 @@
 
 <!-- Content -->
+<style>
+
+
+
+:host ::ng-deep .test > img { 
+  width:300px !important;
+}
+</style>
 <section class="bg0 p-b-140 p-t-10">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -33,7 +41,7 @@
 							<img src="{{imageUrlPath+'article/'+NewsArticle[0].Newsthump}}" alt="IMG">
 						</div>
 
-						<div class="wrap-pic-max-w p-b-30"  [innerHTML]="NewsArticle[0].News | SafePipe">
+						<div class="wrap-pic-max-w p-b-30 articleinnerhtml"  [innerHTML]="NewsArticle[0].News ">
 						</div>
 
 						<div class="flex-s-s">
@@ -112,9 +120,9 @@
 										Stay Connected
 									</h3>
 								</div>
-							<ul class="p-t-35" style="height: 500px; overflow-y: scroll;">
+							<!-- <ul class="p-t-35" style="height: 500px; overflow-y: scroll;">
 								<a class="twitter-timeline" href="https://twitter.com/news_bharath?ref_src=twsrc%5Etfw">Tweets by news_bharath</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-							</ul>
+							</ul> -->
 						</div>
 
 					<!-- Archive -->
