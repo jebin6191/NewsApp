@@ -98,15 +98,13 @@ export class HomeComponent implements OnInit {
   }
 
   GotToDesc(data){  
-    this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId+
-    "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump);
+    this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId);
   }
 
   gotoArticle(data){
     // this.window.open("http://localhost:4200/"+"article-description?newsId="+data.newsId+
     // "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump, '_self');
-    this.window.open(environment.endPoint+ "article-description?newsId="+data.newsId+
-    "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump);
+    this.window.open(environment.endPoint+ "article-description?newsId="+data.newsId);
   }
 
   GetAllPopularPosts(){      

@@ -33,7 +33,7 @@
 							<img src="{{imageUrlPath+'article/'+NewsArticle[0].Newsthump}}" alt="IMG">
 						</div>
 
-						<div class="wrap-pic-max-w p-b-30"  [innerHTML]="NewsArticle[0].News">
+						<div class="wrap-pic-max-w p-b-30"  [innerHTML]="NewsArticle[0].News | SafePipe">
 						</div>
 
 						<div class="flex-s-s">

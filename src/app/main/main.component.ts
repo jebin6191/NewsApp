@@ -54,7 +54,7 @@ export class MainComponent implements OnInit {
     this.Allcategory();
     this.getAdvertisement();
     this.getSliderNews();
-    this.getLatestNews();
+    // this.getLatestNews();
     this.getArticles();
     this.getVideoNews();
     this.getScrollNews();
@@ -120,8 +120,7 @@ export class MainComponent implements OnInit {
 
   GotToDesc(data){  
     console.log("test"+JSON.stringify(data));
-    this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId+
-    "&title="+ data.NewsHeadLine+"&image="+environment.imageUrl+data.Newsthump);
+    this.window.open(environment.endPoint+ "news-description?newsId="+data.newsId);
   }
 
   getSliderNews() {
