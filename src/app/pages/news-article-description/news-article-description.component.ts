@@ -3,6 +3,9 @@ import { environment } from 'src/app/environment/environment';
 import { HomeService } from 'src/app/service/home.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { WINDOW } from '@ng-toolkit/universal';
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-news-article-description',
@@ -76,4 +79,19 @@ export class NewsArticleDescriptionComponent implements OnInit {
         }
       })
   }
+}
+
+
+
+@Pipe({
+  name: 'SafePipe1'
+})
+export class SafePipe1 implements PipeTransform {
+
+  constructor(private sanitize: DomSanitizer){  }
+
+  transform(html: string): any {
+    return this.sanitize.bypassSecurityTrustHtml(html); 
+  }
+
 }

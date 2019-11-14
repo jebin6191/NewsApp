@@ -2,11 +2,11 @@
 <!-- Content -->
 <style>
 
-
-
 :host ::ng-deep .test > img { 
   width:300px !important;
+  object-fit: cover;
 }
+
 </style>
 <section class="bg0 p-b-140 p-t-10">
 	<div class="container">
@@ -16,7 +16,7 @@
 					<!-- Blog Detail -->
 					<div class="p-b-70">
 
-						<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2" [innerHTML]="NewsArticle[0].HeadLine">
+						<h3 class="f1-l-3 cl2 p-b-16 p-t-33 respon2" [innerHTML]="NewsArticle[0].HeadLine ">
 						</h3>
 
 						<div class="flex-wr-s-s p-b-40">
@@ -32,16 +32,16 @@
 								</span>
 		
 							</span>
-							<span class="f1-s-3 cl8 m-r-15">
+							<!-- <span class="f1-s-3 cl8 m-r-15">
 								{{NewsArticle[0].viewCount}} Views
-							</span>
+							</span> -->
 						</div>
 
 						<div class="wrap-pic-max-w p-b-30">
 							<img src="{{imageUrlPath+'article/'+NewsArticle[0].Newsthump}}" alt="IMG">
 						</div>
 
-						<div class="wrap-pic-max-w p-b-30 articleinnerhtml"  [innerHTML]="NewsArticle[0].News ">
+						<div class="wrap-pic-max-w p-b-30 articleinnerhtml"  [innerHTML]="NewsArticle[0].News | SafePipe1 ">
 						</div>
 
 						<div class="flex-s-s">
@@ -263,14 +263,14 @@
 								Tags
 							</h3>
 						</div>
-						<!-- <div class="flex-wr-s-s m-rl--5">	
-								<div *ngFor="let tag of homeService.selectedArticleNews.HashTags">				
+						<div class="flex-wr-s-s m-rl--5">	
+								<div *ngFor="let tag of NewsArticle[0].HashTags">				
 								<a  *ngIf="tag != ''"  [routerLink]="['/search-results']" [queryParams]="{ SearchTerm:tag, StartDate: '', EndDate:'' }"
 									class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
 									{{tag}}
 								</a>
 							</div>	
-						</div>	 -->
+						</div>	
 
 						<!-- <div class="flex-wr-s-s m-rl--5">
 							<a href="#"
@@ -317,5 +317,9 @@
 				</div>
 			</div>
 		</div>
+
+		
 	</div>
 </section>
+
+

@@ -53,6 +53,7 @@ export class NewsSearchResultsComponent implements OnInit {
     this.homeService.search(searchstring).subscribe(
       (result: any) => {
         if (result) {
+          console.log("result"+JSON.stringify(result))
           this.NewsListBySearchTerm = result; 
         }
       });

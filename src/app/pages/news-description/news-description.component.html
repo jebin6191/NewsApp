@@ -1,5 +1,11 @@
 
 <!-- Content -->
+<style>
+
+.newsinnerhtml > p > img {
+  object-fit: cover !important;
+}
+</style>
 <section class="bg0 p-b-140 p-t-10">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -38,7 +44,7 @@
 							<img src="https://admin.onebharathnews.tv/CategoryFiles/{{newsDetails[0].ImageThumb}}" alt="IMG">
 						</div>
 
-						<div class="wrap-pic-max-w p-b-30" [innerHTML]="DetailedNews | SafePipe">
+						<div class="wrap-pic-max-w p-b-30 newsinnerhtml" [innerHTML]="DetailedNews | SafePipe">
 
 						</div>
 
@@ -186,7 +192,7 @@
 
 						<div class="flex-wr-s-s m-rl--5" *ngIf="newsDetails.length > 0">	
 							<div *ngFor="let tag of newsDetails[0].HashTags">				
-							<a  *ngIf="tag != ''"  [routerLink]="['/search-results']" [queryParams]="{ SearchTerm:tag, StartDate: '', EndDate:'' }"
+							<a  *ngIf="tag != ''"  [routerLink]="['/search-results']" [queryParams]="{ SearchTerm:tag, Type:'news', StartDate: '', EndDate:'' }"
 								class="flex-c-c size-h-2 bo-1-rad-20 bocl12 f1-s-1 cl8 hov-btn2 trans-03 p-rl-20 p-tb-5 m-all-5">
 								{{tag}}
 							</a>

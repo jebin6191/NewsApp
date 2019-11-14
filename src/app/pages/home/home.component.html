@@ -230,7 +230,7 @@
                                                 <a class="wrap-pic-w hov1 trans-03 CursorPointer" 
                                                 href="/news-description?newsId={{NationalNewsList[0].newsId}}">
                                                       <img src="https://admin.onebharathnews.tv/CategoryFiles/{{NationalNewsList[0].Newsthump}}"
-                                                        alt="IMG" style="max-height: 263px;max-width: 100%;">
+                                                        alt="IMG" style="max-height: 263px;max-width: 100%;object-fit:cover;">
                                                 </a>
                                                 <!-- [routerLink]="['/news-description']" [queryParams]="{newsId: NationalNewsList[0].NewsId, title: NationalNewsList[0].NewsHeadLine}" -->
                                                 <div class="p-t-20">
@@ -250,7 +250,7 @@
                                                 <a class="size-w-1 wrap-pic-w hov1 trans-03 CursorPointer"
                                                 href="/news-description?newsId={{national.newsId}}">
                                                     <img src="https://admin.onebharathnews.tv/CategoryFiles/{{national.Newsthump}}"
-                                                        alt="IMG" style="max-height: 75px;max-width:100%;">
+                                                        alt="IMG" style="max-height: 75px;max-width:100%;object-fit:cover;">
                                                 </a>
     
                                                 <div class="size-w-2">
@@ -313,7 +313,7 @@
                                                  href="/news-description?newsId={{category.AllNews[0].newsId}}">
                                                 <!-- [routerLink]="['/news-details?newsId='+category.SubCategoryJson[0].News[0].newsId]"> -->
                                                 <img src="https://admin.onebharathnews.tv/CategoryFiles/{{category.AllNews[0].Newsthump}}"
-                                                    alt="IMG" style="max-height: 263px;max-width: 100%;">
+                                                    alt="IMG" style="max-height: 263px;max-width: 100%;object-fit:cover;">
                                             </a>
 
                                             <div class="p-t-20">
@@ -371,7 +371,7 @@
                                     
                                                 >
                                                 <img src="https://admin.onebharathnews.tv/CategoryFiles/{{subcategory.News[0].Newsthump}}"
-                                                    alt="IMG" style="max-height: 263px;max-width:100%;">
+                                                    alt="IMG" style="max-height: 263px;max-width:100%;object-fit:cover;">
                                             </a>
                                             <div class="p-t-20">
                                                 <h5 class="p-b-5">
@@ -435,6 +435,11 @@
                                 <a class="twitter-timeline" href="https://twitter.com/news_bharath?ref_src=twsrc%5Etfw">Tweets by news_bharath</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
                             </ul>
                         </div>   -->
+                         <div>
+                            <ul class="p-t-35" style="height: 500px; overflow-y: scroll;">
+                                <a class="twitter-timeline" href="https://twitter.com/onebharathnews?ref_src=twsrc%5Etfw">Tweets by onebharathnews</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </ul>
+                        </div>  
                     </div>
                     
                     <div class="p-t-50 flex-c-s p-t-8">
@@ -452,7 +457,7 @@
                     </div>
 
 
-                    <div class="p-t-50">
+                    <!-- <div class="p-t-50">
                         <div class="how2 how2-cl4 flex-s-c">
                             <h3 class="f1-m-2 cl3 tab01-title">
                                 Most Popular
@@ -469,7 +474,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -498,14 +503,14 @@
                 <div class="row p-t-35">
                     <div class="col-sm-3 p-r-25 p-r-15-sr991" *ngFor="let article of homeService.articles | slice:0:12">
                         <div class="m-b-45">
-                            <a (click)="gotoArticle(article)" style="cursor: pointer"
+                            <a  href="/article-description?newsId={{article.newsId}}" style="cursor: pointer"
                                 class="wrap-pic-w hov1 trans-03">
                                 <img src="{{imageUrlPath+'article/'+article.Newsthump}}" alt="IMG" height="150" width="250">
                             </a>
                             <!-- [routerLink]="['/article-description']" [queryParams]="{newsId: article.newsId}" -->
                             <div class="p-t-16">
                                 <h5 class="p-b-5">
-                                    <a (click)="gotoArticle(article)" 
+                                    <a href="/article-description?newsId={{article.newsId}}"
                                         class="f1-m-3 cl2 hov-cl10 trans-03">
                                         {{article.HeadLine}}
                                     </a>

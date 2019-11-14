@@ -72,6 +72,8 @@ export class HomeComponent implements OnInit {
             result[i]['videoId']=  src1[1]
             result[i]['video'] = item.Link;
             result[i]['title'] = (item.Title.length>50)? ((item.Title).slice(0, 50)+'...') : (item.Title) ;
+
+            console.log("src1"+src1);
             result[i]['thumbImage'] = "https://img.youtube.com/vi/"+src1[1]+"/0.jpg"; 
           })
           this.SliderImages = result;

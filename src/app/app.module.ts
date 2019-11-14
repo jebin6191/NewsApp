@@ -14,12 +14,13 @@ import { CommonModule } from '@angular/common';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { SafePipe } from './shared/safe.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),   
